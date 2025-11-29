@@ -47,6 +47,11 @@ public class MemberView implements TabView{
         changeButton = new Button("Ändra medlem");
         deleteButton = new Button("Ta bort medlem");
         historyButton = new Button("Visa historia");
+        newButton.setMaxWidth(Double.MAX_VALUE);
+        searchButton.setMaxWidth(Double.MAX_VALUE);
+        changeButton.setMaxWidth(Double.MAX_VALUE);
+        deleteButton.setMaxWidth(Double.MAX_VALUE);
+        historyButton.setMaxWidth(Double.MAX_VALUE);
 
         vbox.getChildren().addAll(newButton,searchButton,changeButton,deleteButton, historyButton);
         table = new TableView<>();
@@ -66,15 +71,24 @@ public class MemberView implements TabView{
         tab.setContent(pane);
         newButton.setOnAction(e -> {
             mainController.newMember();
-            //mainController.newMember() startar upp en ny ruta och den här koden ska vänta här
             populateTable();
         });
+        changeButton.setOnAction(e -> {
+            Member member = table.getSelectionModel().getSelectedItem();
+            if (member != null) {
+                mainController.changeMemberView(member);
+                populateTable();
+            } else {
+                showInfoAlert("Välj en medlem att ändra!");
+            }
+        });
         return tab;
-
     }
+
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }
+
     private void populateTable() {
         try {
             List<Member> list = mainController.getAllMembers();
@@ -86,13 +100,14 @@ public class MemberView implements TabView{
             showErrorAlert(e.getMessage());
         }
     }
+
     private void showInfoAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Information");
         alert.setHeaderText(message);
         alert.showAndWait();
-
     }
+
     private void showErrorAlert(String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

@@ -4,6 +4,7 @@ import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
+import com.ljuslin.model.Member;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -12,46 +13,45 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- * Shows a popup where the user can enter values for a new member
- * @author tina.ljuslin@studerande.yh.se
- */
-public class NewMemberView {
+public class ChangeMemberView {
     private MainController mainController;
 
     private Stage newMemberStage;
-    private TextField fistNameField;
+    private TextField firstNameField;
     private TextField lastNameField;
     private ComboBox<Level> levelComboBox;
     private Label firstNameLabel;
     private Label lastNameLabel;
     private Label levelLabel;
+    private Label memberIDLabel;
+    private Label memberIDTextLabel;
     private Button saveButton;
     private Button cancelButton;
     private GridPane gridPane;
 
-    public NewMemberView(MainController mainController) {
+    public ChangeMemberView(MainController mainController) {
         this.mainController = mainController;
     }
 
-    public void showPopUp(Stage mainStage, Scene mainScene) {
+    public Member showPopUp(Stage mainStage, Scene mainScene, Member member) {
         newMemberStage = new Stage();
         saveButton = new Button("Spara");
         cancelButton = new Button("Avbryt");
         firstNameLabel = new Label("Förnamn");
         lastNameLabel = new Label("Efternamn");
-
         levelLabel = new Label("Level");
-        fistNameField = new TextField();
-        lastNameField = new TextField();
+        memberIDLabel = new Label("ID");
+        memberIDTextLabel = new Label(member.getMemberID());
+        firstNameField = new TextField(member.getFirstName());
+        lastNameField = new TextField(member.getLastName());
         ObservableList<Level> levels = FXCollections.observableArrayList(Level.values());
         levelComboBox = new ComboBox<>(levels);
-
+        levelComboBox.getSelectionModel().select(member.getMemberLevel());
         gridPane = new GridPane();
         gridPane.add(firstNameLabel, 0, 0);
         gridPane.add(lastNameLabel, 0, 1);
         gridPane.add(levelLabel, 0, 2);
-        gridPane.add(fistNameField, 1, 0);
+        gridPane.add(firstNameField, 1, 0);
         gridPane.add(lastNameField, 1, 1);
         gridPane.add(levelComboBox, 1, 2);
         gridPane.add(saveButton, 1, 3);
@@ -62,8 +62,10 @@ public class NewMemberView {
 
         saveButton.setOnAction( ae -> {
             try {
-                mainController.newMember(fistNameField.getText(), lastNameField.getText(),
-                        levelComboBox.getValue());
+                member.setFirstName(firstNameField.getText());
+                member.setLastName(lastNameField.getText());
+                member.setMemberLevel(levelComboBox.getValue());
+                mainController.changeMember(member);
                 newMemberStage.close();
             } catch (MemberException e) {
                 showInfoAlert(e.getMessage());
@@ -72,8 +74,6 @@ public class NewMemberView {
             } catch (Exception e) {
                 showErrorAlert(e.getMessage());
             }
-
-
         });
         cancelButton.setOnAction(ae -> {
             newMemberStage.close();
@@ -83,6 +83,7 @@ public class NewMemberView {
         newMemberStage.initModality(Modality.APPLICATION_MODAL);
         newMemberStage.setScene(scene2);
         newMemberStage.showAndWait();
+        return member;
     }
 
     private void showInfoAlert(String message) {

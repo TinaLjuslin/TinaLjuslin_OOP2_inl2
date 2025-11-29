@@ -86,4 +86,20 @@ public class MainController {
             throw e;
         }
     }
+    public void changeMemberView(Member member) {
+        ChangeMemberView changeMemberView = new ChangeMemberView(this);
+        changeMemberView.showPopUp(stage, scene, member);
+
+
+    }
+    public void changeMember(Member member) throws FileException, MemberException {
+        try {
+            membershipService.changeMember(member);
+        } catch (MemberException e) {
+            throw e;
+        } catch (FileException e) {
+            throw e;
+        }
+    }
+
 }

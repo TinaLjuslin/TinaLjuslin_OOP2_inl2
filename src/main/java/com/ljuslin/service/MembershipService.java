@@ -81,6 +81,8 @@ public void addToHistory(Member member, String history) {
     String time = LocalDateTime.now().format(DateTimeFormatter.
             ofPattern("yyyy-MM-dd HH:mm:ss"));
         member.addToHistory(time + " : " + history);
+        //////////////////////////////
+    //anropa repo och ändra historien i filen
 }
     /**
      * Returns the enum level if there is any matching the string
@@ -114,9 +116,14 @@ public void addToHistory(Member member, String history) {
      * @param memberID id of member to get
      * @return member or null if no member was found
      */
-    public Member getMember(String memberID) {
-        return memberRegistry.getMember(memberID);
-
+    public Member getMember(String memberID) throws MemberException, FileException {
+        try {
+            return memberRegistry.getMember(memberID);
+        } catch (MemberException e) {
+            throw e;
+        } catch (FileException e) {
+            throw e;
+        }
     }
 
     /**
@@ -134,23 +141,22 @@ public void addToHistory(Member member, String history) {
         */return searchmembers;
     }
 
-    /**
-     * Changes a members lastname and/or level
-     * @param memberID id of member to change
-     * @param lastName new last name or "" if not to change
-     * @param level new level or "" if not to change
-     * @return string for the user
-     */
-    public String changeMember(String memberID, String lastName, String level) {
-        Member member;
-        if (level == "" && lastName == "" )
-            return "Please enter proper name or level";
-        if (level != "" && lastName != "") {
-            Level lLevel = getLevel(level);
-            if (lLevel == null) {
-                return level + " is not a valid level";
-            }
-            member = memberRegistry.changeMember(memberID, lastName, lLevel);
+    public String changeMember(Member member) throws MemberException, FileException {
+        if (member.getFirstName().trim().equals("")) {
+            throw new MemberException("Vänligen ange ett förnamn.");
+        } else if (member.getLastName().trim().equals("")) {
+            throw new MemberException("Vänligen ange ett efternamn.");
+        } else if (member.getMemberLevel() == null) {
+            throw new MemberException("Vänligen välj en level.");
+        }
+        try {
+            memberRegistry.changeMember(member);
+        } catch (FileException e) {
+            throw e;
+        }
+        addToHistory(member, "Member added: " + member.toString());
+        return "Member " + member.getFirstName() + " " + member.getLastName() + " added successfully";
+    }   /* member = memberRegistry.changeMember(memberID, lastName, lLevel);
             addToHistory(member, ("Members last name changed to: " + lastName));
             addToHistory(member, ("Members level changed to: " + lLevel));
 
@@ -170,7 +176,7 @@ public void addToHistory(Member member, String history) {
             return "Member " + memberID + " could not be changed";
         }
         return "Member " + memberID + " changed successfully";
-    }
+    }*/
 
     /**
      * Removes a member, returns a string for the user
@@ -178,7 +184,7 @@ public void addToHistory(Member member, String history) {
      * @return string for the user
      */
     public String removeMember(String memberID) {
-        Member tempMember = memberRegistry.getMember(memberID);
+        /*Member tempMember = memberRegistry.getMember(memberID);
         List<Rental> rentals = rentalRepo.getRentals();
         for (Rental rental : rentals) {
             if (rental.getMember().equals(tempMember) && rental.getReturnDate() == null) {
@@ -188,7 +194,7 @@ public void addToHistory(Member member, String history) {
         tempMember = memberRegistry.removeMember(memberID);
         if (tempMember == null) {
             return "Member " + memberID + " could not be removed";
-        }
+        }*/
         return "Member " + memberID + " removed";
     }
 
@@ -198,7 +204,7 @@ public void addToHistory(Member member, String history) {
      * @return ist of members history
      */
     public List<String> getHistory(String memberID) {
-        Member member = memberRegistry.getMember(memberID);
+    /*    Member member = memberRegistry.getMember(memberID);
         List<String> history = new ArrayList<>();
         if (member == null) {
             history.add("Member " + memberID + " could not be found");
@@ -209,6 +215,6 @@ public void addToHistory(Member member, String history) {
             history.add("No history for member " +  memberID);
             return history;
         }
-        return history;
+    */    return null;
     }
 }
