@@ -20,7 +20,7 @@ import java.util.List;
  * lägg till ett nytt fönster för att lägga till eller ändra, vid ändra markera member först
  * annars exception
  */
-public class MemberView implements TabView{
+public class MemberView extends View implements TabView{
     private MainController mainController;
 
     private Tab tab;
@@ -146,17 +146,4 @@ public class MemberView implements TabView{
         }
     }
 
-    private void showInfoAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
-
-    private void showErrorAlert(String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(errorMessage);
-        alert.showAndWait();
-    }
 }

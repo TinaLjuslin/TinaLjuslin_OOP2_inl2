@@ -2,11 +2,8 @@ package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
-import com.ljuslin.exception.MemberException;
-import com.ljuslin.model.Item;
-import com.ljuslin.model.Material;
-import com.ljuslin.model.Member;
-import com.ljuslin.model.Pattern;
+import com.ljuslin.exception.ItemException;
+import com.ljuslin.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -16,18 +13,13 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-/**
- * knappar på vänster sida, lägg till, ta bort, ändra, uppdatera
- *
- */
-public class ItemView implements TabView{
+public class ItemView extends View implements TabView{
     private MainController mainController;
 
     private Tab tab;
     private BorderPane pane;
     private VBox vbox;
-    private Button newTieButton;
-    private Button newBowtieButton;
+    private Button newItemButton;
     private Button searchButton;
     private Button changeButton;
     private Button deleteButton;
@@ -37,6 +29,10 @@ public class ItemView implements TabView{
     private TableColumn<Item, String> brandColumn;
     private TableColumn<Item, Double> priceColumn;
     private TableColumn<Item, String> colorColumn;
+    private TableColumn<Item, String> sizeColumn;
+    private TableColumn<Item, String> preeTiedColumn;
+    private TableColumn<Item, Double> widthColumn;
+    private TableColumn<Item, Double> lengthColumn;
 
     public ItemView(){}
 
@@ -44,18 +40,16 @@ public class ItemView implements TabView{
         tab = new  Tab("Items");
         pane = new BorderPane();
         vbox = new VBox();
-        newTieButton = new Button("Ny slips");
-        newBowtieButton = new Button("Ny fluga");
+        newItemButton = new Button("Ny");
         searchButton = new Button("Sök");
         changeButton = new Button("Ändra");
         deleteButton = new Button("Ta bort");
-        newTieButton.setMaxWidth(Double.MAX_VALUE);
-        newBowtieButton.setMaxWidth(Double.MAX_VALUE);
+        newItemButton.setMaxWidth(Double.MAX_VALUE);
         searchButton.setMaxWidth(Double.MAX_VALUE);
         changeButton.setMaxWidth(Double.MAX_VALUE);
         deleteButton.setMaxWidth(Double.MAX_VALUE);
 
-        vbox.getChildren().addAll(newTieButton, newBowtieButton, searchButton, changeButton, deleteButton);
+        vbox.getChildren().addAll(newItemButton, searchButton, changeButton, deleteButton);
         table = new TableView<>();
         table.setEditable(false);
         patternColumn = new TableColumn<>("Mönster");
@@ -67,19 +61,25 @@ public class ItemView implements TabView{
         brandColumn = new TableColumn<>("Märke");
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         priceColumn = new TableColumn<>("Pris per dag");
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("pricePerDay"));
+        preeTiedColumn = new TableColumn<>("Färdigknuten");
+        preeTiedColumn.setCellValueFactory(new PropertyValueFactory<>("preeTied"));
+        sizeColumn = new TableColumn<>("Storlek");
+        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
+        widthColumn = new TableColumn<>("Bredd");
+        widthColumn.setCellValueFactory(new PropertyValueFactory<>("width"));
+        lengthColumn = new TableColumn<>("Längd");
+        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
 
-        table.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn, priceColumn);
+        table.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
+                priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn);
         populateTable();
         pane.setLeft(vbox);
         pane.setCenter(table);
         tab.setContent(pane);
-        newTieButton.setOnAction(e -> {
-            //mainController.newMemberView();
+        newItemButton.setOnAction(e -> {
+            mainController.newItemView();
             populateTable();
-        });
-        newBowtieButton.setOnAction(ae -> {
-
         });
         searchButton.setOnAction(e -> {
 
@@ -87,7 +87,7 @@ public class ItemView implements TabView{
         changeButton.setOnAction(e -> {
             Item item = table.getSelectionModel().getSelectedItem();
             if (item != null) {
-                //mainController.changeMemberView(member);
+                mainController.changeItemView(item);
                 populateTable();
             } else {
                 showInfoAlert("Välj en medlem att ändra!");
@@ -96,18 +96,18 @@ public class ItemView implements TabView{
         deleteButton.setOnAction(ae -> {
             Item item = table.getSelectionModel().getSelectedItem();
             if (item != null) {
-                /*try {
-                    //mainController.removeMember(item);
+                try {
+                    mainController.removeItem(item);
                     populateTable();
-                } catch (MemberException e) {
+                } catch (ItemException e) {
                     showInfoAlert(e.getMessage());
                 } catch (FileException e) {
                     showInfoAlert(e.getMessage());
                 } catch (Exception e) {
                     showInfoAlert(e.getMessage());
-                }*/
+                }
             } else {
-                showInfoAlert("Välj en medlem att ta bort!");
+                showInfoAlert("Välj en vara att ta bort!");
             }
         });
 
@@ -138,17 +138,5 @@ public class ItemView implements TabView{
         }
     }
 
-    private void showInfoAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
 
-    private void showErrorAlert(String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(errorMessage);
-        alert.showAndWait();
-    }
 }

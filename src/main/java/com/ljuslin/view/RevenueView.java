@@ -3,7 +3,7 @@ package com.ljuslin.view;
 import com.ljuslin.controller.MainController;
 import javafx.scene.control.Tab;
 
-public class RevenueView implements TabView{
+public class RevenueView extends View implements TabView{
     private MainController mainController;
     private Tab tab;
     public RevenueView() {}

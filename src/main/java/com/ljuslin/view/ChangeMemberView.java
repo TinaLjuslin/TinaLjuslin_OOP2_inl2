@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ChangeMemberView {
+public class ChangeMemberView extends View {
     private MainController mainController;
 
     private Stage newMemberStage;
@@ -86,17 +86,4 @@ public class ChangeMemberView {
         return member;
     }
 
-    private void showInfoAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
-
-    private void showErrorAlert(String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(errorMessage);
-        alert.showAndWait();
-    }
 }

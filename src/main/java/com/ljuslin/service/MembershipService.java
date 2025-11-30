@@ -76,55 +76,14 @@ public class MembershipService {
         }
     }
 
-    public List<Member> searchMembers(String firstName, String lastName, Level level) throws MemberException, FileException {
+    public List<Member> searchMembers(String search) throws MemberException, FileException {
         List<Member> searchmembers = new ArrayList<>();
-        if (!firstName.isEmpty() && !lastName.isEmpty()) {
-            try {
-                List<Member> members = memberRegistry.getMembers();
-                for (Member m : members) {
-                    if (m.getFirstName().toLowerCase().contains(firstName.toLowerCase())
-                            || m.getLastName().toLowerCase().contains(lastName.toLowerCase())
-                            || m.getMemberLevel().equals(level)) {
-                        searchmembers.add(m);
-                    }
-                }
-            } catch (FileException e) {
-                throw e;
-            }
-        } else if (firstName.isEmpty() && !lastName.isEmpty()) {
-            try {
-                List<Member> members = memberRegistry.getMembers();
-                for (Member m : members) {
-                    if (m.getLastName().toLowerCase().contains(lastName.toLowerCase())
-                            || m.getMemberLevel().equals(level)) {
-                        searchmembers.add(m);
-                    }
-                }
-            } catch (FileException e) {
-                throw e;
-            }
-        } else if (!firstName.isEmpty() && lastName.isEmpty()) {
-            try {
-                List<Member> members = memberRegistry.getMembers();
-                for (Member m : members) {
-                    if (m.getFirstName().toLowerCase().contains(firstName.toLowerCase())
-                            || m.getMemberLevel().equals(level)) {
-                        searchmembers.add(m);
-                    }
-                }
-            } catch (FileException e) {
-                throw e;
-            }
-        } else if (firstName.isEmpty() && lastName.isEmpty() && level != null) {
-            try {
-                List<Member> members = memberRegistry.getMembers();
-                for (Member m : members) {
-                    if (m.getMemberLevel().equals(level)) {
-                        searchmembers.add(m);
-                    }
-                }
-            } catch (FileException e) {
-                throw e;
+        List<Member> members = memberRegistry.getMembers();
+        for (Member m : members) {
+            if (m.getFirstName().toLowerCase().contains(search.toLowerCase())
+                    || m.getLastName().toLowerCase().contains(search.toLowerCase())
+                    || m.getMemberLevel().getSwedishName().toLowerCase().contains(search.toLowerCase())) {
+                searchmembers.add(m);
             }
         }
         if (searchmembers.isEmpty()) {

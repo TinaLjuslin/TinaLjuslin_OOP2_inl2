@@ -120,7 +120,6 @@ public class MemberRegistry {
             //kolla om medlemen inte kunde hittas, throw MemberException
             if (m.getMemberID().equals(member.getMemberID())) {
                 m.addToHistory(history);
-
                 break;
             }
         }

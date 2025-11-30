@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * Shows a popup where the user can enter values for a new member
  * @author tina.ljuslin@studerande.yh.se
  */
-public class NewMemberView {
+public class NewMemberView extends View{
     private MainController mainController;
 
     private Stage newMemberStage;
@@ -86,17 +86,4 @@ public class NewMemberView {
         newMemberStage.showAndWait();
     }
 
-    private void showInfoAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
-
-    private void showErrorAlert(String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(errorMessage);
-        alert.showAndWait();
-    }
 }
