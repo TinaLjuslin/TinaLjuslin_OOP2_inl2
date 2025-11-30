@@ -1,8 +1,12 @@
 package com.ljuslin.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 /**
  * Tie, has length and width of a tie
  * @author Tina Ljuslin
  */
+@JsonTypeName("Tie")
 public class Tie extends Item {
     private double length;
     private double width;
@@ -24,6 +28,22 @@ public class Tie extends Item {
                double width) {
         super(pattern, material, brand, color, pricePerDay);
         this.length = length;
+        this.width = width;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
         this.width = width;
     }
 

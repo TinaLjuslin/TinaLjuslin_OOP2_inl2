@@ -1,9 +1,9 @@
 package com.ljuslin.controller;
 
 import com.ljuslin.exception.FileException;
+import com.ljuslin.exception.ItemException;
 import com.ljuslin.exception.MemberException;
-import com.ljuslin.model.Level;
-import com.ljuslin.model.Member;
+import com.ljuslin.model.*;
 import com.ljuslin.service.ItemService;
 import com.ljuslin.service.MembershipService;
 import com.ljuslin.service.RentalService;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 /**
- * Hadles main menu and users interaction
+ *
  * @author Tina Ljuslin
  */
 public class MainController {
@@ -32,7 +32,10 @@ public class MainController {
 
     private Stage stage;
     private Scene scene;
-    public MainController() {}
+
+    public MainController() {
+    }
+
     public MainController(ItemService itemService, MembershipService membershipService,
                           RentalService rentalService, RevenueService revenueService,
                           ItemView itemView, MemberView memberView,
@@ -46,44 +49,105 @@ public class MainController {
         this.rentalView = rentalView;
         this.revenueView = revenueView;
     }
-    /**
-     * Starts rental shop by printing first menu
-     */
+
     public void start(Stage stage) {
         this.stage = stage;
         TabPane tabPane = new TabPane();
         scene = new Scene(tabPane, 800, 600);
         Tab memberTab = memberView.getTab();
         memberTab.setClosable(false);
-//        Tab itemTab = itemView.getTab();
+        Tab itemTab = itemView.getTab();
 //        Tab rentalTab = rentalView.getTab();
 //        Tab revenueTab = revenueView.getTab();
 
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene.getStylesheets().add(css);
-        tabPane.getTabs().addAll(memberTab);//, itemTab, rentalTab, revenueTab);
+        tabPane.getTabs().addAll(memberTab, itemTab);//, rentalTab, revenueTab);
         stage.setScene(scene);
         stage.show();
     }
+
     public List<Member> getAllMembers() throws FileException {
-        try {
-            return membershipService.getAllMembers();
-        } catch (FileException e) {
-            throw e;
-        }
+        return membershipService.getAllMembers();
     }
-    public void newMember() {
+
+    public void newMemberView() {
         NewMemberView newMemberView = new NewMemberView(this);
         newMemberView.showPopUp(stage, scene);
     }
+
+    public void searchMemberView() {
+        SearchMemberView searchMemberView = new SearchMemberView(this);
+        searchMemberView.showPopUp(stage, scene);
+    }
+
+    public void searchMember(String search) throws MemberException,
+            FileException {
+        List<Member> searchMembers = membershipService.searchMembers(search);
+        memberView.populateTable(searchMembers);
+    }
+
     public void newMember(String firstName, String lastName, Level level) throws MemberException,
             FileException {
-        try {
-            membershipService.newMember(firstName, lastName, level);
-        } catch (MemberException e) {
-            throw e;
-        } catch (FileException e) {
-            throw e;
-        }
+        membershipService.newMember(firstName, lastName, level);
+    }
+
+    public void changeMemberView(Member member) {
+        ChangeMemberView changeMemberView = new ChangeMemberView(this);
+        changeMemberView.showPopUp(stage, scene, member);
+    }
+
+    public void changeMember(Member member) throws FileException, MemberException {
+        membershipService.changeMember(member);
+    }
+
+    public void removeMember(Member member) throws FileException, MemberException {
+        membershipService.removeMember(member);
+    }
+
+    public void getHistoryView(Member member) {
+        HistoryView historyView = new HistoryView(this);
+        historyView.showPopUp(stage, member);
+    }
+
+    public List<Item> getAllItems() throws FileException {
+        return itemService.getItems();
+    }
+
+    public void newItemView() {
+        NewItemView newTieView = new NewItemView(this);
+        newTieView.showPopUp(stage, scene);
+    }
+
+    public void newTie(String brand, String color, Material material, Pattern pattern,
+                       String pricePerDay, String width, String length)
+            throws FileException, ItemException {
+        itemService.newTie(pattern, material, brand, color, pricePerDay, length, width);
+    }
+
+    public void newBowtie(String brand, String color, Material material, Pattern pattern,
+                          String pricePerDay, String size, boolean preTied)
+            throws FileException, ItemException {
+        itemService.newBowtie(pattern, material, brand, color, pricePerDay, size, preTied);
+    }
+    public void removeItem(Item item) throws FileException, ItemException {
+        itemService.removeItem(item);
+    }
+    public void changeItemView(Item item) {
+        ChangeItemView changeItemView = new ChangeItemView(this);
+        changeItemView.showPopUp(stage, scene, item);
+
+    }
+    public void changeItem(Item item, String brand, String color, Material material,
+                           Pattern pattern,
+                           String sPricePerDay, String sWidth, String sLength ) throws FileException, ItemException {
+        itemService.changeItem(item, brand, color, material, pattern,
+                sPricePerDay, sWidth, sLength);
+    }
+    public void changeItem(Item item, String brand, String color, Material material,
+                           Pattern pattern,
+                           String sPricePerDay, String sSize, boolean preTied ) throws FileException,
+            ItemException {
+        itemService.changeItem(item, brand, color, material, pattern, sPricePerDay, sSize, preTied);
     }
 }

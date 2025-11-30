@@ -1,32 +1,32 @@
 package com.ljuslin.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 /**
  * Represents a bowtie in the shop, holds size and boolean pre-tied
  * @author Tina Ljuslin
  */
+@JsonTypeName("Bowtie")
 public class Bowtie extends Item {
     private String size;
-    private boolean preeTied = false;
+    private boolean preTied = false;
 
-    /**
-     * Empty constructor
-     */
     public Bowtie() {}
 
-    /**
-     * Constructor, creates a new bowtie
-     * @param pattern pattern of bowtie
-     * @param material material of bowtie
-     * @param brand brand of bowtie
-     * @param pricePerDay price per day
-     * @param size size of bowtie
-     * @param preeTied true if bowtie is pre-tied
-     */
     public Bowtie(Pattern pattern, Material material, String brand, String color,
                   double pricePerDay,
                   String size, boolean preeTied) {
         super(pattern, material, brand, color, pricePerDay);
         this.size = size;
-        this.preeTied = preeTied;
+        this.preTied = preeTied;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setPreTied(boolean preTied) {
+        this.preTied = preTied;
     }
 
     /**
@@ -41,8 +41,8 @@ public class Bowtie extends Item {
      * Returns if the bowtie is pree-tied
      * @return true if bowtie is pree-tied
      */
-    public boolean isPreeTied() {
-        return preeTied;
+    public boolean isPreTied() {
+        return preTied;
     }
 
     /**
@@ -57,7 +57,7 @@ public class Bowtie extends Item {
         s = s.concat(" ").concat(getMaterial().toString());
         s = s.concat(" bowtie from ");
         s = s.concat(getBrand());
-        if (preeTied)
+        if (preTied)
             s = s.concat(", pre-tied");
         else
             s = s.concat(", not pre-tied");

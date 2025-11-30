@@ -1,12 +1,13 @@
 package com.ljuslin.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ljuslin.exception.FileException;
+import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Member;
-import com.ljuslin.model.Level;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,118 +16,113 @@ import java.util.List;
  * @author Tina Ljuslin
  */
 public class MemberRegistry {
-    private List<Member> members = new ArrayList<>();
     private final String FILENAME = "members.json";
     private ObjectMapper mapper = new ObjectMapper();
-    private ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
     private final File memberFile = new File(FILENAME);
-    /**
-     * Constructor, creates a few members for testing
-     */
+
     public MemberRegistry() {
-}
-
-    /**
-     * Returns a member for a specific ID
-     * @param id, the id to search
-     * @return the member
-     */
-    public Member getMember(String id) {
-   /*     for (Member member : members) {
-            if (member.getMemberID().equals(id)) {
-                return member;
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        if (!memberFile.exists()) {
+            try {
+                mapper.writeValue(memberFile, new ArrayList<Member>());
+            } catch (IOException e) {
+                System.err.println("VARNING: Kunde inte skapa initial medlemsfil.");
             }
         }
-   */     return null;
     }
-
-    /**
-     * Changes a members last name and level
-     * @param memberID id of member to change
-     * @param lastName new last name
-     * @param level new level
-     * @return the new member
-     */
-    public Member changeMember(String memberID, String lastName, Level level) {
-  /*      for (Member m : members) {
-            if (m.getMemberID().equals(memberID)) {
-                m.setLastName(lastName);
-                m.setMemberLevel(level);
-                return m;
-            }
+    private void saveMembers(List<Member> members) throws FileException {
+        try {
+            mapper.writeValue(memberFile, members);
+        } catch (IOException e) {
+            throw new FileException("Kunde ej spara medlemmar till fil");
         }
-  */      return null;
     }
 
-    /**
-     * Changes a members last name
-     * @param memberID id of member to change
-     * @param lastName new last name
-     * @return the new member
-     */
-    public Member changeMember(String memberID, String lastName) {
-/*
+    public Member getMember(String id) throws FileException, MemberException {
+        List<Member> members;
+        try {
+            members = getMembers();
+            for (Member member : members) {
+                if (member.getMemberID().equals(id)) {
+                    return member;
+                }
+            }
+        } catch (Exception e) {
+            throw new FileException("Medlemsfilen kunde ej läsas");
+        }
+        throw new MemberException("Medlem med id " + id + " kunde ej hittas");
+    }
+
+    public void changeMember(Member member) throws FileException {
+        List<Member> members;
+        try {
+            members = getMembers();
+        } catch (FileException ex) {
+            throw new FileException("Medlemsfilen kunde inte läsas");
+        }
         for (Member m : members) {
-            if (m.getMemberID().equals(memberID)) {
-                m.setLastName(lastName);
-                return m;
+            if (m.getMemberID().equals(member.getMemberID())) {
+                m.setFirstName(member.getFirstName());
+                m.setLastName(member.getLastName());
+                m.setMemberLevel(member.getMemberLevel());
             }
         }
-*/
-        return null;
+        saveMembers(members);
     }
 
-    /**
-     * Changes a members level
-     * @param memberID id of member to change
-     * @param level new level
-     * @return the new member
-     */
-    public Member changeMember(String memberID, Level level) {
-/*
-        for (Member m : members) {
-            if (m.getMemberID().equals(memberID)) {
-                m.setMemberLevel(level);
-                return m;
-            }
+    public void removeMember(Member member) throws FileException, MemberException {
+        List<Member> members;
+        try {
+            members = getMembers();
+        } catch (FileException ex) {
+            throw new FileException("Medlemsfilen kunde inte läsas");
         }
-*/
-        return null;
-    }
-
-    /**
-     * Removes a member
-     * @param memberID, id of member to remove
-     * @return the removed member or null if no member could be removed
-     */
-    public Member removeMember(String memberID) {
-     /*   for (Member m : members) {
-            if (m.getMemberID().equals(memberID)) {
+        boolean removed = false;
+        for (Member m : members) {//exception för att den sista posten är borttagen
+            if (m.getMemberID().equals(member.getMemberID())) {
                 members.remove(m);
-                return m;
+                removed = true;
+                break;
             }
         }
-     */   return null;
+        if (!removed) {
+            throw new MemberException("Member could not be found!");
+        }
+        saveMembers(members);
     }
 
     public List<Member> getMembers() throws FileException {
         try {
-            return Arrays.asList(
-                    mapper.readValue(memberFile, Member[].class));
+            return new ArrayList<>(Arrays.asList(mapper.readValue(memberFile,
+                    Member[].class)));
+
         } catch (Exception e) {
             throw new FileException("Medlemsfilen kunde ej läsas");
         }
     }
     public void addMember(Member member) throws FileException {
         try {
-            List<Member> members = new ArrayList<>(Arrays.asList(mapper.readValue(getClass().getClassLoader().getResourceAsStream(FILENAME),
-                    Member[].class)));
+            List<Member> members = getMembers();
             members.add(member);
-            //writer.writeValue(new File(FILENAME), members);
-            writer.writeValue(memberFile, members);
-
+            mapper.writeValue(new File(FILENAME), members);
         } catch (Exception e) {
             throw new FileException("Den nya medlemmen kunde ej sparas");
         }
+    }
+    public void addToHistory(Member member, String history) throws FileException, MemberException {
+        List<Member> members;
+        try {
+            members = getMembers();
+        } catch (FileException ex) {
+            throw new FileException("Medlemsfilen kunde inte läsas");
+        }
+        for (Member m : members) {
+            //kolla om medlemen inte kunde hittas, throw MemberException
+            if (m.getMemberID().equals(member.getMemberID())) {
+                m.addToHistory(history);
+                break;
+            }
+        }
+        saveMembers(members);
     }
 }

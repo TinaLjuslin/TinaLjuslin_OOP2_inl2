@@ -1,82 +1,124 @@
 package com.ljuslin.repository;
 
-import com.ljuslin.model.Bowtie;
-import com.ljuslin.model.Item;
-import com.ljuslin.model.Tie;
-import com.ljuslin.model.Material;
-import com.ljuslin.model.Pattern;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.ljuslin.exception.FileException;
+import com.ljuslin.exception.ItemException;
+import com.ljuslin.model.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 /**
  * Holds all items in this rental shop
+ *
  * @author Tina Ljuslin
  */
 public class Inventory {
-    private List<Item> items = new ArrayList<>();
+    private final String FILENAME = "items.json";
+    private ObjectMapper mapper = new ObjectMapper();
+    private final File itemFile = new File(FILENAME);
 
-    /**
-     * Constructor, creates items for testing
-     */
     public Inventory() {
-        items.add(new Tie(Pattern.PAISLEY, Material.SILK, "Slipstillverkaren AB", "yellow", 37, 127,
-                8));
-        items.add(new Tie(Pattern.DOTTED, Material.POLYESTER, "Slipstillverkaren AB", "blue", 15,
-                130,
-                10));
-        items.add(new Tie(Pattern.PAISLEY, Material.WOOL, "NewTies AB", "red", 32, 129,
-                7));
-        items.add(new Tie(Pattern.STRIPED, Material.SILK, "NewTies AB", "purple", 29, 122,
-                8));
-        items.add(new Tie(Pattern.NO_PATTERN, Material.POLYESTER, "Slipstillverkaren AB", "blue",
-                37, 127,
-                8.5));
-        items.add(new Bowtie(Pattern.NO_PATTERN, Material.POLYESTER, "NewTies AB", "yellow", 15,
-                "s", true));
-        items.add(new Bowtie(Pattern.DOTTED, Material.SILK, "NewTies AB", "red", 35, "s", false));
-        items.add(new Bowtie(Pattern.NO_PATTERN, Material.SILK, "NewTies AB", "green", 35, "m",
-                false));
-        items.add(new Bowtie(Pattern.STRIPED, Material.SILK, "NewTies AB", "pink", 35, "l", false));
-        items.add(new Bowtie(Pattern.PAISLEY, Material.COTTON, "Slipstillverkaren AB", "blue",28
-                , "m",
-                false));
-        items.add(new Bowtie(Pattern.DOTTED, Material.WOOL, "Slipstillverkaren AB", "purple", 32,
-                "xl",
-                false));
-        items.add(new Bowtie(Pattern.DOTTED, Material.WOOL, "Slipstillverkaren AB", "purple", 10,
-                "xl",
-                false));
-    }
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // NY ÅTGÄRD: Registrera subklasserna explicit via en SimpleModule
+        SimpleModule module = new SimpleModule();
 
-    /**
-     * Returns all items
-     * @return List of all items
-     */
-    public List<Item> getItems() {
-        return items;
-    }
+        // Registrera Tie och Bowtie som underklasser till Item
+        module.registerSubtypes(
+                new NamedType(Tie.class, "Tie"),
+                new NamedType(Bowtie.class, "Bowtie")
+        );
 
-
-    /**
-     * Adds an item
-     * @param item item to add
-     */
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
-    /**
-     * Removes an item
-     * @param itemID id of item to remove
-     * @return item removed or null if item could not be removed
-     */
-    public Item removeItem(String itemID) {
-        for (Item i : items) {
-            if (i.getItemID().equals(itemID)) {
-                items.remove(i);
-                return i;
+        // Registrera modulen till din ObjectMapper
+        mapper.registerModule(module);
+        mapper.enable(MapperFeature.USE_ANNOTATIONS);
+        if (!itemFile.exists()) {
+            try {
+                mapper.writeValue(itemFile, new ArrayList<Item>());
+                //mapper.writeValue(itemFile, new ArrayList<Item>());
+            } catch (IOException e) {
+                System.err.println("VARNING: Kunde inte skapa initial medlemsfil.");
             }
         }
-        return null;
+    }
+
+    private void saveItems(List<Item> items) throws FileException {
+        try {
+            mapper.writerFor(new TypeReference<List<Item>>() {})
+                    .writeValue(itemFile, items);
+        } catch (IOException e) {
+            throw new FileException("Kunde ej spara medlemmar till fil");
+        }
+    }
+
+    public List<Item> getItems() throws FileException {
+        try {
+            return new ArrayList<>(Arrays.asList(mapper.readValue(itemFile,
+                    Item[].class)));
+
+        } catch (Exception e) {
+            throw new FileException("Itemsfilen kunde ej läsas");
+        }
+    }
+
+
+    public void addItem(Item item) throws FileException {
+        try {
+            List<Item> items = getItems();
+            items.add(item);
+            saveItems(items);
+        } catch (Exception e) {
+            throw new FileException("Den nya varan kunde ej sparas");
+        }
+    }
+
+    public void removeItem(Item item) throws FileException, ItemException {
+        List<Item> items;
+        try {
+            items = getItems();
+        } catch (FileException ex) {
+            throw new FileException("Filen kunde inte läsas");
+        }
+        boolean removed = false;
+        for (Item i : items) {
+            if (i.getItemID().equals(item.getItemID())) {
+                items.remove(i);
+                removed = true;
+                break;
+            }
+        }
+        if (!removed) {
+            throw new ItemException("Item could not be found!");
+        }
+        saveItems(items);
+    }
+    public void changeItem(Item item) throws FileException, ItemException {
+        List<Item> items;
+        try {
+            items = getItems();
+        } catch (FileException ex) {
+            throw new FileException("Filen kunde inte läsas");
+        }
+        boolean changed = false;
+        for (Item i : items) {
+            if (i.getItemID().equals(item.getItemID())) {
+                items.remove(i);
+                items.add(item);
+                changed = true;
+                break;
+            }
+        }
+        if (!changed) {
+            throw new ItemException("Item could not be found!");
+        }
+        saveItems(items);
     }
 }

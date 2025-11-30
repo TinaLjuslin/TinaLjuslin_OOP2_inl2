@@ -45,7 +45,7 @@ public class RentalService {
      * @return string for user prompt
      */
     public String newRental(String memberID, String itemID, String rentalDate) {
-        Member member = membershipService.getMember(memberID);
+        /*Member member = membershipService.getMember(memberID);
         if (member == null) {
             return "Invalid member id: " + memberID;
         }
@@ -62,7 +62,7 @@ public class RentalService {
         //kolla så item inte är uthyrd
         rentalRepo.addRental(rental);
         //itemService.removeItem(item.getItemID());
-        return "Rental added for " + member.getFirstName() + " " + member.getLastName();
+        */return null;//"Rental added for " + member.getFirstName() + " " + member.getLastName();
     }
 
     /**
@@ -72,7 +72,7 @@ public class RentalService {
      * @return string for user prompt
      */
     public String newRental(String memberID, String itemID) {
-        Member member = membershipService.getMember(memberID);
+        /*Member member = membershipService.getMember(memberID);
         if (member == null) {
             return "Invalid member id: " + memberID;
         }
@@ -88,7 +88,7 @@ public class RentalService {
         rentalRepo.addRental(rental);
         itemService.changeItemAvailable(item, false);
         membershipService.addToHistory(member, "Rental STARTED: " + rental.toString());
-        return "Rental added for " + member.getFirstName() + " " + member.getLastName();
+        */return null; //"Rental added for " + member.getFirstName() + " " + member.getLastName();
     }
 
     /**
@@ -99,7 +99,7 @@ public class RentalService {
      * @return string for user prompt
      */
     public String endRental(String memberID, String itemID, String returnDate) {
-        Member member = membershipService.getMember(memberID);
+        /*Member member = membershipService.getMember(memberID);
         if (member == null) {
             return "Invalid member id: " + memberID;
         }
@@ -133,7 +133,7 @@ public class RentalService {
                  member.getLastName() + ", total cost: " + totalRevenue;
             }
         }
-        return "Item not found";
+        */return null;// "Item not found";
     }
 
     /**

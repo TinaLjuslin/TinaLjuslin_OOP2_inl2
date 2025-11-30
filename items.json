@@ -1,0 +1,34 @@
+[ {
+  "itemType" : "Tie",
+  "itemID" : "1001",
+  "pattern" : "PAISLEY",
+  "material" : "POLYESTER",
+  "brand" : "Brand AB",
+  "color" : "blå",
+  "pricePerDay" : 15.0,
+  "available" : true,
+  "length" : 159.0,
+  "width" : 8.0
+}, {
+  "itemType" : "Tie",
+  "itemID" : "1002",
+  "pattern" : "NO_PATTERN",
+  "material" : "SILK",
+  "brand" : "Marke AB",
+  "color" : "blå",
+  "pricePerDay" : 27.0,
+  "available" : true,
+  "length" : 157.0,
+  "width" : 7.0
+}, {
+  "itemType" : "Bowtie",
+  "itemID" : "1000",
+  "pattern" : "STRIPED",
+  "material" : "WOOL",
+  "brand" : "Marke AB",
+  "color" : "lila",
+  "pricePerDay" : 16.0,
+  "available" : true,
+  "size" : "small",
+  "preeTied" : false
+} ]

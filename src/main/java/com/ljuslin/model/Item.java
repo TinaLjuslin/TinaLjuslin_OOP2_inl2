@@ -1,5 +1,20 @@
 package com.ljuslin.model;
-/**
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+        // Använd klassnamnet som typidentifikator
+        use = JsonTypeInfo.Id.NAME,
+        // Lägg till typinformationen som ett fält i JSON-objektet
+        include = JsonTypeInfo.As.PROPERTY,
+        // Namnet på fältet som ska innehålla typinformationen (t.ex. "Tie" eller "Bowtie")
+        property = "itemType")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Tie.class, name = "Tie"),
+        @JsonSubTypes.Type(value = Bowtie.class, name = "Bowtie")
+})/**
  * Item in the store, abstract klass, holds item id, pattern, material, brand, color and price per
  * day
  * @author Tina Ljuslin
@@ -12,6 +27,7 @@ public abstract class Item {
     private String color;
     private double pricePerDay;
     private boolean available;
+    @JsonIgnore
     private static int counter = 1000;
 
     /**
@@ -91,6 +107,26 @@ public abstract class Item {
      */
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
+    }
+
+    public void setItemID(String itemID) {
+        this.itemID = itemID;
+    }
+
+    public void setPattern(Pattern pattern) {
+        this.pattern = pattern;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public boolean isAvailable() {

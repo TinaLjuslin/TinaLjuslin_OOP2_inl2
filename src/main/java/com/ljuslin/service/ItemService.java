@@ -1,5 +1,7 @@
 package com.ljuslin.service;
 
+import com.ljuslin.exception.FileException;
+import com.ljuslin.exception.ItemException;
 import com.ljuslin.model.Bowtie;
 import com.ljuslin.model.Item;
 import com.ljuslin.model.Tie;
@@ -16,37 +18,32 @@ import java.util.List;
 public class ItemService {
     private Inventory inventory;
 
-    /**
-     * Constructor, saves inventory
-     * @param inventory the inventory to save
-     */
     public ItemService(Inventory inventory) {
         this.inventory = inventory;
     }
 
-    /**
-     * Returns the item of an item id
-     * @param itemID the id
-     * @return the item found for id
-     */
-    public Item getItem(String itemID) {
-        for (Item item : inventory.getItems()) {
-            if (item.getItemID().equals(itemID)) {
-                return item;
+    public Item getItem(String itemID) throws FileException{
+        try {
+            for (Item item : inventory.getItems()) {
+                if (item.getItemID().equals(itemID)) {
+                    return item;
+                }
             }
+        } catch (FileException e) {
+            throw e;
         }
         return null;
     }
 
-    /**
-     * Returns all items containing the string from user
-     * @param search the string to search for
-     * @return list of found items
-     */
-    public List<Item> searchItem(String search) {
-        List<Item> items = inventory.getItems();
+    public List<Item> searchItem(String search) throws FileException, ItemException {
+        List<Item> items;
+        try {
+            items = inventory.getItems();
+        } catch (FileException e) {
+            throw e;
+        }
         if (items == null || items.isEmpty()) {
-            return null;
+            throw new ItemException("Item could not be found");
         }
         List<Item> searchtems = new ArrayList<>();
         for (Item item : items) {
@@ -57,24 +54,24 @@ public class ItemService {
         return searchtems;
     }
 
-    /**
-     * Returns all items
-     * @return
-     */
-    public List<Item> getItems() {
-        return inventory.getItems();
+    public List<Item> getItems() throws FileException {
+        try {
+            return inventory.getItems();
+        } catch (FileException e) {
+            throw e;
+        }
     }
 
-    /**
-     * Returns all items
-     * @return
-     */
-    public List<Item> getAvailableItems() {
+    public List<Item> getAvailableItems() throws FileException {
         List<Item> availableItems = new ArrayList<>();
-        for (Item item : inventory.getItems()) {
-            if (item.isAvailable()) {
-                availableItems.add(item);
+        try {
+            for (Item item : inventory.getItems()) {
+                if (item.isAvailable()) {
+                    availableItems.add(item);
+                }
             }
+        } catch (FileException e) {
+            throw e;
         }
         return availableItems;
     }
@@ -108,132 +105,129 @@ public class ItemService {
         }
     }
 
-    /**
-     * Creates a new tie
-     * @param pattern
-     * @param material
-     * @param brand
-     * @param pricePerDay
-     * @param length
-     * @param width
-     * @return
-     */
-    public String newTie(String pattern, String material, String brand,
-                         String color, String pricePerDay, String length, String width) {
-
-        Pattern pPattern = getPattern(pattern);
-        if (pPattern == null) {
-            return pattern + " is not a valid pattern";
-        }
-        Material mMaterial = getMaterial(material);
-        if (mMaterial == null) {
-            return material + " is not a valid material";
-        }
-        double dLength = getDoubleFromString(length);
-        double dWidth = getDoubleFromString(width);
-        double dPricePerDay = getDoubleFromString(pricePerDay);
-
-        if (dPricePerDay < 0) {
-            return "Not a valid price per day";
-        }
-        if(dLength < 0) {
-            return "Not a valid length";
-        }
-        if (dWidth < 0) {
-            return "Not a valid width";
-        }
-        Tie tie = new Tie(pPattern, mMaterial, brand, color, dPricePerDay, dLength, dWidth);
-        inventory.addItem(tie);
-        return "Added tie: " + tie.toString();
-    }
-
-    /**
-     * Creates a new bowtie
-     * @param pattern
-     * @param material
-     * @param brand
-     * @param pricePerDay
-     * @param size
-     * @param pretied
-     * @return
-     */
-    public String newBowtie(String pattern, String material, String brand,
-                            String color, String pricePerDay, String size, String pretied) {
-
-        Pattern pPattern = getPattern(pattern);
-        if (pPattern == null) {
-            return pattern + " is not a valid level";
-        }
-        Material mMaterial = getMaterial(material);
-        if (mMaterial == null) {
-            return material + " is not a valid material";
-        }
-        double dPricePerDay = getDoubleFromString(pricePerDay);
-        if (dPricePerDay < 0) {
-            return "Not a valid price per day";
-        }
-        int iPretied = getBooleanFromString(pretied);
-        boolean bPretied;
-        if (iPretied == -1) {
-            return "Print only y or n for pre-tied";
-        } else if ( iPretied == 0) {
-            bPretied = false;
-        } else {
-            bPretied = true;
-        }
-
-        Bowtie bowtie = new Bowtie(pPattern, mMaterial, brand, color, dPricePerDay, size, bPretied);
-        inventory.addItem(bowtie);
-        return "Added bowtie: " + bowtie.toString();
-    }
-
-    /**
-     * Converts  a string to a double
-     * @param string string to convert
-     * @return -1 if not a double or not larger than 0
-     */
-    private double getDoubleFromString(String string) {
+    public void newTie(Pattern pattern, Material material, String brand,
+                         String color, String sPricePerDay, String sLength, String sWidth)
+            throws FileException, ItemException {
+        double pricePerDay, width, length;
         try {
-            double i = Double.parseDouble(string);
-            if (i > 0) {
-                return i;
+            pricePerDay = Double.parseDouble(sPricePerDay);
+            if (pricePerDay < 0) {
+                throw new ItemException("Pris per dag måste vara en positiv siffra");
             }
-            return -1;
         } catch (NumberFormatException e) {
-            return -1;
+            throw new ItemException("Pris per dag måste vara en positiv siffra");
+        }
+        try {
+            width = Double.parseDouble(sWidth);
+            if (width < 0) {
+                throw new ItemException("Bredd måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Bredd måste vara en positiv siffra");
+        }
+        try {
+            length = Double.parseDouble(sLength);
+            if (length < 0) {
+                throw new ItemException("Längd måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Längd måste vara en positiv siffra");
+        }
+        Tie tie = new Tie(pattern, material, brand, color, pricePerDay, length, width);
+        try {
+            inventory.addItem(tie);
+        } catch (FileException e) {
+            throw e;
         }
     }
 
-    /**
-     * Tries to convert a string to a boolean, if the string contains 'Y' it should be true, if
-     * string is 'N' it should be false
-     * @param string 'y' or 'n' for true or false (not case sensitive)
-     * @return -1 if not correct, 0 if false, 1 if true
-     */
-    private int getBooleanFromString(String string) {
-        if (string .equalsIgnoreCase("Y"))
-            return 1;
-        else if (string.equalsIgnoreCase("N"))
-            return 0;
-        else return -1;
+    public void newBowtie(Pattern pattern, Material material, String brand,
+                            String color, String sPricePerDay, String size, boolean pretied)
+            throws FileException, ItemException {
+        double pricePerDay;
+        try {
+            pricePerDay = Double.parseDouble(sPricePerDay);
+            if (pricePerDay < 0) {
+                throw new ItemException("Pris per dag måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Pris per dag måste vara en positiv siffra");
+        }
+        Bowtie bowtie = new Bowtie(pattern, material, brand, color, pricePerDay, size, pretied);
+        try {
+            inventory.addItem(bowtie);
+        } catch (FileException e) {
+            throw e;
+        }
     }
 
-    /**
-     * Removes item
-     * @param itemID id of item to remove
-     */
-/*
-    public void removeItem(String itemID) {
-        inventory.removeItem(itemID);
+    public void removeItem(Item item) throws FileException, ItemException {
+        inventory.removeItem(item);
     }
-*/
 
-    /**
-     * Changes status of en item
-     * @param item item to change
-     * @param available true if available
-     */
     public void changeItemAvailable(Item item, boolean available) {
         item.setAvailable(available);
+    }
+
+    public void changeItem(Item item, String brand, String color, Material material,
+                           Pattern pattern,
+                           String sPricePerDay, String sWidth, String sLength)
+            throws FileException, ItemException {
+        double pricePerDay, width, length;
+        try {
+            pricePerDay = Double.parseDouble(sPricePerDay);
+            if (pricePerDay < 0) {
+                throw new ItemException("Pris per dag måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Pris per dag måste vara en positiv siffra");
+        }
+        try {
+            width = Double.parseDouble(sWidth);
+            if (width < 0) {
+                throw new ItemException("Bredd måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Bredd måste vara en positiv siffra");
+        }
+        try {
+            length = Double.parseDouble(sLength);
+            if (length < 0) {
+                throw new ItemException("Längd måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Längd måste vara en positiv siffra");
+        }
+        item.setBrand(brand);
+        item.setColor(color);
+        item.setMaterial(material);
+        item.setPattern(pattern);
+        item.setPricePerDay(pricePerDay);
+        ((Tie)item).setWidth(width);
+        ((Tie)item).setLength(length);
+        inventory.changeItem(item);
+    }
+
+    public void changeItem(Item item, String brand, String color, Material material,
+                           Pattern pattern,
+                           String sPricePerDay, String size, boolean preTied)
+            throws FileException, ItemException {
+        double pricePerDay, width, length;
+        try {
+            pricePerDay = Double.parseDouble(sPricePerDay);
+            if (pricePerDay < 0) {
+                throw new ItemException("Pris per dag måste vara en positiv siffra");
+            }
+        } catch (NumberFormatException e) {
+            throw new ItemException("Pris per dag måste vara en positiv siffra");
+        }
+        item.setBrand(brand);
+        item.setColor(color);
+        item.setMaterial(material);
+        item.setPattern(pattern);
+        item.setPricePerDay(pricePerDay);
+        ((Bowtie)item).setSize(size);
+        ((Bowtie)item).setPreTied(preTied);
+        inventory.changeItem(item);
     }
 }

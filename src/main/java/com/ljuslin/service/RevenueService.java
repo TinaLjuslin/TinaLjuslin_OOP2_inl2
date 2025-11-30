@@ -1,5 +1,7 @@
 package com.ljuslin.service;
 
+import com.ljuslin.exception.FileException;
+import com.ljuslin.exception.ItemException;
 import com.ljuslin.model.Item;
 import com.ljuslin.model.Rental;
 import com.ljuslin.repository.RentalRepository;
@@ -46,8 +48,15 @@ public class RevenueService {
      * @param itemID id of item
      * @return total revenue for this item,
      */
-    public String revenuePerItem(String itemID) {
-        Item item = itemService.getItem(itemID);
+    public String revenuePerItem(String itemID) throws FileException, ItemException {
+        Item item;
+        try {
+            item = itemService.getItem(itemID);
+        /*} catch (ItemException e) {
+            throw e;*/
+        } catch (FileException e) {
+            throw e;
+        }
         if (item == null) {
             return "Item does not exist";
         }
