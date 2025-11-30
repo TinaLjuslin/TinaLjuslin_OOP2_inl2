@@ -2,6 +2,7 @@ package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
+import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
 import com.ljuslin.model.Member;
 import javafx.collections.FXCollections;
@@ -30,6 +31,7 @@ public class MemberView implements TabView{
     private Button changeButton;
     private Button deleteButton;
     private Button historyButton;
+    private Button rechargeButton;
     private TableView<Member> table;
     private TableColumn<Member, String> idColumn;
     private TableColumn<Member, String> firstNameColumn;
@@ -47,13 +49,15 @@ public class MemberView implements TabView{
         changeButton = new Button("Ändra medlem");
         deleteButton = new Button("Ta bort medlem");
         historyButton = new Button("Visa historia");
+        rechargeButton = new Button("Ladda om");
         newButton.setMaxWidth(Double.MAX_VALUE);
         searchButton.setMaxWidth(Double.MAX_VALUE);
         changeButton.setMaxWidth(Double.MAX_VALUE);
         deleteButton.setMaxWidth(Double.MAX_VALUE);
         historyButton.setMaxWidth(Double.MAX_VALUE);
-
-        vbox.getChildren().addAll(newButton,searchButton,changeButton,deleteButton, historyButton);
+        rechargeButton.setMaxWidth(Double.MAX_VALUE);
+        vbox.getChildren().addAll(newButton,searchButton,changeButton,deleteButton, historyButton
+                , rechargeButton);
         table = new TableView<>();
         table.setEditable(false);
         idColumn = new TableColumn<>("ID");
@@ -70,8 +74,12 @@ public class MemberView implements TabView{
         pane.setCenter(table);
         tab.setContent(pane);
         newButton.setOnAction(e -> {
-            mainController.newMember();
+            mainController.newMemberView();
             populateTable();
+        });
+        searchButton.setOnAction(e -> {
+            mainController.searchMemberView();
+
         });
         changeButton.setOnAction(e -> {
             Member member = table.getSelectionModel().getSelectedItem();
@@ -82,6 +90,35 @@ public class MemberView implements TabView{
                 showInfoAlert("Välj en medlem att ändra!");
             }
         });
+        deleteButton.setOnAction(ae -> {
+            Member member = table.getSelectionModel().getSelectedItem();
+            if (member != null) {
+                try {
+                    mainController.removeMember(member);
+                    populateTable();
+                } catch (MemberException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (FileException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (Exception e) {
+                    showInfoAlert(e.getMessage());
+                }
+            } else {
+                showInfoAlert("Välj en medlem att ta bort!");
+            }
+        });
+        historyButton.setOnAction(ae -> {
+            Member member = table.getSelectionModel().getSelectedItem();
+            if (member != null) {
+                mainController.getHistoryView(member);
+            } else {
+                showInfoAlert("Välj en medlem att ta bort!");
+            }
+        });
+        rechargeButton.setOnAction(ae -> {
+            populateTable();
+        });
+
         return tab;
     }
 
@@ -96,6 +133,14 @@ public class MemberView implements TabView{
             table.setItems(observableList);
         } catch (FileException e) {
             showInfoAlert(e.getMessage());
+        } catch (Exception e) {
+            showErrorAlert(e.getMessage());
+        }
+    }
+    public void populateTable(List<Member> members) {
+        try {
+            ObservableList<Member> observableList = FXCollections.observableList(members);
+            table.setItems(observableList);
         } catch (Exception e) {
             showErrorAlert(e.getMessage());
         }

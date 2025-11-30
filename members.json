@@ -29,15 +29,27 @@
   "memberLevel" : "STANDARD",
   "history" : [ ]
 }, {
-  "memberID" : "Persson_1",
-  "firstName" : "Anna",
-  "lastName" : "Persson",
+  "memberID" : "Ljuslin_1",
+  "firstName" : "Jack",
+  "lastName" : "Ljuslin",
   "memberLevel" : "STANDARD",
   "history" : [ ]
 }, {
-  "memberID" : "Gulsson_1",
-  "firstName" : "Gulan",
-  "lastName" : "Gulsson",
+  "memberID" : "Testin_1",
+  "firstName" : "Karin",
+  "lastName" : "Pettersson",
   "memberLevel" : "STANDARD",
-  "history" : [ ]
+  "history" : [ "2025-11-29 11:09:27Member added: Karin Denmark, ID: Testin_1, Level: standard", "2025-11-29 11:10:46Member added: Karin Pettersson, ID: Testin_1, Level: standard" ]
+}, {
+  "memberID" : "Wiström_1",
+  "firstName" : "Anders",
+  "lastName" : "tvång",
+  "memberLevel" : "PREMIUM",
+  "history" : [ "2025-11-29 11:13:17 Member added: Anders Wiström, ID: Wiström_1, Level: premium", "2025-11-29 14:38:23 Member changed: Anders Ändring, ID: Wiström_1, Level: premium", "2025-11-29 14:39:18 Member changed: Anders tvång, ID: Wiström_1, Level: premium" ]
+}, {
+  "memberID" : "Nyqvist_1",
+  "firstName" : "Jörgen",
+  "lastName" : "Nyqvist",
+  "memberLevel" : "STANDARD",
+  "history" : [ "2025-11-30 11:43:39 Member added: Jörgen Nyqvist, ID: Nyqvist_1, Level: premium", "2025-11-30 11:43:47 Member changed: Jörgen Nyqvist, ID: Nyqvist_1, Level: standard" ]
 } ]

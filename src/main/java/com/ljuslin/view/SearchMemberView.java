@@ -16,37 +16,36 @@ import javafx.stage.Stage;
  * Shows a popup where the user can enter values for a new member
  * @author tina.ljuslin@studerande.yh.se
  */
-public class NewMemberView {
+public class SearchMemberView {
     private MainController mainController;
 
-    private Stage newMemberStage;
+    private Stage searchMemberStage;
     private TextField fistNameField;
     private TextField lastNameField;
     private ComboBox<Level> levelComboBox;
     private Label firstNameLabel;
     private Label lastNameLabel;
     private Label levelLabel;
-    private Button saveButton;
+    private Button searchButton;
     private Button cancelButton;
     private GridPane gridPane;
 
-    public NewMemberView(MainController mainController) {
+    public SearchMemberView(MainController mainController) {
         this.mainController = mainController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
-        newMemberStage = new Stage();
-        saveButton = new Button("Spara");
+        searchMemberStage = new Stage();
+        searchButton = new Button("Sök");
         cancelButton = new Button("Avbryt");
         firstNameLabel = new Label("Förnamn");
         lastNameLabel = new Label("Efternamn");
-
         levelLabel = new Label("Level");
         fistNameField = new TextField();
         lastNameField = new TextField();
         ObservableList<Level> levels = FXCollections.observableArrayList(Level.values());
         levelComboBox = new ComboBox<>(levels);
-        levelComboBox.getSelectionModel().select(0);
+        //levelComboBox.getSelectionModel().select(0);
 
         gridPane = new GridPane();
         gridPane.add(firstNameLabel, 0, 0);
@@ -55,17 +54,17 @@ public class NewMemberView {
         gridPane.add(fistNameField, 1, 0);
         gridPane.add(lastNameField, 1, 1);
         gridPane.add(levelComboBox, 1, 2);
-        gridPane.add(saveButton, 1, 3);
+        gridPane.add(searchButton, 1, 3);
         gridPane.add(cancelButton, 2, 3);
         Scene scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 
-        saveButton.setOnAction( ae -> {
+        searchButton.setOnAction( ae -> {
             try {
-                mainController.newMember(fistNameField.getText(), lastNameField.getText(),
+                mainController.searchMember(fistNameField.getText(), lastNameField.getText(),
                         levelComboBox.getValue());
-                newMemberStage.close();
+                searchMemberStage.close();
             } catch (MemberException e) {
                 showInfoAlert(e.getMessage());
             } catch (FileException e) {
@@ -77,13 +76,13 @@ public class NewMemberView {
 
         });
         cancelButton.setOnAction(ae -> {
-            newMemberStage.close();
+            searchMemberStage.close();
         });
 
-        newMemberStage.initOwner(mainStage);
-        newMemberStage.initModality(Modality.APPLICATION_MODAL);
-        newMemberStage.setScene(scene2);
-        newMemberStage.showAndWait();
+        searchMemberStage.initOwner(mainStage);
+        searchMemberStage.initModality(Modality.APPLICATION_MODAL);
+        searchMemberStage.setScene(scene2);
+        searchMemberStage.showAndWait();
     }
 
     private void showInfoAlert(String message) {

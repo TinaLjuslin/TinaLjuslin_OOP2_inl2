@@ -2,6 +2,7 @@ package com.ljuslin.controller;
 
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
+import com.ljuslin.model.Item;
 import com.ljuslin.model.Level;
 import com.ljuslin.model.Member;
 import com.ljuslin.service.ItemService;
@@ -55,13 +56,13 @@ public class MainController {
         scene = new Scene(tabPane, 800, 600);
         Tab memberTab = memberView.getTab();
         memberTab.setClosable(false);
-//        Tab itemTab = itemView.getTab();
+        Tab itemTab = itemView.getTab();
 //        Tab rentalTab = rentalView.getTab();
 //        Tab revenueTab = revenueView.getTab();
 
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene.getStylesheets().add(css);
-        tabPane.getTabs().addAll(memberTab);//, itemTab, rentalTab, revenueTab);
+        tabPane.getTabs().addAll(memberTab, itemTab);//, rentalTab, revenueTab);
         stage.setScene(scene);
         stage.show();
     }
@@ -72,9 +73,24 @@ public class MainController {
             throw e;
         }
     }
-    public void newMember() {
+    public void newMemberView() {
         NewMemberView newMemberView = new NewMemberView(this);
         newMemberView.showPopUp(stage, scene);
+    }
+    public void searchMemberView() {
+        SearchMemberView searchMemberView = new SearchMemberView(this);
+        searchMemberView.showPopUp(stage, scene);
+    }
+    public void searchMember(String firstName, String lastName, Level level) throws MemberException, FileException {
+        try {
+            List<Member> searchMembers = membershipService.searchMembers(firstName, lastName,
+                    level);
+            memberView.populateTable(searchMembers);
+        } catch (MemberException e) {
+            throw e;
+        } catch (FileException e) {
+            throw e;
+        }
     }
     public void newMember(String firstName, String lastName, Level level) throws MemberException,
             FileException {
@@ -101,5 +117,25 @@ public class MainController {
             throw e;
         }
     }
+    public void removeMember(Member member) throws FileException, MemberException {
+        try {
+            membershipService.removeMember(member);
+        } catch (FileException e) {
+            throw e;
+        } catch (MemberException e) {
+            throw e;
+        }
+    }
+    public void getHistoryView(Member member) {
+        HistoryView historyView = new HistoryView(this);
+        historyView.showPopUp(stage, member);
 
+    }
+    public List<Item> getAllItems() {
+        try {
+            return itemService.getAll;
+        } catch (FileException e) {
+            throw e;
+        }
+    }
 }
