@@ -22,10 +22,10 @@ public class ItemService {
         this.inventory = inventory;
     }
 
-    public Item getItem(String itemID) throws FileException{
+    public Item getItem(long itemID) throws FileException{
         try {
             for (Item item : inventory.getItems()) {
-                if (item.getItemID().equals(itemID)) {
+                if (item.getItemID() == itemID) {
                     return item;
                 }
             }
@@ -165,8 +165,9 @@ public class ItemService {
         inventory.removeItem(item);
     }
 
-    public void changeItemAvailable(Item item, boolean available) {
+    public void changeItemAvailable(Item item, boolean available) throws FileException, ItemException {
         item.setAvailable(available);
+        inventory.changeItem(item);
     }
 
     public void changeItem(Item item, String brand, String color, Material material,

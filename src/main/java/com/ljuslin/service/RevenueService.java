@@ -2,6 +2,7 @@ package com.ljuslin.service;
 
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
+import com.ljuslin.exception.RentalException;
 import com.ljuslin.model.Item;
 import com.ljuslin.model.Rental;
 import com.ljuslin.repository.RentalRepository;
@@ -32,7 +33,7 @@ public class RevenueService {
     /**
      * Returns total revenue
      */
-    public double totalRevenue() {
+    public double totalRevenue() throws FileException, RentalException {
         List<Rental> rentals = rentalRepo.getRentals();
         double totalRevenue = 0;
         for (Rental rental : rentals) {
@@ -48,7 +49,7 @@ public class RevenueService {
      * @param itemID id of item
      * @return total revenue for this item,
      */
-    public String revenuePerItem(String itemID) throws FileException, ItemException {
+    public String revenuePerItem(long itemID) throws FileException, ItemException {
         Item item;
         try {
             item = itemService.getItem(itemID);

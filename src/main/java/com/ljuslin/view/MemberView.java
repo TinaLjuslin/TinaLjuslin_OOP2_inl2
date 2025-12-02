@@ -31,13 +31,13 @@ public class MemberView extends View implements TabView{
     private Button changeButton;
     private Button deleteButton;
     private Button historyButton;
+    private Button newRentalButton;
     private Button rechargeButton;
     private TableView<Member> table;
     private TableColumn<Member, String> idColumn;
     private TableColumn<Member, String> firstNameColumn;
     private TableColumn<Member, String> lastNameColumn;
     private TableColumn<Member, Level> levelColumn;
-
     public MemberView(){}
 
     public Tab getTab() {
@@ -49,6 +49,7 @@ public class MemberView extends View implements TabView{
         changeButton = new Button("Ändra medlem");
         deleteButton = new Button("Ta bort medlem");
         historyButton = new Button("Visa historia");
+        newRentalButton = new Button("Ny uthyrning");
         rechargeButton = new Button("Ladda om");
         newButton.setMaxWidth(Double.MAX_VALUE);
         searchButton.setMaxWidth(Double.MAX_VALUE);
@@ -57,7 +58,7 @@ public class MemberView extends View implements TabView{
         historyButton.setMaxWidth(Double.MAX_VALUE);
         rechargeButton.setMaxWidth(Double.MAX_VALUE);
         vbox.getChildren().addAll(newButton,searchButton,changeButton,deleteButton, historyButton
-                , rechargeButton);
+                , newRentalButton, rechargeButton);
         table = new TableView<>();
         table.setEditable(false);
         idColumn = new TableColumn<>("ID");
@@ -73,21 +74,37 @@ public class MemberView extends View implements TabView{
         pane.setLeft(vbox);
         pane.setCenter(table);
         tab.setContent(pane);
-        newButton.setOnAction(e -> {
+        newButton.setOnAction(ae -> {
             mainController.newMemberView();
             populateTable();
         });
-        searchButton.setOnAction(e -> {
+        searchButton.setOnAction(ae -> {
             mainController.searchMemberView();
 
         });
-        changeButton.setOnAction(e -> {
+        changeButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
                 mainController.changeMemberView(member);
                 populateTable();
             } else {
                 showInfoAlert("Välj en medlem att ändra!");
+            }
+        });
+        newRentalButton.setOnAction(ae -> {
+            Member member = table.getSelectionModel().getSelectedItem();
+            if (member != null) {
+                try {
+                    mainController.newRental(member);
+                } catch (MemberException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (FileException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            } else {
+                showInfoAlert("Välj en medlem att hyra ut till!");
             }
         });
         deleteButton.setOnAction(ae -> {
@@ -101,7 +118,7 @@ public class MemberView extends View implements TabView{
                 } catch (FileException e) {
                     showInfoAlert(e.getMessage());
                 } catch (Exception e) {
-                    showInfoAlert(e.getMessage());
+                    showErrorAlert(e.getMessage());
                 }
             } else {
                 showInfoAlert("Välj en medlem att ta bort!");
@@ -145,5 +162,4 @@ public class MemberView extends View implements TabView{
             showErrorAlert(e.getMessage());
         }
     }
-
 }

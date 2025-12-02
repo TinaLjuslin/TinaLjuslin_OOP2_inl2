@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class ItemView extends View implements TabView{
+public class ItemView extends View implements TabView {
     private MainController mainController;
 
     private Tab tab;
@@ -23,6 +23,7 @@ public class ItemView extends View implements TabView{
     private Button searchButton;
     private Button changeButton;
     private Button deleteButton;
+    private Button rechargeButton;
     private TableView<Item> table;
     private TableColumn<Item, Pattern> patternColumn;
     private TableColumn<Item, Material> materialColumn;
@@ -33,23 +34,28 @@ public class ItemView extends View implements TabView{
     private TableColumn<Item, String> preeTiedColumn;
     private TableColumn<Item, Double> widthColumn;
     private TableColumn<Item, Double> lengthColumn;
+    private TableColumn<Item, Double> availableColumn;
 
-    public ItemView(){}
+    public ItemView() {
+    }
 
     public Tab getTab() {
-        tab = new  Tab("Items");
+        tab = new Tab("Items");
         pane = new BorderPane();
         vbox = new VBox();
         newItemButton = new Button("Ny");
         searchButton = new Button("Sök");
         changeButton = new Button("Ändra");
         deleteButton = new Button("Ta bort");
+        rechargeButton = new Button("Ladda om");
         newItemButton.setMaxWidth(Double.MAX_VALUE);
         searchButton.setMaxWidth(Double.MAX_VALUE);
         changeButton.setMaxWidth(Double.MAX_VALUE);
         deleteButton.setMaxWidth(Double.MAX_VALUE);
+        rechargeButton.setMaxWidth(Double.MAX_VALUE);
 
-        vbox.getChildren().addAll(newItemButton, searchButton, changeButton, deleteButton);
+        vbox.getChildren().addAll(newItemButton, searchButton, changeButton, deleteButton,
+                rechargeButton);
         table = new TableView<>();
         table.setEditable(false);
         patternColumn = new TableColumn<>("Mönster");
@@ -63,16 +69,18 @@ public class ItemView extends View implements TabView{
         priceColumn = new TableColumn<>("Pris per dag");
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("pricePerDay"));
         preeTiedColumn = new TableColumn<>("Färdigknuten");
-        preeTiedColumn.setCellValueFactory(new PropertyValueFactory<>("preeTied"));
+        preeTiedColumn.setCellValueFactory(new PropertyValueFactory<>("preTied"));
         sizeColumn = new TableColumn<>("Storlek");
         sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
         widthColumn = new TableColumn<>("Bredd");
         widthColumn.setCellValueFactory(new PropertyValueFactory<>("width"));
         lengthColumn = new TableColumn<>("Längd");
         lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
+        availableColumn = new TableColumn<>("Tillgänglig");
+        availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
 
         table.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
-                priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn);
+                priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn, availableColumn);
         populateTable();
         pane.setLeft(vbox);
         pane.setCenter(table);
@@ -82,7 +90,7 @@ public class ItemView extends View implements TabView{
             populateTable();
         });
         searchButton.setOnAction(e -> {
-
+            mainController.searchItemView();
         });
         changeButton.setOnAction(e -> {
             Item item = table.getSelectionModel().getSelectedItem();
@@ -110,6 +118,9 @@ public class ItemView extends View implements TabView{
                 showInfoAlert("Välj en vara att ta bort!");
             }
         });
+        rechargeButton.setOnAction(ae ->{
+            populateTable();
+        });
 
         return tab;
     }
@@ -129,6 +140,7 @@ public class ItemView extends View implements TabView{
             showErrorAlert(e.getMessage());
         }
     }
+
     public void populateTable(List<Item> items) {
         try {
             ObservableList<Item> observableList = FXCollections.observableList(items);
@@ -137,6 +149,4 @@ public class ItemView extends View implements TabView{
             showErrorAlert(e.getMessage());
         }
     }
-
-
 }

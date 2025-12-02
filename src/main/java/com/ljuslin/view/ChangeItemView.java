@@ -55,14 +55,17 @@ public class ChangeItemView extends View {
         patternLabel = new Label("Mönster");
         pricePerDayLabel = new Label("Pris per dag");
         brandField = new TextField();
+        brandField.setText(item.getBrand());
         colorField = new TextField();
+        colorField.setText(item.getColor());
         pricePerDayField = new TextField();
+        pricePerDayField.setText(String.valueOf(item.getPricePerDay()));
         ObservableList<Material> materials = FXCollections.observableArrayList(Material.values());
         materialComboBox = new ComboBox<>(materials);
-        materialComboBox.getSelectionModel().select(0);
+        materialComboBox.getSelectionModel().select(item.getMaterial());
         ObservableList<Pattern> patterns = FXCollections.observableArrayList(Pattern.values());
         patternComboBox = new ComboBox<>(patterns);
-        patternComboBox.getSelectionModel().select(0);
+        patternComboBox.getSelectionModel().select(item.getPattern());
         gridPane = new GridPane();
         gridPane.add(brandLabel, 0, 0);
         gridPane.add(colorLabel, 0, 1);
@@ -80,8 +83,9 @@ public class ChangeItemView extends View {
         if (item instanceof Tie) {
             widthLabel = new Label("Bredd");
             lengthLabel = new Label("Längd");
-            widthField = new TextField();
-            lengthField = new TextField();
+            widthField = new TextField(String.valueOf(((Tie) item).getWidth()));
+            lengthField = new TextField(String.valueOf(((Tie) item).getLength()));
+
             gridPane.add(widthLabel, 0, 5);
             gridPane.add(widthField, 1, 5);
             gridPane.add(lengthLabel, 0, 6);
@@ -98,9 +102,10 @@ public class ChangeItemView extends View {
             sizeLabel = new Label("Storlek");
             preeTiedLabel = new Label("Färdigknuten");
             sizeField = new TextField();
+            sizeField.setText(String.valueOf(((Bowtie) item).getSize()));
             ObservableList<Boolean> pre = FXCollections.observableArrayList(Boolean.FALSE, Boolean.TRUE);
             preeTiedComboBox = new ComboBox<>(pre);
-            preeTiedComboBox.getSelectionModel().select(0);
+            preeTiedComboBox.getSelectionModel().select(((Bowtie)item).isPreTied());
             gridPane.add(preeTiedLabel, 0, 5);
             gridPane.add(preeTiedComboBox, 1, 5);
             gridPane.add(sizeLabel, 0, 6);

@@ -42,10 +42,7 @@ public class MembershipService {
         Member member = new Member(firstName, lastName, level);
         try {
             memberRegistry.addMember(member);
-
-            String time = getTimeString();
-            String history = time + " Member added: " + member.toString();
-            memberRegistry.addToHistory(member, history);
+            memberRegistry.addToHistory(member, (" Member added: " + member.toString()));
 
         } catch (FileException e) {
             throw e;
@@ -80,9 +77,7 @@ public class MembershipService {
         List<Member> searchmembers = new ArrayList<>();
         List<Member> members = memberRegistry.getMembers();
         for (Member m : members) {
-            if (m.getFirstName().toLowerCase().contains(search.toLowerCase())
-                    || m.getLastName().toLowerCase().contains(search.toLowerCase())
-                    || m.getMemberLevel().getSwedishName().toLowerCase().contains(search.toLowerCase())) {
+            if (m.toString().toLowerCase().contains(search.toLowerCase())) {
                 searchmembers.add(m);
             }
         }
@@ -102,12 +97,15 @@ public class MembershipService {
         }
         try {
             memberRegistry.changeMember(member);
-            String time = getTimeString();
-            String history = time + " Member changed: " + member.toString();
-            memberRegistry.addToHistory(member, history);
+            addToHistory(member, ("Member changed: " + member.toString()));
         } catch (FileException e) {
             throw e;
         }
+    }
+    public void addToHistory(Member member, String history) throws FileException, MemberException {
+        String time = getTimeString();
+        String historyWithTime = time + " : " + history;
+        memberRegistry.addToHistory(member, historyWithTime);
     }
 
     public void removeMember(Member member) throws MemberException, FileException {
