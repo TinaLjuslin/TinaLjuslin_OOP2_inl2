@@ -1,5 +1,6 @@
 package com.ljuslin.view;
 
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
@@ -12,7 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SearchItemView extends View {
-    private MainController mainController;
+    private ItemController itemController;
 
     private Stage searchItemStage;
     private TextField searchField;
@@ -21,8 +22,8 @@ public class SearchItemView extends View {
     private Button cancelButton;
     private GridPane gridPane;
 
-    public SearchItemView(MainController mainController) {
-        this.mainController = mainController;
+    public SearchItemView(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
@@ -42,7 +43,7 @@ public class SearchItemView extends View {
 
         searchButton.setOnAction(ae -> {
             try {
-                mainController.searchItem(searchField.getText());
+                itemController.searchItem(searchField.getText());
                 searchItemStage.close();
             } catch (ItemException e) {
                 showInfoAlert(e.getMessage());

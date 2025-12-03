@@ -335,30 +335,6 @@
   "rentalDate" : [ 2025, 12, 2 ],
   "returnDate" : [ 2025, 12, 2 ]
 }, {
-  "rentalID" : 1764704955421,
-  "member" : {
-    "memberID" : "Karlsson_2",
-    "firstName" : "Pelle",
-    "lastName" : "Karlsson",
-    "memberLevel" : "STANDARD",
-    "history" : [ "2025-12-01 18:33:49 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:10:46 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1003\nRented date: 2025-12-01" ]
-  },
-  "item" : {
-    "itemType" : "Bowtie",
-    "itemID" : 97,
-    "pattern" : "PAISLEY",
-    "material" : "POLYESTER",
-    "brand" : "BrandAB",
-    "color" : "rosa",
-    "pricePerDay" : 15.0,
-    "available" : true,
-    "size" : "Small",
-    "preTied" : false
-  },
-  "totalRevenue" : 0.0,
-  "rentalDate" : [ 2025, 12, 2 ],
-  "returnDate" : null
-}, {
   "rentalID" : 1764704964394,
   "member" : {
     "memberID" : "Wiström_1",
@@ -379,7 +355,79 @@
     "size" : "Small",
     "preTied" : false
   },
-  "totalRevenue" : 0.0,
+  "totalRevenue" : 12.0,
   "rentalDate" : [ 2025, 12, 2 ],
+  "returnDate" : [ 2025, 12, 3 ]
+}, {
+  "rentalID" : 1764704955421,
+  "member" : {
+    "memberID" : "Karlsson_2",
+    "firstName" : "Pelle",
+    "lastName" : "Karlsson",
+    "memberLevel" : "STANDARD",
+    "history" : [ "2025-12-01 18:33:49 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:10:46 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1003\nRented date: 2025-12-01" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : 97,
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "BrandAB",
+    "color" : "rosa",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "Small",
+    "preTied" : false
+  },
+  "totalRevenue" : 15.0,
+  "rentalDate" : [ 2025, 12, 2 ],
+  "returnDate" : [ 2025, 12, 3 ]
+}, {
+  "rentalID" : 1764758363133,
+  "member" : {
+    "memberID" : "W_1",
+    "firstName" : "Alex",
+    "lastName" : "West",
+    "memberLevel" : "STANDARD",
+    "history" : [ "2025-12-01 10:08:50 Member added: Alex W, ID: W_1, Level: standard", "2025-12-01 10:09:09 Member changed: Alex West, ID: W_1, Level: standard", "2025-12-01 19:53:27 : Rental STARTED: Member: AlexWest, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:50:04 : Rental STARTED: Member: AlexWest, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01", "2025-12-02 09:54:50 : Rental STARTED: Member: AlexWest, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 97\nRented date: 2025-12-02" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : 98,
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "BrandAB",
+    "color" : "rosa",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "Small",
+    "preTied" : false
+  },
+  "totalRevenue" : 0.0,
+  "rentalDate" : [ 2025, 12, 3 ],
   "returnDate" : null
+}, {
+  "rentalID" : 1764758068198,
+  "member" : {
+    "memberID" : "Ahlenius_1",
+    "firstName" : "Kristina",
+    "lastName" : "Ahlenius",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Kristina Ahlenius, ID: Ahlenius_1, Level: premium" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : 97,
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "BrandAB",
+    "color" : "rosa",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "Small",
+    "preTied" : false
+  },
+  "totalRevenue" : 0.0,
+  "rentalDate" : [ 2025, 12, 3 ],
+  "returnDate" : [ 2025, 12, 3 ]
 } ]

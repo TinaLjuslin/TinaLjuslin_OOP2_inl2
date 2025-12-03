@@ -1,6 +1,8 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
+import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
@@ -23,8 +25,8 @@ import java.util.List;
  * annars exception
  */
 public class MemberView extends View implements TabView{
-    private MainController mainController;
-
+    private MemberController memberController;
+    private RentalController rentalController;
     private Tab tab;
     private BorderPane pane;
     private VBox vbox;
@@ -77,17 +79,17 @@ public class MemberView extends View implements TabView{
         pane.setCenter(table);
         tab.setContent(pane);
         newButton.setOnAction(ae -> {
-            mainController.newMemberView();
+            memberController.newMemberView();
             populateTable();
         });
         searchButton.setOnAction(ae -> {
-            mainController.searchMemberView();
+            memberController.searchMemberView();
 
         });
         changeButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
-                mainController.changeMemberView(member);
+                memberController.changeMemberView(member);
                 populateTable();
             } else {
                 showInfoAlert("Välj en medlem att ändra!");
@@ -97,7 +99,7 @@ public class MemberView extends View implements TabView{
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
                 try {
-                    mainController.newRental(member);
+                    rentalController.newRental(member);
                 } catch (MemberException e) {
                     showInfoAlert(e.getMessage());
                 } catch (FileException e) {
@@ -113,7 +115,7 @@ public class MemberView extends View implements TabView{
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
                 try {
-                    mainController.removeMember(member);
+                    memberController.removeMember(member);
                     populateTable();
                 } catch (MemberException e) {
                     showInfoAlert(e.getMessage());
@@ -129,7 +131,7 @@ public class MemberView extends View implements TabView{
         historyButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
-                mainController.getHistoryView(member);
+                memberController.getHistoryView(member);
             } else {
                 showInfoAlert("Välj en medlem att ta bort!");
             }
@@ -144,13 +146,9 @@ public class MemberView extends View implements TabView{
         return tab;
     }
 
-    public void setController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
     private void populateTable() {
         try {
-            List<Member> list = mainController.getAllMembers();
+            List<Member> list = memberController.getAllMembers();
             ObservableList<Member> observableList = FXCollections.observableList(list);
             table.setItems(observableList);
         } catch (FileException e) {
@@ -162,5 +160,13 @@ public class MemberView extends View implements TabView{
     public void populateTable(List<Member> members) {
         ObservableList<Member> observableList = FXCollections.observableList(members);
         table.setItems(observableList);
+    }
+
+    public void setMemberController(MemberController memberController) {
+        this.memberController = memberController;
+    }
+
+    public void setRentalController(RentalController rentalController) {
+        this.rentalController = rentalController;
     }
 }

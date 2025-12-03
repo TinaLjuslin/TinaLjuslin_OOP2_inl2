@@ -1,5 +1,6 @@
 package com.ljuslin.view;
 
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
@@ -13,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ChangeItemView extends View {
-    private MainController mainController;
+    private ItemController itemController;
 
     private Stage newItemStage;
     private TextField brandField;
@@ -42,8 +43,8 @@ public class ChangeItemView extends View {
     private GridPane gridPane;
     private Scene scene2;
 
-    public ChangeItemView(MainController mainController) {
-        this.mainController = mainController;
+    public ChangeItemView(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene, Item item) {
@@ -121,11 +122,11 @@ public class ChangeItemView extends View {
         saveButton.setOnAction(ae -> {
             try {
                 if (item instanceof Tie) {
-                    mainController.changeItem(item, brandField.getText(), colorField.getText(),
+                    itemController.changeItem(item, brandField.getText(), colorField.getText(),
                             materialComboBox.getValue(), patternComboBox.getValue(),
                             pricePerDayField.getText(), widthField.getText(), lengthField.getText());
                 } else {
-                    mainController.changeItem(item, brandField.getText(), colorField.getText(),
+                    itemController.changeItem(item, brandField.getText(), colorField.getText(),
                             materialComboBox.getValue(), patternComboBox.getValue(),
                             pricePerDayField.getText(), sizeField.getText(), preeTiedComboBox.getValue());
 

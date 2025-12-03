@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.RentalException;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SearchRentalView extends View {
-    private MainController mainController;
+    private RentalController rentalController;
 
     private Scene scene2;
     private Stage searchRentalStage;
@@ -22,8 +23,8 @@ public class SearchRentalView extends View {
     private Button cancelButton;
     private GridPane gridPane;
 
-    public SearchRentalView(MainController mainController) {
-        this.mainController = mainController;
+    public SearchRentalView(RentalController rentalController) {
+        this.rentalController = rentalController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
@@ -43,7 +44,7 @@ public class SearchRentalView extends View {
 
         searchButton.setOnAction(ae -> {
             try {
-                mainController.searchRental(searchField.getText());
+                rentalController.searchRental(searchField.getText());
                 searchRentalStage.close();
             } catch (RentalException e) {
                 showInfoAlert(e.getMessage());

@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import javafx.scene.Scene;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
  * @author tina.ljuslin@studerande.yh.se
  */
 public class SearchMemberView extends View {
-    private MainController mainController;
+    private MemberController memberController;
 
     private Scene scene2;
     private Stage searchMemberStage;
@@ -25,8 +26,8 @@ public class SearchMemberView extends View {
     private Button cancelButton;
     private GridPane gridPane;
 
-    public SearchMemberView(MainController mainController) {
-        this.mainController = mainController;
+    public SearchMemberView(MemberController memberController) {
+        this.memberController = memberController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
@@ -46,7 +47,7 @@ public class SearchMemberView extends View {
 
         searchButton.setOnAction(ae -> {
             try {
-                mainController.searchMember(searchField.getText());
+                memberController.searchMember(searchField.getText());
                 searchMemberStage.close();
             } catch (MemberException e) {
                 showInfoAlert(e.getMessage());

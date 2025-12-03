@@ -1,6 +1,8 @@
 package com.ljuslin.view;
 
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
 import com.ljuslin.exception.MemberException;
@@ -17,43 +19,44 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class ItemView extends View implements TabView {
-    private MainController mainController;
-/*// Import som kan behövas:
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
+    private ItemController itemController;
+    private RentalController rentalController;
+    /*// Import som kan behövas:
+    import javafx.scene.control.TableCell;
+    import javafx.scene.control.TableColumn;
+    import javafx.util.Callback;
 
-// ... (Inuti din getTab() metod eller där du definierar kolumnerna)
+    // ... (Inuti din getTab() metod eller där du definierar kolumnerna)
 
-// 1. Skapa din Boolean-kolumn (Antag att din Member-klass har en boolean-metod t.ex. 'getIsPremium()')
-TableColumn<Member, Boolean> booleanColumn = new TableColumn<>("Premium");
-booleanColumn.setCellValueFactory(new PropertyValueFactory<>("isPremium")); // Antag att property-namnet är "isPremium"
+    // 1. Skapa din Boolean-kolumn (Antag att din Member-klass har en boolean-metod t.ex. 'getIsPremium()')
+    TableColumn<Member, Boolean> booleanColumn = new TableColumn<>("Premium");
+    booleanColumn.setCellValueFactory(new PropertyValueFactory<>("isPremium")); // Antag att property-namnet är "isPremium"
 
-// 2. Skapa den anpassade Cell Factory
-booleanColumn.setCellFactory(new Callback<TableColumn<Member, Boolean>, TableCell<Member, Boolean>>() {
-    @Override
-    public TableCell<Member, Boolean> call(TableColumn<Member, Boolean> param) {
-        return new TableCell<Member, Boolean>() {
-            @Override
-            protected void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    // 3. Konvertera Boolean till Ja/Nej (HUVUDLOGIKEN)
-                    if (item) {
-                        setText("Ja");
+    // 2. Skapa den anpassade Cell Factory
+    booleanColumn.setCellFactory(new Callback<TableColumn<Member, Boolean>, TableCell<Member, Boolean>>() {
+        @Override
+        public TableCell<Member, Boolean> call(TableColumn<Member, Boolean> param) {
+            return new TableCell<Member, Boolean>() {
+                @Override
+                protected void updateItem(Boolean item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
                     } else {
-                        setText("Nej");
+                        // 3. Konvertera Boolean till Ja/Nej (HUVUDLOGIKEN)
+                        if (item) {
+                            setText("Ja");
+                        } else {
+                            setText("Nej");
+                        }
                     }
                 }
-            }
-        };
-    }
-});
+            };
+        }
+    });
 
-// 4. Lägg till den nya kolumnen i din tabell
-table.getColumns().add(booleanColumn);*/
+    // 4. Lägg till den nya kolumnen i din tabell
+    table.getColumns().add(booleanColumn);*/
     private Tab tab;
     private BorderPane pane;
     private VBox vbox;
@@ -80,6 +83,14 @@ table.getColumns().add(booleanColumn);*/
     public ItemView() {
     }
 
+    public void setItemController(ItemController itemController) {
+        this.itemController = itemController;
+    }
+
+    public void setRentalController(RentalController rentalController) {
+        this.rentalController = rentalController;
+    }
+
     public Tab getTab() {
         tab = new Tab("Varor");
         pane = new BorderPane();
@@ -97,11 +108,11 @@ table.getColumns().add(booleanColumn);*/
         newRentalButton.setMaxWidth(Double.MAX_VALUE);
         rechargeButton.setMaxWidth(Double.MAX_VALUE);
         exitButton = new Button("Avsluta");
-        region =  new Region();
+        region = new Region();
 
         vbox.getChildren().addAll(newItemButton, searchButton, changeButton, deleteButton,
                 newRentalButton, rechargeButton, region, exitButton);
-        VBox.setVgrow(region, Priority.ALWAYS );
+        VBox.setVgrow(region, Priority.ALWAYS);
         table = new TableView<>();
         table.setEditable(false);
         patternColumn = new TableColumn<>("Mönster");
@@ -132,16 +143,16 @@ table.getColumns().add(booleanColumn);*/
         pane.setCenter(table);
         tab.setContent(pane);
         newItemButton.setOnAction(e -> {
-            mainController.newItemView();
+            itemController.newItemView();
             populateTable();
         });
         searchButton.setOnAction(e -> {
-            mainController.searchItemView();
+            itemController.searchItemView();
         });
         changeButton.setOnAction(e -> {
             Item item = table.getSelectionModel().getSelectedItem();
             if (item != null) {
-                mainController.changeItemView(item);
+                itemController.changeItemView(item);
                 populateTable();
             } else {
                 showInfoAlert("Välj en medlem att ändra!");
@@ -151,7 +162,7 @@ table.getColumns().add(booleanColumn);*/
             Item item = table.getSelectionModel().getSelectedItem();
             if (item != null) {
                 try {
-                    mainController.removeItem(item);
+                    itemController.removeItem(item);
                     populateTable();
                 } catch (ItemException e) {
                     showInfoAlert(e.getMessage());
@@ -168,7 +179,7 @@ table.getColumns().add(booleanColumn);*/
             Item item = table.getSelectionModel().getSelectedItem();
             if (item != null) {
                 try {
-                    mainController.newRental(item);
+                    rentalController.newRental(item);
                 } catch (ItemException e) {
                     showInfoAlert(e.getMessage());
                 } catch (FileException e) {
@@ -182,7 +193,7 @@ table.getColumns().add(booleanColumn);*/
                 showInfoAlert("Välj en vara att hyra ut!");
             }
         });
-        rechargeButton.setOnAction(ae ->{
+        rechargeButton.setOnAction(ae -> {
             populateTable();
         });
         exitButton.setOnAction(ae -> {
@@ -192,13 +203,9 @@ table.getColumns().add(booleanColumn);*/
         return tab;
     }
 
-    public void setController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
     private void populateTable() {
         try {
-            List<Item> list = mainController.getAllItems();
+            List<Item> list = itemController.getAllItems();
             ObservableList<Item> observableList = FXCollections.observableList(list);
             table.setItems(observableList);
         } catch (FileException e) {

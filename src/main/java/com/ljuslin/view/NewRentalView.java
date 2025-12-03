@@ -1,6 +1,9 @@
 package com.ljuslin.view;
 
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
+import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.model.*;
 import javafx.collections.FXCollections;
@@ -18,7 +21,9 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class NewRentalView extends View {
-    private MainController mainController;
+    private RentalController rentalController;
+    private MemberController memberController;
+    private ItemController itemController;
 
     private BorderPane pane;
     private Stage newRentalStage;
@@ -44,8 +49,11 @@ public class NewRentalView extends View {
     private Member member;
     private Item item;
 
-    public NewRentalView(MainController mainController) {
-        this.mainController = mainController;
+    public NewRentalView(RentalController rentalController, MemberController memberController,
+                         ItemController itemController) {
+        this.rentalController = rentalController;
+        this.memberController = memberController;
+        this.itemController = itemController;
     }
 
     public Member showMemberPopUp(Stage mainStage, Scene mainScene) {
@@ -227,7 +235,7 @@ public class NewRentalView extends View {
 
     private void populateMemberTable() {
         try {
-            List<Member> list = mainController.getAllMembers();
+            List<Member> list = memberController.getAllMembers();
             ObservableList<Member> observableList = FXCollections.observableList(list);
             memberTable.setItems(observableList);
         } catch (FileException e) {
@@ -239,7 +247,7 @@ public class NewRentalView extends View {
 
     private void populateAvailableItemTable() {
         try {
-            List<Item> list = mainController.getAllAvailableItems();
+            List<Item> list = itemController.getAllAvailableItems();
             ObservableList<Item> observableList = FXCollections.observableList(list);
             itemTable.setItems(observableList);
         } catch (FileException e) {
@@ -251,7 +259,7 @@ public class NewRentalView extends View {
 
     private void populateAllItemTable() {
         try {
-            List<Item> list = mainController.getAllAvailableItems();
+            List<Item> list = itemController.getAllAvailableItems();
             ObservableList<Item> observableList = FXCollections.observableList(list);
             itemTable.setItems(observableList);
         } catch (FileException e) {

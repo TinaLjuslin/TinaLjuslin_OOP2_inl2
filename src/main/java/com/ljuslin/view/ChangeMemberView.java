@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
@@ -14,7 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ChangeMemberView extends View {
-    private MainController mainController;
+    private MemberController memberController;
 
     private Stage newMemberStage;
     private TextField firstNameField;
@@ -27,8 +28,8 @@ public class ChangeMemberView extends View {
     private Button cancelButton;
     private GridPane gridPane;
 
-    public ChangeMemberView(MainController mainController) {
-        this.mainController = mainController;
+    public ChangeMemberView(MemberController memberController) {
+        this.memberController = memberController;
     }
 
     public Member showPopUp(Stage mainStage, Member member) {
@@ -61,7 +62,7 @@ public class ChangeMemberView extends View {
                 member.setFirstName(firstNameField.getText());
                 member.setLastName(lastNameField.getText());
                 member.setMemberLevel(levelComboBox.getValue());
-                mainController.changeMember(member);
+                memberController.changeMember(member);
                 newMemberStage.close();
             } catch (MemberException e) {
                 showInfoAlert(e.getMessage());

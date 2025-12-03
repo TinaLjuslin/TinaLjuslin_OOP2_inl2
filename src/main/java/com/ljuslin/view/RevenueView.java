@@ -1,13 +1,14 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.RevenueController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.RevenueException;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class RevenueView extends View implements TabView {
-    private MainController mainController;
+    private RevenueController revenueController;
     private Tab tab;
     private BorderPane pane;
     private VBox vBox;
@@ -21,6 +22,10 @@ public class RevenueView extends View implements TabView {
     private Label totalRevenueLabel;
 
     public RevenueView() {
+    }
+
+    public void setRevenueController(RevenueController revenueController) {
+        this.revenueController = revenueController;
     }
 
     public Tab getTab() {
@@ -57,14 +62,10 @@ public class RevenueView extends View implements TabView {
         return tab;
     }
 
-    public void setController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
     public void updateTotalRevenue() {
         try {
             totalRevenueInfoLabel.setText("Total vinst: ");
-            totalRevenueLabel.setText(mainController.getTotalRevenue());
+            totalRevenueLabel.setText(revenueController.getTotalRevenue());
         } catch (RevenueException e) {
             showInfoAlert(e.getMessage());
         } catch (FileException e) {
@@ -76,7 +77,7 @@ public class RevenueView extends View implements TabView {
 
     public void updateTotalRevenuePerItem() {
         try {
-            totalRevenueLabel.setText(mainController.getRevenuePerItem());
+            totalRevenueLabel.setText(revenueController.getRevenuePerItem());
             totalRevenueInfoLabel.setText("Total vinst för vald vara:");
         } catch (RevenueException e) {
             showInfoAlert(e.getMessage());

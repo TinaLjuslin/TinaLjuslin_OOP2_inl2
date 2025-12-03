@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
 import com.ljuslin.exception.MemberException;
@@ -25,7 +26,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class RentalView extends View implements TabView {
-    private MainController mainController;
+    private RentalController rentalController;
     private Tab tab;
     private BorderPane pane;
     private VBox vbox;
@@ -43,6 +44,10 @@ public class RentalView extends View implements TabView {
     private TableColumn<Rental, Double> totalRevenueColumn;
 
     public RentalView() {
+    }
+
+    public void setRentalController(RentalController rentalController) {
+        this.rentalController = rentalController;
     }
 
     public Tab getTab() {
@@ -95,7 +100,7 @@ public class RentalView extends View implements TabView {
         tab.setContent(pane);
         newRentalButton.setOnAction(ae -> {
             try {
-                mainController.newRental();
+                rentalController.newRental();
             } catch (ItemException e) {
                 showInfoAlert(e.getMessage());
             } catch (FileException e) {
@@ -111,7 +116,7 @@ public class RentalView extends View implements TabView {
             Rental rental = table.getSelectionModel().getSelectedItem();
             if (rental != null) {
                 try {
-                    mainController.endRental(rental);
+                    rentalController.endRental(rental);
                     populateTable();
                 } catch (RentalException e) {
                     showInfoAlert(e.getMessage());
@@ -130,7 +135,7 @@ public class RentalView extends View implements TabView {
 
         });
         searchButton.setOnAction(ae -> {
-            mainController.searchRentalView();
+            rentalController.searchRentalView();
         });
         rechargeButton.setOnAction(ae -> {
             populateTable();
@@ -142,13 +147,9 @@ public class RentalView extends View implements TabView {
         return tab;
     }
 
-    public void setController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
     private void populateTable() {
         try {
-            List<Rental> list = mainController.getAllRentals();
+            List<Rental> list = rentalController.getAllRentals();
             ObservableList<Rental> observableList = FXCollections.observableList(list);
             table.setItems(observableList);
         } catch (FileException e) {

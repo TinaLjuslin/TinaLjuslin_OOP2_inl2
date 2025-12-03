@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
 import com.ljuslin.model.Member;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -11,13 +12,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class HistoryView {
-    private MainController mainController;
+    private MemberController memberController;
 
     private Stage historyStage;
     private Button okButton;
     private ListView<String> historyView;
-    public HistoryView(MainController mainController) {
-        this.mainController = mainController;
+    public HistoryView(MemberController memberController) {
+        this.memberController = memberController;
     }
     public void showPopUp(Stage mainStage, Member member) {
         historyStage = new Stage();

@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  * @author tina.ljuslin@studerande.yh.se
  */
 public class NewMemberView extends View{
-    private MainController mainController;
+    private MemberController memberController;
 
     private Stage newMemberStage;
     private TextField fistNameField;
@@ -30,8 +31,8 @@ public class NewMemberView extends View{
     private Button cancelButton;
     private GridPane gridPane;
 
-    public NewMemberView(MainController mainController) {
-        this.mainController = mainController;
+    public NewMemberView(MemberController memberController) {
+        this.memberController = memberController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
@@ -63,7 +64,7 @@ public class NewMemberView extends View{
 
         saveButton.setOnAction( ae -> {
             try {
-                mainController.newMember(fistNameField.getText(), lastNameField.getText(),
+                memberController.newMember(fistNameField.getText(), lastNameField.getText(),
                         levelComboBox.getValue());
                 newMemberStage.close();
             } catch (MemberException e) {
