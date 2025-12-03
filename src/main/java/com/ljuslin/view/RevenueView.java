@@ -1,6 +1,5 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.RevenueController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.RevenueException;

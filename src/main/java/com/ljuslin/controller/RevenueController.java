@@ -42,7 +42,6 @@ public class RevenueController {
     }
 
     public void populateTable() {
-
         revenueView.updateTotalRevenue();
     }
 
@@ -53,7 +52,5 @@ public class RevenueController {
     public String getRevenuePerItem() throws FileException, RevenueException {
         Item item = newRentalView.showAllItemPopUp(stage, scene);
         return String.valueOf(revenueService.getRevenuePerItem(item));
-
-
     }
 }

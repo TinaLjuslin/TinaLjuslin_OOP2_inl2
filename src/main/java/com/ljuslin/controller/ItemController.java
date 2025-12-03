@@ -23,7 +23,6 @@ public class ItemController {
     private Stage stage;
     private Scene scene;
 
-
     public ItemController(ItemService itemService, ItemView itemView) {
         this.itemService = itemService;
         this.itemView = itemView;
@@ -42,11 +41,11 @@ public class ItemController {
     }
 
     public void populateTable() {
-     try {
-        itemView.populateTable(itemService.getItems());
-     } catch (FileException e) {
-         itemView.showInfoAlert(e.getMessage());
-     }
+        try {
+            itemView.populateTable(itemService.getItems());
+        } catch (FileException e) {
+            itemView.showInfoAlert(e.getMessage());
+        }
     }
 
     public List<Item> getAllItems() throws FileException {
@@ -81,7 +80,6 @@ public class ItemController {
     public void changeItemView(Item item) {
         ChangeItemView changeItemView = new ChangeItemView(this);
         changeItemView.showPopUp(stage, scene, item);
-
     }
 
     public void changeItem(Item item, String brand, String color, Material material,
@@ -108,5 +106,4 @@ public class ItemController {
         List<Item> searchItems = itemService.searchItem(search);
         itemView.populateTable(searchItems);
     }
-
 }

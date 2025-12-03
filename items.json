@@ -1,28 +1,28 @@
 [ {
   "itemType" : "Tie",
-  "itemID" : 99,
+  "itemID" : "99",
   "pattern" : "NO_PATTERN",
   "material" : "SILK",
   "brand" : "Marke AB",
   "color" : "blå",
   "pricePerDay" : 27.0,
-  "available" : false,
+  "available" : true,
   "length" : 157.0,
   "width" : 7.0
 }, {
   "itemType" : "Tie",
-  "itemID" : 1764758195316,
+  "itemID" : "1764758195316",
   "pattern" : "DOTTED",
   "material" : "COTTON",
   "brand" : "Märke AB",
   "color" : "blå",
   "pricePerDay" : 17.0,
-  "available" : true,
+  "available" : false,
   "length" : 159.0,
   "width" : 8.0
 }, {
   "itemType" : "Bowtie",
-  "itemID" : 98,
+  "itemID" : "98",
   "pattern" : "PAISLEY",
   "material" : "POLYESTER",
   "brand" : "BrandAB",
@@ -33,13 +33,13 @@
   "preTied" : false
 }, {
   "itemType" : "Bowtie",
-  "itemID" : 97,
+  "itemID" : "97",
   "pattern" : "PAISLEY",
   "material" : "POLYESTER",
   "brand" : "BrandAB",
   "color" : "rosa",
   "pricePerDay" : 15.0,
-  "available" : true,
+  "available" : false,
   "size" : "Small",
   "preTied" : false
 } ]

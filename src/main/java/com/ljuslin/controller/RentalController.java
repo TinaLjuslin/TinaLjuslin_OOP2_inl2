@@ -91,6 +91,4 @@ public class RentalController {
         List<Rental> searchRentals = rentalService.searchRentals(search);
         rentalView.populateTable(searchRentals);
     }
-
-
 }

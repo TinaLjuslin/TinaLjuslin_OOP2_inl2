@@ -1,6 +1,5 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.MemberController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
@@ -18,6 +17,7 @@ public class ChangeMemberView extends View {
     private MemberController memberController;
 
     private Stage newMemberStage;
+    private Scene scene2;
     private TextField firstNameField;
     private TextField lastNameField;
     private ComboBox<Level> levelComboBox;
@@ -53,7 +53,7 @@ public class ChangeMemberView extends View {
         gridPane.add(levelComboBox, 1, 2);
         gridPane.add(saveButton, 1, 3);
         gridPane.add(cancelButton, 2, 3);
-        Scene scene2 = new Scene(gridPane, 300, 300);
+        scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 
@@ -82,5 +82,4 @@ public class ChangeMemberView extends View {
         newMemberStage.showAndWait();
         return member;
     }
-
 }

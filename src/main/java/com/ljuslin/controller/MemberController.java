@@ -10,23 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.List;
 
 public class MemberController {
-
     private MembershipService membershipService;
     private MemberView memberView;
 
     private Stage stage;
     private Scene scene;
 
-
     public MemberController(MembershipService membershipService, MemberView memberView) {
-    this.membershipService = membershipService;
-    this.memberView = memberView;
-}
-
+        this.membershipService = membershipService;
+        this.memberView = memberView;
+    }
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -37,8 +33,9 @@ public class MemberController {
     }
 
     public Tab getTab() {
-    return memberView.getTab();
-}
+        return memberView.getTab();
+    }
+
     public void populateTable() {
         try {
             memberView.populateTable(membershipService.getAllMembers());
@@ -46,6 +43,7 @@ public class MemberController {
             memberView.showInfoAlert(e.getMessage());
         }
     }
+
     public List<Member> getAllMembers() throws FileException {
         return membershipService.getAllMembers();
     }
@@ -88,5 +86,4 @@ public class MemberController {
         HistoryView historyView = new HistoryView(this);
         historyView.showPopUp(stage, member);
     }
-
 }

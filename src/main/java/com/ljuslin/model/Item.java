@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  * @author Tina Ljuslin
  */
 public abstract class Item {
-    private long itemID;
+    private String itemID;
     private Pattern pattern;
     private Material material;
     private String brand;
@@ -32,7 +32,7 @@ public abstract class Item {
 
     public Item(Pattern pattern, Material material, String brand, String color,
                 double pricePerDay) {
-        this.itemID = System.currentTimeMillis();
+        this.itemID = String.valueOf(System.currentTimeMillis());
         this.pattern = pattern;
         this.material = material;
         this.brand = brand;
@@ -85,7 +85,7 @@ public abstract class Item {
      * Returns items id
      * @return id of item
      */
-    public long getItemID() {
+    public String getItemID() {
         return itemID;
     }
 
@@ -97,7 +97,7 @@ public abstract class Item {
         this.pricePerDay = pricePerDay;
     }
 
-    public void setItemID(long itemID) {
+    public void setItemID(String itemID) {
         this.itemID = itemID;
     }
 

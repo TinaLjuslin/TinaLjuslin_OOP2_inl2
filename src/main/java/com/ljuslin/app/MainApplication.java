@@ -40,17 +40,14 @@ public class MainApplication extends Application {
             memberController, itemController, rentalView);
     private RevenueController revenueController = new RevenueController(revenueService,
             memberController, itemController, rentalController, revenueView);
-    private MainController mainController = new MainController(itemService, membershipService,
-            rentalService, revenueService, memberController, itemController, rentalController,
-            revenueController, itemView, memberView, rentalView, revenueView);
-
-
+    private MainController mainController = new MainController(memberController, itemController, rentalController,
+            revenueController);
 
     @Override
     public void start(Stage stage) {
         memberView.setMemberController(memberController);
         memberView.setRentalController(rentalController);
-        itemView.setItemController(itemController);
+        itemView.setItemController(itemController, rentalController);
         rentalView.setRentalController(rentalController);
         revenueView.setRevenueController(revenueController);
         mainController.start(stage);

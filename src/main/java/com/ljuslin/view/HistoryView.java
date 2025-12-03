@@ -1,6 +1,5 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.MemberController;
 import com.ljuslin.model.Member;
 import javafx.collections.FXCollections;
@@ -15,6 +14,8 @@ public class HistoryView {
     private MemberController memberController;
 
     private Stage historyStage;
+    private Scene scene2;
+    private VBox vBox;
     private Button okButton;
     private ListView<String> historyView;
     public HistoryView(MemberController memberController) {
@@ -24,9 +25,9 @@ public class HistoryView {
         historyStage = new Stage();
         okButton = new Button("Ok");
         historyView = new ListView(FXCollections.observableArrayList(member.getHistory()));
-        VBox vBox = new VBox();
+        vBox = new VBox();
         vBox.getChildren().addAll(historyView, okButton);
-        Scene scene2 = new Scene(vBox, 600, 300);
+        scene2 = new Scene(vBox, 600, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
         okButton.setOnAction(ae -> {

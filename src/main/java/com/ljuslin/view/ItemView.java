@@ -1,7 +1,6 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.ItemController;
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
@@ -21,6 +20,7 @@ import java.util.List;
 public class ItemView extends View implements TabView {
     private ItemController itemController;
     private RentalController rentalController;
+//TODO
     /*// Import som kan behövas:
     import javafx.scene.control.TableCell;
     import javafx.scene.control.TableColumn;
@@ -83,11 +83,8 @@ public class ItemView extends View implements TabView {
     public ItemView() {
     }
 
-    public void setItemController(ItemController itemController) {
+    public void setItemController(ItemController itemController, RentalController rentalController) {
         this.itemController = itemController;
-    }
-
-    public void setRentalController(RentalController rentalController) {
         this.rentalController = rentalController;
     }
 
@@ -199,7 +196,6 @@ public class ItemView extends View implements TabView {
         exitButton.setOnAction(ae -> {
             System.exit(0);
         });
-
         return tab;
     }
 
@@ -218,6 +214,5 @@ public class ItemView extends View implements TabView {
     public void populateTable(List<Item> items) {
         ObservableList<Item> observableList = FXCollections.observableList(items);
         table.setItems(observableList);
-
     }
 }

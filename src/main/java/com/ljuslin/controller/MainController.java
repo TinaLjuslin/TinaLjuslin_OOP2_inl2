@@ -14,14 +14,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 /**
  *
  * @author Tina Ljuslin
  */
 public class MainController {
-
     private MemberController memberController;
     private ItemController itemController;
     private RentalController rentalController;
@@ -38,30 +35,13 @@ public class MainController {
     public MainController() {
     }
 
-    public MainController(ItemService itemService, MembershipService membershipService,
-                          RentalService rentalService, RevenueService revenueService,
-                          MemberController memberController, ItemController itemController,
-                          RentalController rentalController, RevenueController revenueController,
-                          ItemView itemView, MemberView memberView,
-                          RentalView rentalView, RevenueView revenueView) {
-/*
-        this.itemService = itemService;
-        this.membershipService = membershipService;
-        this.rentalService = rentalService;
-        this.revenueService = revenueService;
-*/
+    public MainController(MemberController memberController, ItemController itemController,
+                          RentalController rentalController, RevenueController revenueController) {
+
         this.memberController = memberController;
         this.itemController = itemController;
         this.rentalController = rentalController;
         this.revenueController = revenueController;
-
-
-/*
-        this.itemView = itemView;
-        this.memberView = memberView;
-        this.rentalView = rentalView;
-        this.revenueView = revenueView;
-*/
     }
 
     public void start(Stage stage) {
@@ -114,6 +94,5 @@ public class MainController {
             case "Ekonomi":
                 revenueController.populateTable();
         }
-
     }
 }

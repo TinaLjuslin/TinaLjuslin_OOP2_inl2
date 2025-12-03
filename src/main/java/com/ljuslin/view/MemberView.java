@@ -1,6 +1,5 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.MemberController;
 import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
@@ -18,12 +17,6 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-/**
- * Lägg till knapar på vänster sida, tabell med befintliga members i mitten
- * knappar: lägg till ny, ändra, ta bort, läs in igen
- * lägg till ett nytt fönster för att lägga till eller ändra, vid ändra markera member först
- * annars exception
- */
 public class MemberView extends View implements TabView{
     private MemberController memberController;
     private RentalController rentalController;
@@ -142,7 +135,6 @@ public class MemberView extends View implements TabView{
         exitButton.setOnAction(ae -> {
             System.exit(0);
         });
-
         return tab;
     }
 

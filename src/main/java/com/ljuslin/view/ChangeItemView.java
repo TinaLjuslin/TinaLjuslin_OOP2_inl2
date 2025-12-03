@@ -116,7 +116,7 @@ public class ChangeItemView extends View {
             newItemStage.setScene(scene2);
         }
         ////////////////////////////////////////////////////////////
-//kan jag ta bort dessa två rader i if-satserna? eller här?
+//TODO kan jag ta bort dessa två rader i if-satserna? eller här?
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
         saveButton.setOnAction(ae -> {

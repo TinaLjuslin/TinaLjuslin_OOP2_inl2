@@ -104,7 +104,7 @@ public class Inventory {
         }
         boolean changed = false;
         for (Item i : items) {
-            if (i.getItemID() == item.getItemID()) {
+            if (i.getItemID().equals(item.getItemID())) {
                 items.remove(i);
                 items.add(item);
                 changed = true;

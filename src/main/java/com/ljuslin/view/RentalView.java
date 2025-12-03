@@ -1,6 +1,5 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
@@ -64,7 +63,7 @@ public class RentalView extends View implements TabView {
         endRentalButton.setMaxWidth(Double.MAX_VALUE);
         rechargeButton.setMaxWidth(Double.MAX_VALUE);
         exitButton = new Button("Avsluta");
-        region =  new Region();
+        region = new Region();
 
         vbox.getChildren().addAll(newRentalButton, searchButton, endRentalButton, rechargeButton,
                 region, exitButton);
@@ -93,7 +92,7 @@ public class RentalView extends View implements TabView {
 
         table.getColumns().addAll(memberColumn, itemColumn, rentalDateColumn, endRentalDateColumn,
                 totalRevenueColumn);
-        VBox.setVgrow(region, Priority.ALWAYS );
+        VBox.setVgrow(region, Priority.ALWAYS);
         populateTable();
         pane.setLeft(vbox);
         pane.setCenter(table);
@@ -132,7 +131,6 @@ public class RentalView extends View implements TabView {
             } else {
                 showInfoAlert("Välj en uthyrning att avsluta!");
             }
-
         });
         searchButton.setOnAction(ae -> {
             rentalController.searchRentalView();
@@ -143,7 +141,6 @@ public class RentalView extends View implements TabView {
         exitButton.setOnAction(ae -> {
             System.exit(0);
         });
-
         return tab;
     }
 

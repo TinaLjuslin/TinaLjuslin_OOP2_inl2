@@ -1,7 +1,6 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.ItemController;
-import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
 import javafx.scene.Scene;
@@ -16,6 +15,7 @@ public class SearchItemView extends View {
     private ItemController itemController;
 
     private Stage searchItemStage;
+    private Scene scene2;
     private TextField searchField;
     private Label searchLabel;
     private Button searchButton;
@@ -37,7 +37,7 @@ public class SearchItemView extends View {
         gridPane.add(searchField, 1, 0);
         gridPane.add(searchButton, 0, 1);
         gridPane.add(cancelButton, 1, 1);
-        Scene scene2 = new Scene(gridPane, 300, 300);
+        scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 

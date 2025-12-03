@@ -12,7 +12,6 @@ public class Member {
     private String firstName;
     private String lastName;
     private Level memberLevel;
-    private static int counter = 1;
     private List<String> history = new ArrayList<>();
 
     /**
@@ -29,7 +28,7 @@ public class Member {
      * @param memberLevel level of this member
      */
     public Member(String firstName, String lastName, Level memberLevel) {
-        this.memberID = lastName + "_" + Integer.toString(counter++);
+        this.memberID = String.valueOf(System.currentTimeMillis());
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberLevel = memberLevel;

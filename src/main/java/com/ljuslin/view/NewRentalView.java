@@ -1,7 +1,6 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.ItemController;
-import com.ljuslin.controller.MainController;
 import com.ljuslin.controller.MemberController;
 import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
@@ -27,6 +26,7 @@ public class NewRentalView extends View {
 
     private BorderPane pane;
     private Stage newRentalStage;
+    private Scene scene2;
     private VBox vbox;
     private Button chooseButton;
     private Button cancelButton;
@@ -80,11 +80,10 @@ public class NewRentalView extends View {
         populateMemberTable();
         pane.setLeft(vbox);
         pane.setCenter(memberTable);
-        Scene scene2 = new Scene(pane, 1000, 500);
+        scene2 = new Scene(pane, 1000, 500);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
         chooseButton.setOnAction(ae -> {
-            //hur får jag popup metoden att returnera Member????????????????????????????????
             Member tempMember = memberTable.getSelectionModel().getSelectedItem();
             if (tempMember != null) {
                 this.member = tempMember;
@@ -102,7 +101,6 @@ public class NewRentalView extends View {
         newRentalStage.initModality(Modality.APPLICATION_MODAL);
         newRentalStage.setScene(scene2);
         newRentalStage.showAndWait();
-
         return member;
     }
 
@@ -144,7 +142,7 @@ public class NewRentalView extends View {
         pane.setLeft(vbox);
         pane.setCenter(itemTable);
 
-        Scene scene2 = new Scene(pane, 1000, 500);
+        scene2 = new Scene(pane, 1000, 500);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
         chooseButton.setOnAction(ae -> {
@@ -152,7 +150,6 @@ public class NewRentalView extends View {
             if (tempItem != null) {
                 this.item = tempItem;
                 newRentalStage.close();
-
             } else {
                 showInfoAlert("Välj en item att hyra!");
             }
@@ -165,9 +162,7 @@ public class NewRentalView extends View {
         newRentalStage.initModality(Modality.APPLICATION_MODAL);
         newRentalStage.setScene(scene2);
         newRentalStage.showAndWait();
-
         return item;
-
     }
 
     public Item showAllItemPopUp(Stage mainStage, Scene mainScene) {
@@ -208,7 +203,7 @@ public class NewRentalView extends View {
         pane.setLeft(vbox);
         pane.setCenter(itemTable);
 
-        Scene scene2 = new Scene(pane, 1000, 500);
+        scene2 = new Scene(pane, 1000, 500);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
         chooseButton.setOnAction(ae -> {
@@ -216,7 +211,6 @@ public class NewRentalView extends View {
             if (tempItem != null) {
                 this.item = tempItem;
                 newRentalStage.close();
-
             } else {
                 showInfoAlert("Välj en item att hyra!");
             }
@@ -229,7 +223,6 @@ public class NewRentalView extends View {
         newRentalStage.initModality(Modality.APPLICATION_MODAL);
         newRentalStage.setScene(scene2);
         newRentalStage.showAndWait();
-
         return item;
     }
 

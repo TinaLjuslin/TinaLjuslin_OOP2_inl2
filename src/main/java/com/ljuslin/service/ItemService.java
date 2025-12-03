@@ -22,10 +22,10 @@ public class ItemService {
         this.inventory = inventory;
     }
 
-    public Item getItem(long itemID) throws FileException{
+    public Item getItem(String itemID) throws FileException{
         try {
             for (Item item : inventory.getItems()) {
-                if (item.getItemID() == itemID) {
+                if (item.getItemID().equals(itemID)) {
                     return item;
                 }
             }
