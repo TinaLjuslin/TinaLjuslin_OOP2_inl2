@@ -27,24 +27,12 @@ public abstract class Item {
     private String color;
     private double pricePerDay;
     private boolean available;
-    @JsonIgnore
-    private static int counter = 1000;
 
-    /**
-     * Empty constructor
-     */
     public Item() {}
 
-    /**
-     * Constructor for item
-     * @param pattern pattern for item
-     * @param material material of item
-     * @param brand, brand of item
-     * @param pricePerDay, regular price for item
-     */
     public Item(Pattern pattern, Material material, String brand, String color,
                 double pricePerDay) {
-        this.itemID = String.valueOf(counter++);
+        this.itemID = String.valueOf(System.currentTimeMillis());
         this.pattern = pattern;
         this.material = material;
         this.brand = brand;

@@ -1,6 +1,6 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
@@ -17,9 +17,10 @@ import javafx.stage.Stage;
  * @author tina.ljuslin@studerande.yh.se
  */
 public class NewMemberView extends View{
-    private MainController mainController;
+    private MemberController memberController;
 
     private Stage newMemberStage;
+    private Scene scene2;
     private TextField fistNameField;
     private TextField lastNameField;
     private ComboBox<Level> levelComboBox;
@@ -30,8 +31,8 @@ public class NewMemberView extends View{
     private Button cancelButton;
     private GridPane gridPane;
 
-    public NewMemberView(MainController mainController) {
-        this.mainController = mainController;
+    public NewMemberView(MemberController memberController) {
+        this.memberController = memberController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
@@ -57,13 +58,13 @@ public class NewMemberView extends View{
         gridPane.add(levelComboBox, 1, 2);
         gridPane.add(saveButton, 1, 3);
         gridPane.add(cancelButton, 2, 3);
-        Scene scene2 = new Scene(gridPane, 300, 300);
+        scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 
         saveButton.setOnAction( ae -> {
             try {
-                mainController.newMember(fistNameField.getText(), lastNameField.getText(),
+                memberController.newMember(fistNameField.getText(), lastNameField.getText(),
                         levelComboBox.getValue());
                 newMemberStage.close();
             } catch (MemberException e) {
@@ -73,8 +74,6 @@ public class NewMemberView extends View{
             } catch (Exception e) {
                 showErrorAlert(e.getMessage());
             }
-
-
         });
         cancelButton.setOnAction(ae -> {
             newMemberStage.close();
@@ -85,5 +84,4 @@ public class NewMemberView extends View{
         newMemberStage.setScene(scene2);
         newMemberStage.showAndWait();
     }
-
 }

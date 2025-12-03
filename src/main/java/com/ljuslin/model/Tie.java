@@ -63,7 +63,7 @@ public class Tie extends Item {
         s = s.concat(", width: ").concat(String.valueOf(width));
         s = s.concat(", rental price per day is ").concat(String.valueOf(getPricePerDay())).concat(
                 " SEK");
-        s = s.concat(", ID: ").concat(getItemID());
+        s = s.concat(", ID: ").concat(String.valueOf(getItemID()));
         return s;
     }
 }

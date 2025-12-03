@@ -28,22 +28,17 @@ public class Inventory {
 
     public Inventory() {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        // NY ÅTGÄRD: Registrera subklasserna explicit via en SimpleModule
         SimpleModule module = new SimpleModule();
 
-        // Registrera Tie och Bowtie som underklasser till Item
         module.registerSubtypes(
                 new NamedType(Tie.class, "Tie"),
                 new NamedType(Bowtie.class, "Bowtie")
         );
-
-        // Registrera modulen till din ObjectMapper
         mapper.registerModule(module);
         mapper.enable(MapperFeature.USE_ANNOTATIONS);
         if (!itemFile.exists()) {
             try {
                 mapper.writeValue(itemFile, new ArrayList<Item>());
-                //mapper.writeValue(itemFile, new ArrayList<Item>());
             } catch (IOException e) {
                 System.err.println("VARNING: Kunde inte skapa initial medlemsfil.");
             }
@@ -89,7 +84,7 @@ public class Inventory {
         }
         boolean removed = false;
         for (Item i : items) {
-            if (i.getItemID().equals(item.getItemID())) {
+            if (i.getItemID() == item.getItemID()) {
                 items.remove(i);
                 removed = true;
                 break;

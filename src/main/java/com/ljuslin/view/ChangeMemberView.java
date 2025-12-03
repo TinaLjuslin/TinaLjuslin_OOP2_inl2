@@ -1,6 +1,6 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
@@ -14,34 +14,31 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ChangeMemberView extends View {
-    private MainController mainController;
+    private MemberController memberController;
 
     private Stage newMemberStage;
+    private Scene scene2;
     private TextField firstNameField;
     private TextField lastNameField;
     private ComboBox<Level> levelComboBox;
     private Label firstNameLabel;
     private Label lastNameLabel;
     private Label levelLabel;
-    private Label memberIDLabel;
-    private Label memberIDTextLabel;
     private Button saveButton;
     private Button cancelButton;
     private GridPane gridPane;
 
-    public ChangeMemberView(MainController mainController) {
-        this.mainController = mainController;
+    public ChangeMemberView(MemberController memberController) {
+        this.memberController = memberController;
     }
 
-    public Member showPopUp(Stage mainStage, Scene mainScene, Member member) {
+    public Member showPopUp(Stage mainStage, Member member) {
         newMemberStage = new Stage();
         saveButton = new Button("Spara");
         cancelButton = new Button("Avbryt");
         firstNameLabel = new Label("Förnamn");
         lastNameLabel = new Label("Efternamn");
         levelLabel = new Label("Level");
-        memberIDLabel = new Label("ID");
-        memberIDTextLabel = new Label(member.getMemberID());
         firstNameField = new TextField(member.getFirstName());
         lastNameField = new TextField(member.getLastName());
         ObservableList<Level> levels = FXCollections.observableArrayList(Level.values());
@@ -56,7 +53,7 @@ public class ChangeMemberView extends View {
         gridPane.add(levelComboBox, 1, 2);
         gridPane.add(saveButton, 1, 3);
         gridPane.add(cancelButton, 2, 3);
-        Scene scene2 = new Scene(gridPane, 300, 300);
+        scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 
@@ -65,7 +62,7 @@ public class ChangeMemberView extends View {
                 member.setFirstName(firstNameField.getText());
                 member.setLastName(lastNameField.getText());
                 member.setMemberLevel(levelComboBox.getValue());
-                mainController.changeMember(member);
+                memberController.changeMember(member);
                 newMemberStage.close();
             } catch (MemberException e) {
                 showInfoAlert(e.getMessage());
@@ -85,5 +82,4 @@ public class ChangeMemberView extends View {
         newMemberStage.showAndWait();
         return member;
     }
-
 }

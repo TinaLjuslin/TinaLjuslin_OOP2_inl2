@@ -165,8 +165,9 @@ public class ItemService {
         inventory.removeItem(item);
     }
 
-    public void changeItemAvailable(Item item, boolean available) {
+    public void changeItemAvailable(Item item, boolean available) throws FileException, ItemException {
         item.setAvailable(available);
+        inventory.changeItem(item);
     }
 
     public void changeItem(Item item, String brand, String color, Material material,

@@ -1,5 +1,6 @@
 package com.ljuslin.view;
 
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
@@ -13,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ChangeItemView extends View {
-    private MainController mainController;
+    private ItemController itemController;
 
     private Stage newItemStage;
     private TextField brandField;
@@ -41,8 +42,9 @@ public class ChangeItemView extends View {
     private Button cancelButton;
     private GridPane gridPane;
     private Scene scene2;
-    public ChangeItemView(MainController mainController) {
-        this.mainController = mainController;
+
+    public ChangeItemView(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene, Item item) {
@@ -55,14 +57,17 @@ public class ChangeItemView extends View {
         patternLabel = new Label("Mönster");
         pricePerDayLabel = new Label("Pris per dag");
         brandField = new TextField();
+        brandField.setText(item.getBrand());
         colorField = new TextField();
+        colorField.setText(item.getColor());
         pricePerDayField = new TextField();
+        pricePerDayField.setText(String.valueOf(item.getPricePerDay()));
         ObservableList<Material> materials = FXCollections.observableArrayList(Material.values());
         materialComboBox = new ComboBox<>(materials);
-        materialComboBox.getSelectionModel().select(0);
+        materialComboBox.getSelectionModel().select(item.getMaterial());
         ObservableList<Pattern> patterns = FXCollections.observableArrayList(Pattern.values());
         patternComboBox = new ComboBox<>(patterns);
-        patternComboBox.getSelectionModel().select(0);
+        patternComboBox.getSelectionModel().select(item.getPattern());
         gridPane = new GridPane();
         gridPane.add(brandLabel, 0, 0);
         gridPane.add(colorLabel, 0, 1);
@@ -80,27 +85,26 @@ public class ChangeItemView extends View {
         if (item instanceof Tie) {
             widthLabel = new Label("Bredd");
             lengthLabel = new Label("Längd");
-            widthField = new TextField();
-            lengthField = new TextField();
+            widthField = new TextField(String.valueOf(((Tie) item).getWidth()));
+            lengthField = new TextField(String.valueOf(((Tie) item).getLength()));
+
             gridPane.add(widthLabel, 0, 5);
             gridPane.add(widthField, 1, 5);
             gridPane.add(lengthLabel, 0, 6);
             gridPane.add(lengthField, 1, 6);
 
-
             scene2 = new Scene(gridPane, 500, 500);
             String css = getClass().getResource("/greenStyles.css").toExternalForm();
             scene2.getStylesheets().add(css);
             newItemStage.setScene(scene2);
-
         } else {
-
             sizeLabel = new Label("Storlek");
             preeTiedLabel = new Label("Färdigknuten");
             sizeField = new TextField();
+            sizeField.setText(String.valueOf(((Bowtie) item).getSize()));
             ObservableList<Boolean> pre = FXCollections.observableArrayList(Boolean.FALSE, Boolean.TRUE);
             preeTiedComboBox = new ComboBox<>(pre);
-            preeTiedComboBox.getSelectionModel().select(0);
+            preeTiedComboBox.getSelectionModel().select(((Bowtie) item).isPreTied());
             gridPane.add(preeTiedLabel, 0, 5);
             gridPane.add(preeTiedComboBox, 1, 5);
             gridPane.add(sizeLabel, 0, 6);
@@ -110,19 +114,19 @@ public class ChangeItemView extends View {
             String css = getClass().getResource("/greenStyles.css").toExternalForm();
             scene2.getStylesheets().add(css);
             newItemStage.setScene(scene2);
-
         }
-
+        ////////////////////////////////////////////////////////////
+//TODO kan jag ta bort dessa två rader i if-satserna? eller här?
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
-        saveButton.setOnAction( ae -> {
+        saveButton.setOnAction(ae -> {
             try {
                 if (item instanceof Tie) {
-                    mainController.changeItem(item, brandField.getText(), colorField.getText(),
+                    itemController.changeItem(item, brandField.getText(), colorField.getText(),
                             materialComboBox.getValue(), patternComboBox.getValue(),
                             pricePerDayField.getText(), widthField.getText(), lengthField.getText());
                 } else {
-                    mainController.changeItem(item, brandField.getText(), colorField.getText(),
+                    itemController.changeItem(item, brandField.getText(), colorField.getText(),
                             materialComboBox.getValue(), patternComboBox.getValue(),
                             pricePerDayField.getText(), sizeField.getText(), preeTiedComboBox.getValue());
 
@@ -139,7 +143,6 @@ public class ChangeItemView extends View {
         cancelButton.setOnAction(ae -> {
             newItemStage.close();
         });
-
 
         newItemStage.initOwner(mainStage);
         newItemStage.initModality(Modality.APPLICATION_MODAL);

@@ -1,6 +1,7 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.MemberController;
+import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Level;
@@ -10,19 +11,15 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-/**
- * Lägg till knapar på vänster sida, tabell med befintliga members i mitten
- * knappar: lägg till ny, ändra, ta bort, läs in igen
- * lägg till ett nytt fönster för att lägga till eller ändra, vid ändra markera member först
- * annars exception
- */
 public class MemberView extends View implements TabView{
-    private MainController mainController;
-
+    private MemberController memberController;
+    private RentalController rentalController;
     private Tab tab;
     private BorderPane pane;
     private VBox vbox;
@@ -31,17 +28,19 @@ public class MemberView extends View implements TabView{
     private Button changeButton;
     private Button deleteButton;
     private Button historyButton;
+    private Button newRentalButton;
     private Button rechargeButton;
+    private Button exitButton;
+    private Region region;
     private TableView<Member> table;
     private TableColumn<Member, String> idColumn;
     private TableColumn<Member, String> firstNameColumn;
     private TableColumn<Member, String> lastNameColumn;
     private TableColumn<Member, Level> levelColumn;
-
     public MemberView(){}
 
     public Tab getTab() {
-        tab = new  Tab("Member");
+        tab = new  Tab("Medlemmar");
         pane = new BorderPane();
         vbox = new VBox();
         newButton = new Button("Ny medlem");
@@ -49,15 +48,14 @@ public class MemberView extends View implements TabView{
         changeButton = new Button("Ändra medlem");
         deleteButton = new Button("Ta bort medlem");
         historyButton = new Button("Visa historia");
+        newRentalButton = new Button("Ny uthyrning");
         rechargeButton = new Button("Ladda om");
-        newButton.setMaxWidth(Double.MAX_VALUE);
-        searchButton.setMaxWidth(Double.MAX_VALUE);
-        changeButton.setMaxWidth(Double.MAX_VALUE);
-        deleteButton.setMaxWidth(Double.MAX_VALUE);
-        historyButton.setMaxWidth(Double.MAX_VALUE);
-        rechargeButton.setMaxWidth(Double.MAX_VALUE);
+        exitButton = new Button("Avsluta");
+        region = new Region();
+
         vbox.getChildren().addAll(newButton,searchButton,changeButton,deleteButton, historyButton
-                , rechargeButton);
+                , newRentalButton, rechargeButton, region, exitButton);
+        VBox.setVgrow(region, Priority.ALWAYS );
         table = new TableView<>();
         table.setEditable(false);
         idColumn = new TableColumn<>("ID");
@@ -73,35 +71,51 @@ public class MemberView extends View implements TabView{
         pane.setLeft(vbox);
         pane.setCenter(table);
         tab.setContent(pane);
-        newButton.setOnAction(e -> {
-            mainController.newMemberView();
+        newButton.setOnAction(ae -> {
+            memberController.newMemberView();
             populateTable();
         });
-        searchButton.setOnAction(e -> {
-            mainController.searchMemberView();
+        searchButton.setOnAction(ae -> {
+            memberController.searchMemberView();
 
         });
-        changeButton.setOnAction(e -> {
+        changeButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
-                mainController.changeMemberView(member);
+                memberController.changeMemberView(member);
                 populateTable();
             } else {
                 showInfoAlert("Välj en medlem att ändra!");
+            }
+        });
+        newRentalButton.setOnAction(ae -> {
+            Member member = table.getSelectionModel().getSelectedItem();
+            if (member != null) {
+                try {
+                    rentalController.newRental(member);
+                } catch (MemberException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (FileException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (Exception e) {
+                    showErrorAlert(e.getMessage());
+                }
+            } else {
+                showInfoAlert("Välj en medlem att hyra ut till!");
             }
         });
         deleteButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
                 try {
-                    mainController.removeMember(member);
+                    memberController.removeMember(member);
                     populateTable();
                 } catch (MemberException e) {
                     showInfoAlert(e.getMessage());
                 } catch (FileException e) {
                     showInfoAlert(e.getMessage());
                 } catch (Exception e) {
-                    showInfoAlert(e.getMessage());
+                    showErrorAlert(e.getMessage());
                 }
             } else {
                 showInfoAlert("Välj en medlem att ta bort!");
@@ -110,7 +124,7 @@ public class MemberView extends View implements TabView{
         historyButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
             if (member != null) {
-                mainController.getHistoryView(member);
+                memberController.getHistoryView(member);
             } else {
                 showInfoAlert("Välj en medlem att ta bort!");
             }
@@ -118,17 +132,15 @@ public class MemberView extends View implements TabView{
         rechargeButton.setOnAction(ae -> {
             populateTable();
         });
-
+        exitButton.setOnAction(ae -> {
+            System.exit(0);
+        });
         return tab;
-    }
-
-    public void setController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     private void populateTable() {
         try {
-            List<Member> list = mainController.getAllMembers();
+            List<Member> list = memberController.getAllMembers();
             ObservableList<Member> observableList = FXCollections.observableList(list);
             table.setItems(observableList);
         } catch (FileException e) {
@@ -138,12 +150,15 @@ public class MemberView extends View implements TabView{
         }
     }
     public void populateTable(List<Member> members) {
-        try {
-            ObservableList<Member> observableList = FXCollections.observableList(members);
-            table.setItems(observableList);
-        } catch (Exception e) {
-            showErrorAlert(e.getMessage());
-        }
+        ObservableList<Member> observableList = FXCollections.observableList(members);
+        table.setItems(observableList);
     }
 
+    public void setMemberController(MemberController memberController) {
+        this.memberController = memberController;
+    }
+
+    public void setRentalController(RentalController rentalController) {
+        this.rentalController = rentalController;
+    }
 }

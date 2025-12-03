@@ -1,36 +1,33 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MemberController;
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.exception.FileException;
-import com.ljuslin.exception.MemberException;
+import com.ljuslin.exception.ItemException;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- * Shows a popup where the user can enter values for a new member
- *
- * @author tina.ljuslin@studerande.yh.se
- */
-public class SearchMemberView extends View {
-    private MemberController memberController;
+public class SearchItemView extends View {
+    private ItemController itemController;
 
+    private Stage searchItemStage;
     private Scene scene2;
-    private Stage searchMemberStage;
     private TextField searchField;
     private Label searchLabel;
     private Button searchButton;
     private Button cancelButton;
     private GridPane gridPane;
 
-    public SearchMemberView(MemberController memberController) {
-        this.memberController = memberController;
+    public SearchItemView(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
-        searchMemberStage = new Stage();
+        searchItemStage = new Stage();
         searchButton = new Button("Sök");
         cancelButton = new Button("Avbryt");
         searchLabel = new Label("Sök:");
@@ -46,9 +43,9 @@ public class SearchMemberView extends View {
 
         searchButton.setOnAction(ae -> {
             try {
-                memberController.searchMember(searchField.getText());
-                searchMemberStage.close();
-            } catch (MemberException e) {
+                itemController.searchItem(searchField.getText());
+                searchItemStage.close();
+            } catch (ItemException e) {
                 showInfoAlert(e.getMessage());
             } catch (FileException e) {
                 showInfoAlert(e.getMessage());
@@ -57,12 +54,12 @@ public class SearchMemberView extends View {
             }
         });
         cancelButton.setOnAction(ae -> {
-            searchMemberStage.close();
+            searchItemStage.close();
         });
 
-        searchMemberStage.initOwner(mainStage);
-        searchMemberStage.initModality(Modality.APPLICATION_MODAL);
-        searchMemberStage.setScene(scene2);
-        searchMemberStage.showAndWait();
+        searchItemStage.initOwner(mainStage);
+        searchItemStage.initModality(Modality.APPLICATION_MODAL);
+        searchItemStage.setScene(scene2);
+        searchItemStage.showAndWait();
     }
 }

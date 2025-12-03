@@ -1,6 +1,6 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
+import com.ljuslin.controller.ItemController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
 import com.ljuslin.model.Material;
@@ -16,9 +16,10 @@ import javafx.stage.Stage;
 
 
 public class NewItemView extends View {
-    private MainController mainController;
+    private ItemController itemController;
 
     private Stage newItemStage;
+    private Scene scene2;
     private TextField brandField;
     private TextField colorField;
     private TextField pricePerDayField;
@@ -30,7 +31,7 @@ public class NewItemView extends View {
     private ComboBox<Material> materialComboBox;
     private ComboBox<Boolean> preeTiedComboBox;
 
-
+    private HBox hBox;
     private Label brandLabel;
     private Label colorLabel;
     private Label materialLabel;
@@ -46,19 +47,17 @@ public class NewItemView extends View {
     private Button tieButton;
     private Button bowtieButton;
     private GridPane gridPane;
-    private Scene scene2;
-    public NewItemView(MainController mainController) {
-        this.mainController = mainController;
+    public NewItemView(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     public void showPopUp(Stage mainStage, Scene mainScene) {
         newItemStage = new Stage();
         tieButton = new Button("Slips");
         bowtieButton = new Button("Fluga");
-        HBox hBox = new HBox();
+        hBox = new HBox();
         hBox.setSpacing(10);
         hBox.getChildren().addAll(tieButton, bowtieButton);
-
 
         saveTieButton = new Button("Spara");
         saveBowtieButton = new Button("Spara");
@@ -112,7 +111,7 @@ public class NewItemView extends View {
         });
         saveTieButton.setOnAction( ae -> {
             try {
-                mainController.newTie(brandField.getText(), colorField.getText(),
+                itemController.newTie(brandField.getText(), colorField.getText(),
                         materialComboBox.getValue(), patternComboBox.getValue(),
                         pricePerDayField.getText(), widthField.getText(), lengthField.getText());
                 newItemStage.close();
@@ -126,7 +125,7 @@ public class NewItemView extends View {
         });
         saveBowtieButton.setOnAction(ae -> {
             try {
-                mainController.newBowtie(brandField.getText(), colorField.getText(),
+                itemController.newBowtie(brandField.getText(), colorField.getText(),
                         materialComboBox.getValue(), patternComboBox.getValue(),
                         pricePerDayField.getText(), sizeField.getText(), preeTiedComboBox.getValue());
                 newItemStage.close();
@@ -137,18 +136,17 @@ public class NewItemView extends View {
             } catch (Exception e) {
                 showErrorAlert(e.getMessage());
             }
-
         });
         cancelButton.setOnAction(ae -> {
             newItemStage.close();
         });
-
 
         newItemStage.initOwner(mainStage);
         newItemStage.initModality(Modality.APPLICATION_MODAL);
         newItemStage.setScene(scene2);
         newItemStage.showAndWait();
     }
+
     private void newTie() {
         gridPane.add(widthLabel, 0, 5);
         gridPane.add(widthField, 1, 5);
@@ -173,5 +171,4 @@ public class NewItemView extends View {
         scene2.getStylesheets().add(css);
         newItemStage.setScene(scene2);
     }
-
 }

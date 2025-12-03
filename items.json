@@ -1,17 +1,6 @@
 [ {
   "itemType" : "Tie",
-  "itemID" : "1001",
-  "pattern" : "PAISLEY",
-  "material" : "POLYESTER",
-  "brand" : "Brand AB",
-  "color" : "blå",
-  "pricePerDay" : 15.0,
-  "available" : true,
-  "length" : 159.0,
-  "width" : 8.0
-}, {
-  "itemType" : "Tie",
-  "itemID" : "1002",
+  "itemID" : "99",
   "pattern" : "NO_PATTERN",
   "material" : "SILK",
   "brand" : "Marke AB",
@@ -21,14 +10,36 @@
   "length" : 157.0,
   "width" : 7.0
 }, {
+  "itemType" : "Tie",
+  "itemID" : "1764758195316",
+  "pattern" : "DOTTED",
+  "material" : "COTTON",
+  "brand" : "Märke AB",
+  "color" : "blå",
+  "pricePerDay" : 17.0,
+  "available" : false,
+  "length" : 159.0,
+  "width" : 8.0
+}, {
   "itemType" : "Bowtie",
-  "itemID" : "1000",
-  "pattern" : "STRIPED",
-  "material" : "WOOL",
-  "brand" : "Marke AB",
-  "color" : "lila",
-  "pricePerDay" : 16.0,
-  "available" : true,
-  "size" : "small",
-  "preeTied" : false
+  "itemID" : "98",
+  "pattern" : "PAISLEY",
+  "material" : "POLYESTER",
+  "brand" : "BrandAB",
+  "color" : "rosa",
+  "pricePerDay" : 15.0,
+  "available" : false,
+  "size" : "Small",
+  "preTied" : false
+}, {
+  "itemType" : "Bowtie",
+  "itemID" : "97",
+  "pattern" : "PAISLEY",
+  "material" : "POLYESTER",
+  "brand" : "BrandAB",
+  "color" : "rosa",
+  "pricePerDay" : 15.0,
+  "available" : false,
+  "size" : "Small",
+  "preTied" : false
 } ]

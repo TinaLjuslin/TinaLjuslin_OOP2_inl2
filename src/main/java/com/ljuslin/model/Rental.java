@@ -1,6 +1,7 @@
 package com.ljuslin.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Connects a member and an item to make a rental in the shop, have rental date and return date
@@ -8,28 +9,21 @@ import java.time.LocalDate;
  * @author Tina Ljuslin
  */
 public class Rental {
+    private long rentalID;
     private Member member;
     private Item item;
     private double totalRevenue;
     private LocalDate rentalDate;
     private LocalDate returnDate;
 
-    /**
-     * Empty constructor
-     */
     public Rental() {}
 
-    /**
-     * Constructor, creates a rental
-     * @param member member of rental
-     * @param item item of rental
-     * @param rentalDate date of rental
-     */
     public Rental(Member member, Item item, LocalDate rentalDate) {
         this.member = member;
         this.item = item;
         this.rentalDate = rentalDate;
         this.totalRevenue = 0;
+        this.rentalID = System.currentTimeMillis();
     }
 
     /**
@@ -88,10 +82,26 @@ public class Rental {
         this.totalRevenue = totalRevenue;
     }
 
-    /**
-     * Overides toString()
-     * @return string representing this rental
-     */
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public void setRentalDate(LocalDate rentalDate) {
+        this.rentalDate = rentalDate;
+    }
+
+    public long getRentalID() {
+        return rentalID;
+    }
+
+    public void setRentalID(long rentalID) {
+        this.rentalID = rentalID;
+    }
+
     @Override
     public String toString() {
         String s = "Member: ";

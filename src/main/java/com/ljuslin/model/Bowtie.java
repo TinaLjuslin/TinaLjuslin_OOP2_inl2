@@ -45,10 +45,6 @@ public class Bowtie extends Item {
         return preTied;
     }
 
-    /**
-     * Overides toString()
-     * @return string representing bowtie
-     */
     @Override
     public String toString() {
         String s = getPattern().toString();
@@ -64,7 +60,7 @@ public class Bowtie extends Item {
         s = s.concat(", in size ").concat(size);
         s = s.concat(", rental price per day is ").concat(String.valueOf(getPricePerDay())).concat(
                 " SEK");
-        s = s.concat(", ID: ").concat(getItemID());
+        s = s.concat(", ID: ").concat(String.valueOf(getItemID()));
         return s;
     }
 }
