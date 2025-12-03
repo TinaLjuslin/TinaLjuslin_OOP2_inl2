@@ -3,6 +3,7 @@ package com.ljuslin.view;
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
+import com.ljuslin.exception.MemberException;
 import com.ljuslin.exception.RentalException;
 import com.ljuslin.model.Item;
 import com.ljuslin.model.Member;
@@ -16,12 +17,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class RentalView extends View implements TabView{
+public class RentalView extends View implements TabView {
     private MainController mainController;
     private Tab tab;
     private BorderPane pane;
@@ -30,6 +33,8 @@ public class RentalView extends View implements TabView{
     private Button endRentalButton;
     private Button searchButton;
     private Button rechargeButton;
+    private Button exitButton;
+    private Region region;
     private TableView<Rental> table;
     private TableColumn<Rental, String> memberColumn;
     private TableColumn<Rental, String> itemColumn;
@@ -37,9 +42,11 @@ public class RentalView extends View implements TabView{
     private TableColumn<Rental, LocalDate> endRentalDateColumn;
     private TableColumn<Rental, Double> totalRevenueColumn;
 
-    public RentalView() {}
+    public RentalView() {
+    }
+
     public Tab getTab() {
-        tab = new Tab("Rental");
+        tab = new Tab("Uthyrningar");
         vbox = new VBox();
         pane = new BorderPane();
 
@@ -51,7 +58,11 @@ public class RentalView extends View implements TabView{
         searchButton.setMaxWidth(Double.MAX_VALUE);
         endRentalButton.setMaxWidth(Double.MAX_VALUE);
         rechargeButton.setMaxWidth(Double.MAX_VALUE);
-        vbox.getChildren().addAll(newRentalButton,searchButton,endRentalButton,rechargeButton);
+        exitButton = new Button("Avsluta");
+        region =  new Region();
+
+        vbox.getChildren().addAll(newRentalButton, searchButton, endRentalButton, rechargeButton,
+                region, exitButton);
         table = new TableView<>();
         table.setEditable(false);
         memberColumn = new TableColumn<>("Namn");
@@ -77,20 +88,24 @@ public class RentalView extends View implements TabView{
 
         table.getColumns().addAll(memberColumn, itemColumn, rentalDateColumn, endRentalDateColumn,
                 totalRevenueColumn);
+        VBox.setVgrow(region, Priority.ALWAYS );
         populateTable();
         pane.setLeft(vbox);
         pane.setCenter(table);
         tab.setContent(pane);
         newRentalButton.setOnAction(ae -> {
-        try {
-            mainController.newRental();
-        } catch (ItemException e) {
-            showInfoAlert(e.getMessage());
-        } catch (FileException e) {
-            showInfoAlert(e.getMessage());
-        } catch (Exception e) {
-            showErrorAlert(e.getMessage());
-        }populateTable();
+            try {
+                mainController.newRental();
+            } catch (ItemException e) {
+                showInfoAlert(e.getMessage());
+            } catch (FileException e) {
+                showInfoAlert(e.getMessage());
+            } catch (MemberException e) {
+                showInfoAlert(e.getMessage());
+            } catch (Exception e) {
+                showErrorAlert(e.getMessage());
+            }
+            populateTable();
         });
         endRentalButton.setOnAction(ae -> {
             Rental rental = table.getSelectionModel().getSelectedItem();
@@ -102,6 +117,10 @@ public class RentalView extends View implements TabView{
                     showInfoAlert(e.getMessage());
                 } catch (FileException e) {
                     showInfoAlert(e.getMessage());
+                } catch (ItemException e) {
+                    showInfoAlert(e.getMessage());
+                } catch (MemberException e) {
+                    showInfoAlert(e.getMessage());
                 } catch (Exception e) {
                     showErrorAlert(e.getMessage());
                 }
@@ -110,11 +129,14 @@ public class RentalView extends View implements TabView{
             }
 
         });
-        searchButton.setOnAction(ae ->{
+        searchButton.setOnAction(ae -> {
             mainController.searchRentalView();
         });
-        rechargeButton.setOnAction(ae ->{
+        rechargeButton.setOnAction(ae -> {
             populateTable();
+        });
+        exitButton.setOnAction(ae -> {
+            System.exit(0);
         });
 
         return tab;
@@ -131,16 +153,15 @@ public class RentalView extends View implements TabView{
             table.setItems(observableList);
         } catch (FileException e) {
             showInfoAlert(e.getMessage());
+        } catch (RentalException e) {
+            showInfoAlert(e.getMessage());
         } catch (Exception e) {
             showErrorAlert(e.getMessage());
         }
     }
+
     public void populateTable(List<Rental> rentals) {
-        try {
-            ObservableList<Rental> observableList = FXCollections.observableList(rentals);
-            table.setItems(observableList);
-        } catch (Exception e) {
-            showErrorAlert(e.getMessage());
-        }
+        ObservableList<Rental> observableList = FXCollections.observableList(rentals);
+        table.setItems(observableList);
     }
 }

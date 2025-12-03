@@ -1,5 +1,6 @@
-package com.ljuslin.controller;
+package com.ljuslin.view;
 
+import com.ljuslin.controller.MainController;
 import com.ljuslin.model.Member;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -34,6 +35,5 @@ public class HistoryView {
         historyStage.initModality(Modality.APPLICATION_MODAL);
         historyStage.setScene(scene2);
         historyStage.showAndWait();
-
     }
 }

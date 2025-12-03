@@ -23,8 +23,6 @@ public class ChangeMemberView extends View {
     private Label firstNameLabel;
     private Label lastNameLabel;
     private Label levelLabel;
-    private Label memberIDLabel;
-    private Label memberIDTextLabel;
     private Button saveButton;
     private Button cancelButton;
     private GridPane gridPane;
@@ -33,15 +31,13 @@ public class ChangeMemberView extends View {
         this.mainController = mainController;
     }
 
-    public Member showPopUp(Stage mainStage, Scene mainScene, Member member) {
+    public Member showPopUp(Stage mainStage, Member member) {
         newMemberStage = new Stage();
         saveButton = new Button("Spara");
         cancelButton = new Button("Avbryt");
         firstNameLabel = new Label("Förnamn");
         lastNameLabel = new Label("Efternamn");
         levelLabel = new Label("Level");
-        memberIDLabel = new Label("ID");
-        memberIDTextLabel = new Label(member.getMemberID());
         firstNameField = new TextField(member.getFirstName());
         lastNameField = new TextField(member.getLastName());
         ObservableList<Level> levels = FXCollections.observableArrayList(Level.values());

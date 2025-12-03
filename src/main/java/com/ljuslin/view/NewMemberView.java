@@ -73,8 +73,6 @@ public class NewMemberView extends View{
             } catch (Exception e) {
                 showErrorAlert(e.getMessage());
             }
-
-
         });
         cancelButton.setOnAction(ae -> {
             newMemberStage.close();
@@ -85,5 +83,4 @@ public class NewMemberView extends View{
         newMemberStage.setScene(scene2);
         newMemberStage.showAndWait();
     }
-
 }

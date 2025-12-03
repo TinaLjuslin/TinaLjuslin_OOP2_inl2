@@ -53,7 +53,8 @@ public class RentalService {
         membershipService.addToHistory(member, "Rental STARTED: " + rental.toString());
     }
 
-    public void endRental(Rental rental) throws FileException, RentalException, ItemException {
+    public void endRental(Rental rental) throws FileException, RentalException, ItemException,
+            MemberException {
         List<Rental> rentals = getRentals();
         boolean changed = false;
         for (Rental r : rentals) {
@@ -67,6 +68,7 @@ public class RentalService {
                 rental.setTotalRevenue(totalPrice);
                 rentalRepo.updateRental(rental);
                 itemService.changeItemAvailable(rental.getItem(), true);
+                membershipService.addToHistory(rental.getMember(), "Rental ended: " + rental.toString());
                 changed = true;
                 break;
             }
@@ -75,7 +77,7 @@ public class RentalService {
             throw new RentalException("Ingen pågående uthyrning hittades");
         }
     }
-
+/// //////////////////////////////////////////////////history på rental ended
     private double getTotalPrice(Member member, Item item, int days) {
         switch (member.getMemberLevel()) {
             case PREMIUM:

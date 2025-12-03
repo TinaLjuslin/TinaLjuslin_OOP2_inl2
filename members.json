@@ -3,13 +3,13 @@
   "firstName" : "Christer",
   "lastName" : "Andersson",
   "memberLevel" : "PREMIUM",
-  "history" : [ "2025-12-01 21:17:44 : Rental STARTED: Member: ChristerAndersson, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01" ]
+  "history" : [ "2025-12-01 21:17:44 : Rental STARTED: Member: ChristerAndersson, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01", "2025-12-02 11:28:50 : Rental STARTED: Member: ChristerAndersson, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-02" ]
 }, {
   "memberID" : "Karlsson_2",
   "firstName" : "Pelle",
   "lastName" : "Karlsson",
   "memberLevel" : "STANDARD",
-  "history" : [ "2025-12-01 18:33:49 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:10:46 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1003\nRented date: 2025-12-01" ]
+  "history" : [ "2025-12-01 18:33:49 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:10:46 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1003\nRented date: 2025-12-01", "2025-12-02 20:49:15 : Rental STARTED: Member: PelleKarlsson, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 97\nRented date: 2025-12-02" ]
 }, {
   "memberID" : "Pettersson_3",
   "firstName" : "Anna",
@@ -27,13 +27,13 @@
   "firstName" : "Frida",
   "lastName" : "Knape",
   "memberLevel" : "STANDARD",
-  "history" : [ "2025-12-01 18:33:37 : Rental STARTED: Member: FridaKnape, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01" ]
+  "history" : [ "2025-12-01 18:33:37 : Rental STARTED: Member: FridaKnape, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-02 11:11:18 : Rental STARTED: Member: FridaKnape, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 98\nRented date: 2025-12-02", "2025-12-02 14:10:24 : Rental STARTED: Member: FridaKnape, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-02", "2025-12-02 14:10:45 : Rental STARTED: Member: FridaKnape, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 97\nRented date: 2025-12-02" ]
 }, {
   "memberID" : "Ljuslin_1",
   "firstName" : "Jack",
   "lastName" : "Ljuslin",
   "memberLevel" : "STANDARD",
-  "history" : [ "2025-12-01 20:11:56 : Rental STARTED: Member: JackLjuslin, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 1002\nRented date: 2025-12-01", "2025-12-01 21:10:53 : Rental STARTED: Member: JackLjuslin, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 98\nRented date: 2025-12-01" ]
+  "history" : [ "2025-12-01 20:11:56 : Rental STARTED: Member: JackLjuslin, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 1002\nRented date: 2025-12-01", "2025-12-01 21:10:53 : Rental STARTED: Member: JackLjuslin, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 98\nRented date: 2025-12-01", "2025-12-02 09:23:24 : Rental STARTED: Member: JackLjuslin, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-02", "2025-12-02 10:59:55 : Rental STARTED: Member: JackLjuslin, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-02" ]
 }, {
   "memberID" : "Testin_1",
   "firstName" : "Karin",
@@ -45,7 +45,7 @@
   "firstName" : "Anders",
   "lastName" : "tvång",
   "memberLevel" : "PREMIUM",
-  "history" : [ "2025-11-29 11:13:17 Member added: Anders Wiström, ID: Wiström_1, Level: premium", "2025-11-29 14:38:23 Member changed: Anders Ändring, ID: Wiström_1, Level: premium", "2025-11-29 14:39:18 Member changed: Anders tvång, ID: Wiström_1, Level: premium", "2025-12-01 21:19:36 : Rental STARTED: Member: Anderstvång, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01" ]
+  "history" : [ "2025-11-29 11:13:17 Member added: Anders Wiström, ID: Wiström_1, Level: premium", "2025-11-29 14:38:23 Member changed: Anders Ändring, ID: Wiström_1, Level: premium", "2025-11-29 14:39:18 Member changed: Anders tvång, ID: Wiström_1, Level: premium", "2025-12-01 21:19:36 : Rental STARTED: Member: Anderstvång, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01", "2025-12-02 09:53:38 : Rental STARTED: Member: Anderstvång, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-02", "2025-12-02 20:49:24 : Rental STARTED: Member: Anderstvång, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 98\nRented date: 2025-12-02" ]
 }, {
   "memberID" : "Nyqvist_1",
   "firstName" : "Jörgen",
@@ -57,5 +57,5 @@
   "firstName" : "Alex",
   "lastName" : "West",
   "memberLevel" : "STANDARD",
-  "history" : [ "2025-12-01 10:08:50 Member added: Alex W, ID: W_1, Level: standard", "2025-12-01 10:09:09 Member changed: Alex West, ID: W_1, Level: standard", "2025-12-01 19:53:27 : Rental STARTED: Member: AlexWest, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:50:04 : Rental STARTED: Member: AlexWest, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01" ]
+  "history" : [ "2025-12-01 10:08:50 Member added: Alex W, ID: W_1, Level: standard", "2025-12-01 10:09:09 Member changed: Alex West, ID: W_1, Level: standard", "2025-12-01 19:53:27 : Rental STARTED: Member: AlexWest, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 1000\nRented date: 2025-12-01", "2025-12-01 20:50:04 : Rental STARTED: Member: AlexWest, Rented item:\nOmönstrad blå silke tie from Marke AB, length: 157.0, width: 7.0, rental price per day is 27.0 SEK, ID: 99\nRented date: 2025-12-01", "2025-12-02 09:54:50 : Rental STARTED: Member: AlexWest, Rented item:\nPaisley rosa polyester bowtie from BrandAB, not pre-tied, in size Small, rental price per day is 15.0 SEK, ID: 97\nRented date: 2025-12-02" ]
 } ]

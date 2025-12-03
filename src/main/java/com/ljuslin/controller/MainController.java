@@ -1,9 +1,6 @@
 package com.ljuslin.controller;
 
-import com.ljuslin.exception.FileException;
-import com.ljuslin.exception.ItemException;
-import com.ljuslin.exception.MemberException;
-import com.ljuslin.exception.RentalException;
+import com.ljuslin.exception.*;
 import com.ljuslin.model.*;
 import com.ljuslin.service.ItemService;
 import com.ljuslin.service.MembershipService;
@@ -17,8 +14,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,33 +65,36 @@ public class MainController {
         memberTab.setClosable(false);
         Tab rentalTab = rentalView.getTab();
         memberTab.setClosable(false);
-//        Tab revenueTab = revenueView.getTab();
+        Tab revenueTab = revenueView.getTab();
         tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
            @Override
            public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
                if (newTab != null) {
                    String tabTitle = newTab.getText();
-                   handleTabChange(tabTitle);
+                   tabClick(tabTitle);
                }
            }
        });
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene.getStylesheets().add(css);
-        tabPane.getTabs().addAll(memberTab, itemTab, rentalTab);//, revenueTab);
+        tabPane.getTabs().addAll(memberTab, itemTab, rentalTab, revenueTab);
         stage.setScene(scene);
         stage.show();
     }
-    private void handleTabChange(String tabName) {
+    private void tabClick(String tabName) {
         try {
             switch (tabName) {
-                case "Member":
+                case "Medlemmar":
                     memberView.populateTable(membershipService.getAllMembers());
-                case "Item":
+                    break;
+                case "Varor":
                     itemView.populateTable(itemService.getItems());
-                case "Rentals":
+                    break;
+                case "Uthyrningar":
                     rentalView.populateTable(rentalService.getRentals());
-                case "Revenues":
-                    System.out.println("Revenues");
+                    break;
+                case "Ekonomi":
+                    revenueView.updateTotalRevenue();
             }
         } catch (FileException e) {
             //gör något!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -130,7 +128,7 @@ public class MainController {
 
     public void changeMemberView(Member member) {
         ChangeMemberView changeMemberView = new ChangeMemberView(this);
-        changeMemberView.showPopUp(stage, scene, member);
+        changeMemberView.showPopUp(stage, member);
     }
 
     public void changeMember(Member member) throws FileException, MemberException {
@@ -202,28 +200,46 @@ public class MainController {
         return rentalService.getRentals();
     }
 
-    public void endRental(Rental rental) throws FileException, RentalException, ItemException {
+    public void endRental(Rental rental) throws FileException, RentalException, ItemException,
+            MemberException {
         rentalService.endRental(rental);
     }
     public void newRental() throws FileException, MemberException, ItemException {
         NewRentalView newRentalView = new NewRentalView(this);
         Member member = newRentalView.showMemberPopUp(stage, scene);
-        Item item = newRentalView.showItemPopUp(stage, scene);
+        Item item = newRentalView.showAvailableItemPopUp(stage, scene);
         rentalService.newRental(member, item);
     }
     public void newRental(Member member) throws FileException, MemberException, ItemException {
         NewRentalView newRentalView = new NewRentalView(this);
-        Item item = newRentalView.showItemPopUp(stage, scene);
+        Item item = newRentalView.showAvailableItemPopUp(stage, scene);
+        rentalService.newRental(member, item);
+    }
+    public void newRental(Item item) throws FileException, MemberException, ItemException {
+        NewRentalView newRentalView = new NewRentalView(this);
+        Member member = newRentalView.showMemberPopUp(stage, scene);
         rentalService.newRental(member, item);
     }
     public void searchRentalView() {
         SearchRentalView searchRentalView = new SearchRentalView(this);
         searchRentalView.showPopUp(stage, scene);
     }
+
     public void searchRental(String search) throws RentalException,
             FileException {
         List<Rental> searchRentals = rentalService.searchRentals(search);
         rentalView.populateTable(searchRentals);
     }
 
+    public String getTotalRevenue() throws FileException, RevenueException {
+        return String.valueOf(revenueService.getTotalRevenue());
+    }
+
+    public String getRevenuePerItem() throws FileException, RevenueException {
+        NewRentalView newRentalView = new NewRentalView(this);
+        Item item = newRentalView.showAllItemPopUp(stage, scene);
+        return String.valueOf(revenueService.getRevenuePerItem(item));
+
+
+    }
 }

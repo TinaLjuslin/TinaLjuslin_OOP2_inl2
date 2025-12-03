@@ -2,7 +2,6 @@ package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
-import com.ljuslin.exception.MemberException;
 import com.ljuslin.exception.RentalException;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,57 +12,54 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SearchRentalView extends View {
+    private MainController mainController;
 
+    private Scene scene2;
+    private Stage searchRentalStage;
+    private TextField searchField;
+    private Label searchLabel;
+    private Button searchButton;
+    private Button cancelButton;
+    private GridPane gridPane;
 
-        private MainController mainController;
-
-        private Stage searchRentalStage;
-        private TextField searchField;
-        private Label searchLabel;
-        private Button searchButton;
-        private Button cancelButton;
-        private GridPane gridPane;
-
-        public SearchRentalView(MainController mainController) {
-            this.mainController = mainController;
-        }
-
-        public void showPopUp(Stage mainStage, Scene mainScene) {
-            searchRentalStage = new Stage();
-            searchButton = new Button("Sök");
-            cancelButton = new Button("Avbryt");
-            searchLabel = new Label("Sök:");
-            searchField = new TextField();
-            gridPane = new GridPane();
-            gridPane.add(searchLabel, 0, 0);
-            gridPane.add(searchField, 1, 0);
-            gridPane.add(searchButton, 0, 1);
-            gridPane.add(cancelButton, 1, 1);
-            Scene scene2 = new Scene(gridPane, 300, 300);
-            String css = getClass().getResource("/greenStyles.css").toExternalForm();
-            scene2.getStylesheets().add(css);
-
-            searchButton.setOnAction( ae -> {
-                try {
-                    mainController.searchRental(searchField.getText());
-                    searchRentalStage.close();
-                } catch (RentalException e) {
-                    showInfoAlert(e.getMessage());
-                } catch (FileException e) {
-                    showInfoAlert(e.getMessage());
-                } catch (Exception e) {
-                    showErrorAlert(e.getMessage());
-                }
-
-
-            });
-            cancelButton.setOnAction(ae -> {
-                searchRentalStage.close();
-            });
-
-            searchRentalStage.initOwner(mainStage);
-            searchRentalStage.initModality(Modality.APPLICATION_MODAL);
-            searchRentalStage.setScene(scene2);
-            searchRentalStage.showAndWait();
-        }
+    public SearchRentalView(MainController mainController) {
+        this.mainController = mainController;
     }
+
+    public void showPopUp(Stage mainStage, Scene mainScene) {
+        searchRentalStage = new Stage();
+        searchButton = new Button("Sök");
+        cancelButton = new Button("Avbryt");
+        searchLabel = new Label("Sök:");
+        searchField = new TextField();
+        gridPane = new GridPane();
+        gridPane.add(searchLabel, 0, 0);
+        gridPane.add(searchField, 1, 0);
+        gridPane.add(searchButton, 0, 1);
+        gridPane.add(cancelButton, 1, 1);
+        scene2 = new Scene(gridPane, 300, 300);
+        String css = getClass().getResource("/greenStyles.css").toExternalForm();
+        scene2.getStylesheets().add(css);
+
+        searchButton.setOnAction(ae -> {
+            try {
+                mainController.searchRental(searchField.getText());
+                searchRentalStage.close();
+            } catch (RentalException e) {
+                showInfoAlert(e.getMessage());
+            } catch (FileException e) {
+                showInfoAlert(e.getMessage());
+            } catch (Exception e) {
+                showErrorAlert(e.getMessage());
+            }
+        });
+        cancelButton.setOnAction(ae -> {
+            searchRentalStage.close();
+        });
+
+        searchRentalStage.initOwner(mainStage);
+        searchRentalStage.initModality(Modality.APPLICATION_MODAL);
+        searchRentalStage.setScene(scene2);
+        searchRentalStage.showAndWait();
+    }
+}

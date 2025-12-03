@@ -43,9 +43,11 @@ public class NewRentalView extends View {
 
     private Member member;
     private Item item;
+
     public NewRentalView(MainController mainController) {
         this.mainController = mainController;
     }
+
     public Member showMemberPopUp(Stage mainStage, Scene mainScene) {
         newRentalStage = new Stage();
         pane = new BorderPane();
@@ -66,7 +68,7 @@ public class NewRentalView extends View {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         levelColumn = new TableColumn<>("Level");
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("memberLevel"));
-        memberTable.getColumns().addAll(idColumn,firstNameColumn,lastNameColumn,levelColumn);
+        memberTable.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, levelColumn);
         populateMemberTable();
         pane.setLeft(vbox);
         pane.setCenter(memberTable);
@@ -95,7 +97,8 @@ public class NewRentalView extends View {
 
         return member;
     }
-    public Item showItemPopUp(Stage mainStage, Scene mainScene) {
+
+    public Item showAvailableItemPopUp(Stage mainStage, Scene mainScene) {
         newRentalStage = new Stage();
         pane = new BorderPane();
         vbox = new VBox();
@@ -129,7 +132,7 @@ public class NewRentalView extends View {
 
         itemTable.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
                 priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn);
-        populateItemTable();
+        populateAvailableItemTable();
         pane.setLeft(vbox);
         pane.setCenter(itemTable);
 
@@ -158,6 +161,70 @@ public class NewRentalView extends View {
         return item;
 
     }
+
+    public Item showAllItemPopUp(Stage mainStage, Scene mainScene) {
+        newRentalStage = new Stage();
+        pane = new BorderPane();
+        vbox = new VBox();
+
+        chooseButton = new Button("Välj");
+        cancelButton = new Button("Avbryt");
+        chooseButton.setMaxWidth(Double.MAX_VALUE);
+        cancelButton.setMaxWidth(Double.MAX_VALUE);
+        vbox.getChildren().clear();
+        vbox.getChildren().addAll(chooseButton, cancelButton);
+        itemTable = new TableView<>();
+        itemTable.setEditable(false);
+        patternColumn = new TableColumn<>("Mönster");
+        patternColumn.setCellValueFactory(new PropertyValueFactory<>("pattern"));
+        colorColumn = new TableColumn<>("färg");
+        colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
+        materialColumn = new TableColumn<>("Material");
+        materialColumn.setCellValueFactory(new PropertyValueFactory<>("material"));
+        brandColumn = new TableColumn<>("Märke");
+        brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        priceColumn = new TableColumn<>("Pris per dag");
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("pricePerDay"));
+        preeTiedColumn = new TableColumn<>("Färdigknuten");
+        preeTiedColumn.setCellValueFactory(new PropertyValueFactory<>("preTied"));
+        sizeColumn = new TableColumn<>("Storlek");
+        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
+        widthColumn = new TableColumn<>("Bredd");
+        widthColumn.setCellValueFactory(new PropertyValueFactory<>("width"));
+        lengthColumn = new TableColumn<>("Längd");
+        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
+
+        itemTable.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
+                priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn);
+        populateAllItemTable();
+        pane.setLeft(vbox);
+        pane.setCenter(itemTable);
+
+        Scene scene2 = new Scene(pane, 1000, 500);
+        String css = getClass().getResource("/greenStyles.css").toExternalForm();
+        scene2.getStylesheets().add(css);
+        chooseButton.setOnAction(ae -> {
+            Item tempItem = itemTable.getSelectionModel().getSelectedItem();
+            if (tempItem != null) {
+                this.item = tempItem;
+                newRentalStage.close();
+
+            } else {
+                showInfoAlert("Välj en item att hyra!");
+            }
+        });
+        cancelButton.setOnAction(ae -> {
+            newRentalStage.close();
+        });
+
+        newRentalStage.initOwner(mainStage);
+        newRentalStage.initModality(Modality.APPLICATION_MODAL);
+        newRentalStage.setScene(scene2);
+        newRentalStage.showAndWait();
+
+        return item;
+    }
+
     private void populateMemberTable() {
         try {
             List<Member> list = mainController.getAllMembers();
@@ -169,16 +236,28 @@ public class NewRentalView extends View {
             showErrorAlert(e.getMessage());
         }
     }
-        private void populateItemTable() {
-            try {
-                List<Item> list = mainController.getAllAvailableItems();
-                ObservableList<Item> observableList = FXCollections.observableList(list);
-                itemTable.setItems(observableList);
-            } catch (FileException e) {
-                showInfoAlert(e.getMessage());
-            } catch (Exception e) {
-                showErrorAlert(e.getMessage());
-            }
+
+    private void populateAvailableItemTable() {
+        try {
+            List<Item> list = mainController.getAllAvailableItems();
+            ObservableList<Item> observableList = FXCollections.observableList(list);
+            itemTable.setItems(observableList);
+        } catch (FileException e) {
+            showInfoAlert(e.getMessage());
+        } catch (Exception e) {
+            showErrorAlert(e.getMessage());
+        }
     }
 
+    private void populateAllItemTable() {
+        try {
+            List<Item> list = mainController.getAllAvailableItems();
+            ObservableList<Item> observableList = FXCollections.observableList(list);
+            itemTable.setItems(observableList);
+        } catch (FileException e) {
+            showInfoAlert(e.getMessage());
+        } catch (Exception e) {
+            showErrorAlert(e.getMessage());
+        }
+    }
 }

@@ -3,9 +3,6 @@ package com.ljuslin.view;
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
-import com.ljuslin.model.Level;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -14,11 +11,13 @@ import javafx.stage.Stage;
 
 /**
  * Shows a popup where the user can enter values for a new member
+ *
  * @author tina.ljuslin@studerande.yh.se
  */
-public class SearchMemberView extends View{
+public class SearchMemberView extends View {
     private MainController mainController;
 
+    private Scene scene2;
     private Stage searchMemberStage;
     private TextField searchField;
     private Label searchLabel;
@@ -41,11 +40,11 @@ public class SearchMemberView extends View{
         gridPane.add(searchField, 1, 0);
         gridPane.add(searchButton, 0, 1);
         gridPane.add(cancelButton, 1, 1);
-        Scene scene2 = new Scene(gridPane, 300, 300);
+        scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 
-        searchButton.setOnAction( ae -> {
+        searchButton.setOnAction(ae -> {
             try {
                 mainController.searchMember(searchField.getText());
                 searchMemberStage.close();
@@ -56,8 +55,6 @@ public class SearchMemberView extends View{
             } catch (Exception e) {
                 showErrorAlert(e.getMessage());
             }
-
-
         });
         cancelButton.setOnAction(ae -> {
             searchMemberStage.close();

@@ -3,7 +3,6 @@ package com.ljuslin.view;
 import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
-import com.ljuslin.exception.MemberException;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SearchItemView  extends View{
+public class SearchItemView extends View {
     private MainController mainController;
 
     private Stage searchItemStage;
@@ -41,7 +40,7 @@ public class SearchItemView  extends View{
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
 
-        searchButton.setOnAction( ae -> {
+        searchButton.setOnAction(ae -> {
             try {
                 mainController.searchItem(searchField.getText());
                 searchItemStage.close();

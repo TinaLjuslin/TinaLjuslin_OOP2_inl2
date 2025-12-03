@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -33,6 +35,8 @@ public class MemberView extends View implements TabView{
     private Button historyButton;
     private Button newRentalButton;
     private Button rechargeButton;
+    private Button exitButton;
+    private Region region;
     private TableView<Member> table;
     private TableColumn<Member, String> idColumn;
     private TableColumn<Member, String> firstNameColumn;
@@ -41,7 +45,7 @@ public class MemberView extends View implements TabView{
     public MemberView(){}
 
     public Tab getTab() {
-        tab = new  Tab("Member");
+        tab = new  Tab("Medlemmar");
         pane = new BorderPane();
         vbox = new VBox();
         newButton = new Button("Ny medlem");
@@ -51,14 +55,12 @@ public class MemberView extends View implements TabView{
         historyButton = new Button("Visa historia");
         newRentalButton = new Button("Ny uthyrning");
         rechargeButton = new Button("Ladda om");
-        newButton.setMaxWidth(Double.MAX_VALUE);
-        searchButton.setMaxWidth(Double.MAX_VALUE);
-        changeButton.setMaxWidth(Double.MAX_VALUE);
-        deleteButton.setMaxWidth(Double.MAX_VALUE);
-        historyButton.setMaxWidth(Double.MAX_VALUE);
-        rechargeButton.setMaxWidth(Double.MAX_VALUE);
+        exitButton = new Button("Avsluta");
+        region = new Region();
+
         vbox.getChildren().addAll(newButton,searchButton,changeButton,deleteButton, historyButton
-                , newRentalButton, rechargeButton);
+                , newRentalButton, rechargeButton, region, exitButton);
+        VBox.setVgrow(region, Priority.ALWAYS );
         table = new TableView<>();
         table.setEditable(false);
         idColumn = new TableColumn<>("ID");
@@ -135,6 +137,9 @@ public class MemberView extends View implements TabView{
         rechargeButton.setOnAction(ae -> {
             populateTable();
         });
+        exitButton.setOnAction(ae -> {
+            System.exit(0);
+        });
 
         return tab;
     }
@@ -155,11 +160,7 @@ public class MemberView extends View implements TabView{
         }
     }
     public void populateTable(List<Member> members) {
-        try {
-            ObservableList<Member> observableList = FXCollections.observableList(members);
-            table.setItems(observableList);
-        } catch (Exception e) {
-            showErrorAlert(e.getMessage());
-        }
+        ObservableList<Member> observableList = FXCollections.observableList(members);
+        table.setItems(observableList);
     }
 }

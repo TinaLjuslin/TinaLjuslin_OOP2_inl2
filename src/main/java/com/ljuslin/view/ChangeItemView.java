@@ -41,6 +41,7 @@ public class ChangeItemView extends View {
     private Button cancelButton;
     private GridPane gridPane;
     private Scene scene2;
+
     public ChangeItemView(MainController mainController) {
         this.mainController = mainController;
     }
@@ -91,21 +92,18 @@ public class ChangeItemView extends View {
             gridPane.add(lengthLabel, 0, 6);
             gridPane.add(lengthField, 1, 6);
 
-
             scene2 = new Scene(gridPane, 500, 500);
             String css = getClass().getResource("/greenStyles.css").toExternalForm();
             scene2.getStylesheets().add(css);
             newItemStage.setScene(scene2);
-
         } else {
-
             sizeLabel = new Label("Storlek");
             preeTiedLabel = new Label("Färdigknuten");
             sizeField = new TextField();
             sizeField.setText(String.valueOf(((Bowtie) item).getSize()));
             ObservableList<Boolean> pre = FXCollections.observableArrayList(Boolean.FALSE, Boolean.TRUE);
             preeTiedComboBox = new ComboBox<>(pre);
-            preeTiedComboBox.getSelectionModel().select(((Bowtie)item).isPreTied());
+            preeTiedComboBox.getSelectionModel().select(((Bowtie) item).isPreTied());
             gridPane.add(preeTiedLabel, 0, 5);
             gridPane.add(preeTiedComboBox, 1, 5);
             gridPane.add(sizeLabel, 0, 6);
@@ -115,12 +113,12 @@ public class ChangeItemView extends View {
             String css = getClass().getResource("/greenStyles.css").toExternalForm();
             scene2.getStylesheets().add(css);
             newItemStage.setScene(scene2);
-
         }
-
+        ////////////////////////////////////////////////////////////
+//kan jag ta bort dessa två rader i if-satserna? eller här?
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
-        saveButton.setOnAction( ae -> {
+        saveButton.setOnAction(ae -> {
             try {
                 if (item instanceof Tie) {
                     mainController.changeItem(item, brandField.getText(), colorField.getText(),
@@ -144,7 +142,6 @@ public class ChangeItemView extends View {
         cancelButton.setOnAction(ae -> {
             newItemStage.close();
         });
-
 
         newItemStage.initOwner(mainStage);
         newItemStage.initModality(Modality.APPLICATION_MODAL);

@@ -1,46 +1,50 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.MainController;
-import com.ljuslin.exception.FileException;
-import com.ljuslin.exception.MemberException;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Ej implementerad,ev för att ersätta alla andra serach views
+ */
 public class SearchView extends View {
-  private MainController mainController;
+    private MainController mainController;
 
-        private Stage searchStage;
-        private TextField searchField;
-        private Label searchLabel;
-        private Button searchButton;
-        private Button cancelButton;
-        private GridPane gridPane;
+    private Scene scene2;
+    private Stage searchStage;
+    private TextField searchField;
+    private Label searchLabel;
+    private Button searchButton;
+    private Button cancelButton;
+    private GridPane gridPane;
 
-        public SearchView(MainController mainController) {
-            this.mainController = mainController;
-        }
+    public SearchView() {
+    }
 
-        public void showPopUp(Stage mainStage, Scene mainScene) {
-            searchStage = new Stage();
-            searchButton = new Button("Sök");
-            cancelButton = new Button("Avbryt");
-            searchLabel = new Label("Sök:");
-            searchField = new TextField();
-            gridPane = new GridPane();
-            gridPane.add(searchLabel, 0, 0);
-            gridPane.add(searchField, 1, 0);
-            gridPane.add(searchButton, 0, 1);
-            gridPane.add(cancelButton, 1, 1);
-            Scene scene2 = new Scene(gridPane, 300, 300);
-            String css = getClass().getResource("/greenStyles.css").toExternalForm();
-            scene2.getStylesheets().add(css);
+    public SearchView(MainController mainController) {
+        this.mainController = mainController;
+    }
 
-            searchButton.setOnAction( ae -> {
+    public void showPopUp(Stage mainStage, Scene mainScene) {
+        searchStage = new Stage();
+        searchButton = new Button("Sök");
+        cancelButton = new Button("Avbryt");
+        searchLabel = new Label("Sök:");
+        searchField = new TextField();
+        gridPane = new GridPane();
+        gridPane.add(searchLabel, 0, 0);
+        gridPane.add(searchField, 1, 0);
+        gridPane.add(searchButton, 0, 1);
+        gridPane.add(cancelButton, 1, 1);
+        Scene scene2 = new Scene(gridPane, 300, 300);
+        String css = getClass().getResource("/greenStyles.css").toExternalForm();
+        scene2.getStylesheets().add(css);
+
+        searchButton.setOnAction(ae -> {
                 /*try {
                     //mainController.search(searchField.getText());
                     searchStage.close();
@@ -53,16 +57,17 @@ public class SearchView extends View {
                 }*/
 
 
-            });
-            cancelButton.setOnAction(ae -> {
-                searchStage.close();
-            });
+        });
+        cancelButton.setOnAction(ae -> {
+            searchStage.close();
+        });
 /*
             searchMemberStage.initOwner(mainStage);
             searchMemberStage.initModality(Modality.APPLICATION_MODAL);
             searchMemberStage.setScene(scene2);
             searchMemberStage.showAndWait();
-     */   }
+     */
     }
+}
 
 
