@@ -8,7 +8,7 @@ public enum Material {
     POLYESTER ("Polyester"),
     WOOL ("Ull"),
     COTTON ("Bomull"),
-    SILK ("Silke");
+    SILK ("Siden");
     private final String swedishName;
     Material(final String swedishName) {
         this.swedishName = swedishName;
@@ -16,10 +16,7 @@ public enum Material {
     public String getSwedishName() {
         return this.swedishName;
     }
-    /**
-     * Overrides toString()
-     * @return material in lowercase
-     */
+
     @Override
     public String toString() {
         return this.getSwedishName().toLowerCase();

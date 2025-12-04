@@ -3,6 +3,7 @@ package com.ljuslin.service;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.Member;
+import com.ljuslin.model.Rental;
 import com.ljuslin.repository.MemberRegistry;
 import com.ljuslin.model.Level;
 import com.ljuslin.repository.RentalRepository;
@@ -40,13 +41,8 @@ public class MembershipService {
         }
 
         Member member = new Member(firstName, lastName, level);
-        try {
-            memberRegistry.addMember(member);
-            memberRegistry.addToHistory(member, (" Member added: " + member.toString()));
-
-        } catch (FileException e) {
-            throw e;
-        }
+        memberRegistry.addMember(member);
+        memberRegistry.addToHistory(member, (" Member added: " + member.toString()));
     }
 
     public String getTimeString() {
@@ -56,31 +52,19 @@ public class MembershipService {
     }
 
     public List<Member> getAllMembers() throws FileException {
-        try {
-            return memberRegistry.getMembers();
-        } catch (FileException e) {
-            throw e;
-        }
+        return memberRegistry.getMembers();
+
     }
 
     public Member getMember(String memberID) throws MemberException, FileException {
-        try {
-            return memberRegistry.getMember(memberID);
-        } catch (MemberException e) {
-            throw e;
-        } catch (FileException e) {
-            throw e;
-        }
+        return memberRegistry.getMember(memberID);
+
     }
 
     public List<Member> searchMembers(String search) throws MemberException, FileException {
-        List<Member> searchmembers = new ArrayList<>();
-        List<Member> members = memberRegistry.getMembers();
-        for (Member m : members) {
-            if (m.toString().toLowerCase().contains(search.toLowerCase())) {
-                searchmembers.add(m);
-            }
-        }
+        List<Member> searchmembers = memberRegistry.getMembers().stream()
+                .filter(m -> m.toString().toLowerCase().contains(search.toLowerCase()))
+                .toList();
         if (searchmembers.isEmpty()) {
             throw new MemberException("Inga medlemmar passar in på dina sökkriterier");
         }
@@ -95,13 +79,11 @@ public class MembershipService {
         } else if (member.getMemberLevel() == null) {
             throw new MemberException("Vänligen välj en level.");
         }
-        try {
-            memberRegistry.changeMember(member);
-            addToHistory(member, ("Member changed: " + member.toString()));
-        } catch (FileException e) {
-            throw e;
-        }
+        memberRegistry.changeMember(member);
+        addToHistory(member, ("Member changed: " + member.toString()));
+
     }
+
     public void addToHistory(Member member, String history) throws FileException, MemberException {
         String time = getTimeString();
         String historyWithTime = time + " : " + history;
@@ -109,13 +91,14 @@ public class MembershipService {
     }
 
     public void removeMember(Member member) throws MemberException, FileException {
-        //implementera koll att membern inte har nåt hyrt senare när items är implementerat
-        try {
-            memberRegistry.removeMember(member);
-        } catch (FileException e) {
-            throw e;
-        } catch (MemberException e) {
-            throw e;
+        //TODO implementera koll att membern inte har nåt hyrt senare när items är implementerat
+        List<Rental> rentals = rentalRepo.getRentals();
+        for (Rental rental : rentals) {
+            if (rental.getMember().getMemberID().equals(member.getMemberID()) && rental.getReturnDate() == null) {
+                throw new MemberException("Medlemmen kan inte tas bort då hen har en pågående " +
+                        "uthyrning.");
+            }
         }
+        memberRegistry.removeMember(member);
     }
 }

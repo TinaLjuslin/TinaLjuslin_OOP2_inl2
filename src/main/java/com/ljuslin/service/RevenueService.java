@@ -24,7 +24,7 @@ public class RevenueService {
         this.itemService = itemService;
     }
 
-    public double getTotalRevenue() throws FileException, RevenueException {
+    public String getTotalRevenue() throws FileException, RevenueException {
         List<Rental> rentals = rentalRepo.getRentals();
         double totalRevenue = 0;
         for (Rental rental : rentals) {
@@ -35,7 +35,7 @@ public class RevenueService {
         if (totalRevenue == 0) {
             throw new RevenueException("Ingen vinst");
         }
-        return totalRevenue;
+        return String.format("%.2f",totalRevenue);
     }
 
     public String getRevenuePerItem(Item item) throws FileException, RevenueException {
@@ -44,13 +44,13 @@ public class RevenueService {
         double totalRevenue = 0;
         for (Rental rental : rentals) {
             if (rental.getReturnDate() != null
-                    && rental.getItem().equals(item)) {
+                    && rental.getItem().getItemID().equals(item.getItemID())) {
                 totalRevenue += rental.getTotalRevenue();
             }
         }
         if (totalRevenue == 0) {
             throw new RevenueException("Ingen vinst för denna vara");
         }
-        return String.valueOf(totalRevenue);
+        return String.format("%.2f", totalRevenue);
     }
 }

@@ -16,10 +16,6 @@ public enum Level {
         return swedishName;
     }
 
-    /**
-     * Overrides toString()
-     * @return Level in lowercase and capital first letter
-     */
     @Override
     public String toString() {
         return this.getSwedishName().toLowerCase();

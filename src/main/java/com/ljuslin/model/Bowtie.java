@@ -29,18 +29,10 @@ public class Bowtie extends Item {
         this.preTied = preTied;
     }
 
-    /**
-     * Returns size of bowtie
-     * @return the size
-     */
     public String getSize() {
         return size;
     }
 
-    /**
-     * Returns if the bowtie is pree-tied
-     * @return true if bowtie is pree-tied
-     */
     public boolean isPreTied() {
         return preTied;
     }
@@ -48,18 +40,18 @@ public class Bowtie extends Item {
     @Override
     public String toString() {
         String s = getPattern().toString();
-        s = s.substring(0, 1).toUpperCase() + s.substring(1);
+
         s = s.concat(" ").concat(getColor());
-        s = s.concat(" ").concat(getMaterial().toString());
-        s = s.concat(" bowtie from ");
+        s = s.concat(" fluga i ").concat(getMaterial().toString());
+        s = s.concat(" från ");
         s = s.concat(getBrand());
         if (preTied)
-            s = s.concat(", pre-tied");
+            s = s.concat(", förknuten");
         else
-            s = s.concat(", not pre-tied");
-        s = s.concat(", in size ").concat(size);
-        s = s.concat(", rental price per day is ").concat(String.valueOf(getPricePerDay())).concat(
-                " SEK");
+            s = s.concat(", oknuten");
+        s = s.concat(", i storlek ").concat(size);
+        s = s.concat(", pris per dag ").concat(String.valueOf(getPricePerDay())).concat(
+                " kr");
         s = s.concat(", ID: ").concat(String.valueOf(getItemID()));
         return s;
     }

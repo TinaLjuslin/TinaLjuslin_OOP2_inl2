@@ -56,8 +56,8 @@ public class NewMemberView extends View{
         gridPane.add(fistNameField, 1, 0);
         gridPane.add(lastNameField, 1, 1);
         gridPane.add(levelComboBox, 1, 2);
-        gridPane.add(saveButton, 1, 3);
-        gridPane.add(cancelButton, 2, 3);
+        gridPane.add(saveButton, 0, 3);
+        gridPane.add(cancelButton, 1, 3);
         scene2 = new Scene(gridPane, 300, 300);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);

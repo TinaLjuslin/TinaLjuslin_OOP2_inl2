@@ -11,8 +11,10 @@ import com.ljuslin.model.Pattern;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Handles items
+ *
  * @author Tina Ljuslin
  */
 public class ItemService {
@@ -22,91 +24,43 @@ public class ItemService {
         this.inventory = inventory;
     }
 
-    public Item getItem(String itemID) throws FileException{
-        try {
-            for (Item item : inventory.getItems()) {
-                if (item.getItemID().equals(itemID)) {
-                    return item;
-                }
+    public Item getItem(String itemID) throws FileException {
+        for (Item item : inventory.getItems()) {
+            if (item.getItemID().equals(itemID)) {
+                return item;
             }
-        } catch (FileException e) {
-            throw e;
         }
+
         return null;
     }
 
     public List<Item> searchItem(String search) throws FileException, ItemException {
-        List<Item> items;
-        try {
-            items = inventory.getItems();
-        } catch (FileException e) {
-            throw e;
+        List<Item> searchItems = inventory.getItems().stream()
+                .filter(item -> item.toString().toLowerCase().contains(search.toLowerCase()))
+                .toList();
+        if (searchItems == null || searchItems.isEmpty()) {
+            throw new ItemException("Inga varor funna");
         }
-        if (items == null || items.isEmpty()) {
-            throw new ItemException("Item could not be found");
-        }
-        List<Item> searchtems = new ArrayList<>();
-        for (Item item : items) {
-            if (item.toString().toLowerCase().contains(search.toLowerCase())) {
-                searchtems.add(item);
-            }
-        }
-        return searchtems;
+        return searchItems;
     }
 
     public List<Item> getItems() throws FileException {
-        try {
-            return inventory.getItems();
-        } catch (FileException e) {
-            throw e;
-        }
+        return inventory.getItems();
+
     }
 
-    public List<Item> getAvailableItems() throws FileException {
-        List<Item> availableItems = new ArrayList<>();
-        try {
-            for (Item item : inventory.getItems()) {
-                if (item.isAvailable()) {
-                    availableItems.add(item);
-                }
-            }
-        } catch (FileException e) {
-            throw e;
+    public List<Item> getAvailableItems() throws FileException, ItemException {
+        List<Item> availableItems = inventory.getItems().stream()
+                .filter(item -> item.isAvailable())
+                .toList();
+        if (availableItems == null || availableItems.isEmpty()) {
+            throw new ItemException("Inga tillgängliga varor funna");
         }
         return availableItems;
     }
 
-    /**
-     * Tries to convert a string to a Pattern
-     * @param pattern string to convert
-     * @return Pattern or null if incorrect string
-     */
-    private Pattern getPattern(String pattern) {
-        pattern = pattern.toUpperCase();
-        pattern = pattern.replaceAll(" ", "_");
-        try {
-            return Pattern.valueOf(pattern);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
-
-    /**
-     * Converts string to Material
-     * @param material string to convert
-     * @return the Material or null if not a material
-     */
-    private Material getMaterial(String material) {
-        material = material.toUpperCase();
-        try {
-            return Material.valueOf(material);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
-
     public void newTie(Pattern pattern, Material material, String brand,
-                         String color, String sPricePerDay, String sLength, String sWidth)
+                       String color, String sPricePerDay, String sLength, String sWidth)
             throws FileException, ItemException {
         double pricePerDay, width, length;
         try {
@@ -134,15 +88,11 @@ public class ItemService {
             throw new ItemException("Längd måste vara en positiv siffra");
         }
         Tie tie = new Tie(pattern, material, brand, color, pricePerDay, length, width);
-        try {
-            inventory.addItem(tie);
-        } catch (FileException e) {
-            throw e;
-        }
+        inventory.addItem(tie);
     }
 
     public void newBowtie(Pattern pattern, Material material, String brand,
-                            String color, String sPricePerDay, String size, boolean pretied)
+                          String color, String sPricePerDay, String size, boolean pretied)
             throws FileException, ItemException {
         double pricePerDay;
         try {
@@ -154,11 +104,8 @@ public class ItemService {
             throw new ItemException("Pris per dag måste vara en positiv siffra");
         }
         Bowtie bowtie = new Bowtie(pattern, material, brand, color, pricePerDay, size, pretied);
-        try {
-            inventory.addItem(bowtie);
-        } catch (FileException e) {
-            throw e;
-        }
+        inventory.addItem(bowtie);
+
     }
 
     public void removeItem(Item item) throws FileException, ItemException {
@@ -204,8 +151,8 @@ public class ItemService {
         item.setMaterial(material);
         item.setPattern(pattern);
         item.setPricePerDay(pricePerDay);
-        ((Tie)item).setWidth(width);
-        ((Tie)item).setLength(length);
+        ((Tie) item).setWidth(width);
+        ((Tie) item).setLength(length);
         inventory.changeItem(item);
     }
 
@@ -227,8 +174,8 @@ public class ItemService {
         item.setMaterial(material);
         item.setPattern(pattern);
         item.setPricePerDay(pricePerDay);
-        ((Bowtie)item).setSize(size);
-        ((Bowtie)item).setPreTied(preTied);
+        ((Bowtie) item).setSize(size);
+        ((Bowtie) item).setPreTied(preTied);
         inventory.changeItem(item);
     }
 }

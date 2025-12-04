@@ -1,9 +1,12 @@
 package com.ljuslin.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+/**
+ * fick inte subklasser korrekt i min json, detta löste problemet, det räckte inte med
+ * @JsonTypeName("Tie") i subklassen
+ */
 @JsonTypeInfo(
         // Använd klassnamnet som typidentifikator
         use = JsonTypeInfo.Id.NAME,
@@ -41,58 +44,30 @@ public abstract class Item {
         this.available = true;
     }
 
-    /**
-     * Returns pattern of item
-     * @return the pattern
-     */
     public Pattern getPattern() {
         return pattern;
     }
 
-    /**
-     * Returns material of item
-     * @return the material
-     */
     public Material getMaterial() {
         return material;
     }
 
-    /**
-     * Returns brand of item
-     * @return the brand
-     */
     public String getBrand() {
         return brand;
     }
 
-    /**
-     * Returns color of item
-     * @return the color
-     */
     public String getColor() {
         return color;
     }
 
-    /**
-     * Returns rental price per day
-     * @return price per day
-     */
     public double getPricePerDay() {
         return pricePerDay;
     }
 
-    /**
-     * Returns items id
-     * @return id of item
-     */
     public String getItemID() {
         return itemID;
     }
 
-    /**
-     * Sets rental price per day
-     * @param pricePerDay, new price
-     */
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
     }

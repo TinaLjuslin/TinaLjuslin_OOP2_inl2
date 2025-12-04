@@ -116,6 +116,8 @@ public class RentalView extends View implements TabView {
             if (rental != null) {
                 try {
                     rentalController.endRental(rental);
+double totalCost = rentalController.getRevenuePerRental(rental);
+                    showInfoAlert("Item återlämnad, total kostnad " + totalCost + "kr");
                     populateTable();
                 } catch (RentalException e) {
                     showInfoAlert(e.getMessage());
