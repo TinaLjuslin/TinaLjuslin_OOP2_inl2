@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class NewRentalView extends View {
-    private RentalController rentalController;
+    //private RentalController rentalController;
     private MemberController memberController;
     private ItemController itemController;
 
@@ -49,9 +49,9 @@ public class NewRentalView extends View {
     private Member member;
     private Item item;
 
-    public NewRentalView(RentalController rentalController, MemberController memberController,
+    public NewRentalView( MemberController memberController,
                          ItemController itemController) {
-        this.rentalController = rentalController;
+        //this.rentalController = rentalController;
         this.memberController = memberController;
         this.itemController = itemController;
     }
@@ -252,7 +252,7 @@ public class NewRentalView extends View {
 
     private void populateAllItemTable() {
         try {
-            List<Item> list = itemController.getAllAvailableItems();
+            List<Item> list = itemController.getAllItems();
             ObservableList<Item> observableList = FXCollections.observableList(list);
             itemTable.setItems(observableList);
         } catch (FileException e) {

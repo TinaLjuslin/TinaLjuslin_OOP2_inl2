@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Holds all items in this rental shop
+ * Saves and gets items to/from file, makes changes, removes or adds an item
  *
  * @author Tina Ljuslin
  */
@@ -47,7 +47,8 @@ public class Inventory {
 
     private void saveItems(List<Item> items) throws FileException {
         try {
-            mapper.writerFor(new TypeReference<List<Item>>() {})
+            mapper.writerFor(new TypeReference<List<Item>>() {
+                    })
                     .writeValue(itemFile, items);
         } catch (IOException e) {
             throw new FileException("Kunde ej spara medlemmar till fil");
@@ -95,6 +96,7 @@ public class Inventory {
         }
         saveItems(items);
     }
+
     public void changeItem(Item item) throws FileException, ItemException {
         List<Item> items;
         try {

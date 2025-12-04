@@ -83,7 +83,7 @@ public class MemberController {
     }
 
     public void getHistoryView(Member member) {
-        HistoryView historyView = new HistoryView(this);
+        HistoryView historyView = new HistoryView();
         historyView.showPopUp(stage, member);
     }
 }

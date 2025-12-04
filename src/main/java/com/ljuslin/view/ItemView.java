@@ -177,6 +177,7 @@ public class ItemView extends View implements TabView {
             if (item != null) {
                 try {
                     rentalController.newRental(item);
+                    populateTable();
                 } catch (ItemException e) {
                     showInfoAlert(e.getMessage());
                 } catch (FileException e) {

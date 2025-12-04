@@ -25,8 +25,8 @@ public class RevenueController {
                              RevenueView revenueView) {
         this.revenueService = revenueService;
         this.revenueView = revenueView;
-        newRentalView = new NewRentalView(rentalController, memberController, itemController);
-    }
+        newRentalView = new NewRentalView(memberController, itemController);
+    }//rentalController,
 
 
     public void setStage(Stage stage) {
@@ -46,11 +46,11 @@ public class RevenueController {
     }
 
     public String getTotalRevenue() throws FileException, RevenueException {
-        return String.valueOf(revenueService.getTotalRevenue());
+        return revenueService.getTotalRevenue();
     }
 
     public String getRevenuePerItem() throws FileException, RevenueException {
         Item item = newRentalView.showAllItemPopUp(stage, scene);
-        return String.valueOf(revenueService.getRevenuePerItem(item));
+        return revenueService.getRevenuePerItem(item);
     }
 }

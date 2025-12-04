@@ -33,8 +33,8 @@ public class RentalController {
         this.rentalView = rentalView;
         this.memberController = memberController;
         this.itemController = itemController;
-        newRentalView = new NewRentalView(this, memberController, itemController);
-    }
+        newRentalView = new NewRentalView(memberController, itemController);
+    }//this,
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -63,6 +63,9 @@ public class RentalController {
     public void endRental(Rental rental) throws FileException, RentalException, ItemException,
             MemberException {
         rentalService.endRental(rental);
+    }
+    public double getRevenuePerRental(Rental rental) throws FileException, RentalException {
+        return rentalService.getRevenuePerRental(rental);
     }
 
     public void newRental() throws FileException, MemberException, ItemException {

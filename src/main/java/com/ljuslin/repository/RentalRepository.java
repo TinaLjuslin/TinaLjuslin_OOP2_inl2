@@ -57,7 +57,7 @@ public class RentalRepository {
         try {
             List<Rental> rentals = getRentals();
             for (Rental r : rentals) {
-                if (r.getRentalID() == rental.getRentalID()) {
+                if (r.getRentalID().equals(rental.getRentalID())) {
                     rentals.add(rental);
                     rentals.remove(r);
                     updated = true;

@@ -58,7 +58,7 @@ public class RentalService {
         List<Rental> rentals = getRentals();
         boolean changed = false;
         for (Rental r : rentals) {
-            if (r.getRentalID() == rental.getRentalID()) {
+            if (r.getRentalID().equals(rental.getRentalID())) {
                 if (r.getReturnDate() != null) {
                     throw new RentalException("Denna uthyrning är redan avslutad.");
                 }
@@ -77,7 +77,6 @@ public class RentalService {
             throw new RentalException("Ingen pågående uthyrning hittades");
         }
     }
-/// //////////////////////////////////////////////////history på rental ended
     private double getTotalPrice(Member member, Item item, int days) {
         switch (member.getMemberLevel()) {
             case PREMIUM:
@@ -90,21 +89,21 @@ public class RentalService {
     }
 
     public List<Rental> getOngoingRentals() throws FileException, RentalException {
-        List<Rental> openRentals = new ArrayList<>();
-        for (Rental rental : rentalRepo.getRentals()) {
-            if (rental.getReturnDate() == null) {
-                openRentals.add(rental);
-            }
+        List<Rental> openRentals = rentalRepo.getRentals().stream()
+                .filter(rental -> rental.getReturnDate() == null)
+                .toList();
+        if (openRentals == null || openRentals.isEmpty()) {
+            throw new RentalException("Inga pågående uthyrningar");
         }
         return openRentals;
     }
 
     public List<Rental> getEndedRentals() throws FileException, RentalException {
-        List<Rental> endedRentals = new ArrayList<>();
-        for (Rental rental : rentalRepo.getRentals()) {
-            if (rental.getReturnDate() != null) {
-                endedRentals.add(rental);
-            }
+        List<Rental> endedRentals  = rentalRepo.getRentals().stream()
+                .filter(rental -> rental.getReturnDate() == null)
+                .toList();
+        if (endedRentals == null || endedRentals.isEmpty()) {
+            throw new RentalException("Inga avslutade uthyrningar");
         }
         return endedRentals;
     }
@@ -114,17 +113,22 @@ public class RentalService {
     }
 
     public List<Rental> searchRentals(String string) throws FileException, RentalException {
-        List<Rental> searchRentals = new ArrayList<>();
-        boolean found = false;
-        for (Rental rental : rentalRepo.getRentals()) {
-            if (rental.toString().toLowerCase().contains(string)) {
-                searchRentals.add(rental);
-                found = true;
-            }
-        }
-        if (!found) {
+        List<Rental> searchRentals = rentalRepo.getRentals().stream()
+                .filter(rental -> rental.toString().toLowerCase().contains(string.toLowerCase()))
+                .toList();
+        if (searchRentals == null || searchRentals.isEmpty()) {
             throw new RentalException("Ingen uthyrning funnen.");
         }
         return searchRentals;
+    }
+    public double getRevenuePerRental(Rental rental) throws FileException, RentalException {
+        List<Rental> rentals = rentalRepo.getRentals();
+        double totalRevenue = 0;
+        for (Rental r : rentals) {
+            if (r.getRentalID().equals(rental.getRentalID())) {
+                return r.getTotalRevenue();
+            }
+        }
+        throw new RentalException("Ingen uthyrning med detta id");
     }
 }

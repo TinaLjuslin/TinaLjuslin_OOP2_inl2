@@ -1,3 +1,5 @@
+
+
 /**
  * JavaFX CSS Theme: Mörkt olivgrönt tema
  * UPPDATERINGAR: Använder -fx-v-box-margin för att tvinga BorderPane.LEFT att bli bredare.
@@ -11,7 +13,7 @@
     /* --- FÄRG PALETT (Extra Dämpad Olivgrön) --- */
     -color-background: #252A24;
     -color-foreground: #344034;
-    -color-accent: #6C7A59;
+    -color-accent: #425042;
     -color-text: #E0E0D8;
     -color-pressed: #B6C3A9;
     -color-border: #425042;
@@ -34,7 +36,7 @@
 }
 
 /* HUVUDÄNDRING 1: Styr VBox-containern (knappkolumnen) */
-.border-pane > .vbox {
+ .rootVBox {
     /* Återinför 10px spacing mellan knappar */
     -fx-spacing: 10px;
 
@@ -43,10 +45,9 @@
 
     /* DEN VIKTIGASTE ÄNDRINGEN: Tvingar BorderPane.LEFT att bli bredare
        (Topp, Höger (30px extra), Botten, Vänster) */
-    -fx-v-box-margin: 0 30px 0 0;
 
     /* Fäster knapparna till vänster i kolumnen */
-    -fx-alignment: top-left;
+    -fx-alignment: top;
     -fx-background-color: -color-background;
 }
 
@@ -78,6 +79,8 @@
     -fx-border-radius: 4px;
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 1);
+    -fx-spacing: 10;
+    -fx-background-insets: 0 10 5 10;
 
     /* Tvingar knapparna att bli lika breda */
     -fx-min-width: 130px;
@@ -151,8 +154,8 @@
  * ====================================================================== */
 .tab-pane {
     -fx-background-color: -color-background;
-    -fx-border-color: -color-border;
-    -fx-border-width: 0 0 1px 0;
+    /*-fx-border-color: -color-border;
+    -fx-border-width: 0 0 1px 0;*/
 }
 
 .tab-header-area {
@@ -162,7 +165,7 @@
 
 .tab {
     -fx-background-color: -color-foreground;
-    -fx-background-insets: 0 1 0 0;
+    -fx-background-insets: 0 3 0 0;
     -fx-padding: 10px 15px;
     -fx-border-width: 0 0 0 0;
 }
@@ -171,8 +174,10 @@
 .tab:selected {
     -fx-background-color: -color-background;
     -fx-text-fill: -color-pressed;
+    /*
     -fx-border-color: -color-accent;
     -fx-border-width: 0 0 3px 0;
+    */
     -fx-border-insets: 0 0 -1 0;
 }
 
@@ -300,4 +305,76 @@
 .table-row-cell:selected {
     -fx-background-color: -color-accent;
     -fx-text-fill: -color-text;
+}
+/* ======================================================================
+ * GLOBAL FONT AND COLOR DEFINITIONS (Green Dark Mode)
+ * ====================================================================== */
+.root {
+    /* ... befintliga färger ... */
+
+    /* NYTT: Färg för Ljust Toppfält */
+    -color-light-header: #E0E0D8; /* Använder din textfärg som bas för att få en benvit/vit topp */
+
+    /* ... resten av färgerna ... */
+}
+
+/* NY STIL: Definiera stilen för den anpassade fönsterramen */
+.window-header {
+    -fx-background-color: -color-light-header;
+    -fx-padding: 5px 10px 5px 15px; /* Lite padding runt innehållet */
+}
+
+/* Styla Knapparna i toppen */
+.window-header .button {
+    -fx-background-color: transparent; /* Gör bakgrunden genomskinlig */
+    -fx-text-fill: -color-background; /* Mörkgrön text på ljus bakgrund */
+    -fx-padding: 0 8px;
+    -fx-font-size: 1.2em;
+}
+
+.window-header .button:hover {
+    -fx-background-color: #D3D3CB; /* Lite mörkare vit vid hover */
+}
+.window-header {
+    -fx-background-color: -color-accent;
+    /* Lägger till lite spacing mellan knapparna och rubriken */
+    -fx-spacing: 10px;
+    -fx-padding: 5px 10px 5px 15px; /* Mindre padding på höger sida */
+    -fx-border-width: 0;
+}
+
+/* Tvinga Labeln inuti headern att bli LJUS */
+.window-header .label {
+    -fx-text-fill: -color-text;
+    -fx-font-size: 1.0em; /* Minskar labeln något för att matcha den nya storleken */
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+/* Styla Fönsterkontrollknapparna i toppen */
+.window-header .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text;
+
+    /* ÄNDRING 1: Extremt liten padding för att krympa knappen */
+    -fx-padding: 0 4px;
+
+    /* ÄNDRING 2: Minska fontstorleken till en standardstorlek */
+    -fx-font-size: 0.9em;
+
+    /* Tvingar bort default button-höjd */
+    -fx-min-height: 20px;
+    -fx-max-height: 20px;
+
+    -fx-cursor: hand;
+    -fx-effect: none;
+    -fx-alignment: center;
+}
+
+.window-header .button:hover {
+    -fx-background-color: #5C6A4F;
+}
+
+.window-header .button:pressed {
+    -fx-background-color: #8C997C;
 }

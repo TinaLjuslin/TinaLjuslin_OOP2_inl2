@@ -3,7 +3,8 @@ package com.ljuslin.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Tie, has length and width of a tie
+ * Represents a tie in the shop, holds length and width
+ *
  * @author Tina Ljuslin
  */
 @JsonTypeName("Tie")
@@ -11,18 +12,9 @@ public class Tie extends Item {
     private double length;
     private double width;
 
-    /**
-     * Empty constructor
-     */
-    public Tie() {}
-    /**
-     * Constructor, creates a new tie
-     * @param pattern pattern of tie
-     * @param material, material of tie
-     * @param brand, brand of tie
-     * @param length, length of tie
-     * @param width, width of tie
-     */
+    public Tie() {
+    }
+
     public Tie(Pattern pattern, Material material, String brand, String color, double pricePerDay,
                double length,
                double width) {
@@ -47,23 +39,21 @@ public class Tie extends Item {
         this.width = width;
     }
 
-    /**
-     * Overrides toString()
-     * @return string of tie
-     */
     @Override
     public String toString() {
         String s = getPattern().toString();
-        s = s.substring(0, 1).toUpperCase() + s.substring(1);
         s = s.concat(" ").concat(getColor());
-        s = s.concat(" ").concat(getMaterial().toString());
-        s = s.concat(" tie from ");
+        s = s.concat(" slips i ");
+        s = s.concat(getMaterial().toString());
+        s = s.concat(" från ");
         s = s.concat(getBrand());
-        s = s.concat(", length: ").concat(String.valueOf(length));
-        s = s.concat(", width: ").concat(String.valueOf(width));
-        s = s.concat(", rental price per day is ").concat(String.valueOf(getPricePerDay())).concat(
-                " SEK");
+        s = s.concat(", längd: ").concat(String.valueOf(length));
+        s = s.concat("cm, bredd: ").concat(String.valueOf(width));
+        s = s.concat("cm, pris per dag ").concat(String.valueOf(getPricePerDay())).concat(
+                " kr");
         s = s.concat(", ID: ").concat(String.valueOf(getItemID()));
+
+
         return s;
     }
 }

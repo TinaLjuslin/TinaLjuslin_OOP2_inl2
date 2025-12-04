@@ -1,7 +1,6 @@
 package com.ljuslin.view;
 
 import com.ljuslin.controller.ItemController;
-import com.ljuslin.controller.MainController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
 import com.ljuslin.model.*;

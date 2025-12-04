@@ -64,7 +64,7 @@ public class RevenueView extends View implements TabView {
     public void updateTotalRevenue() {
         try {
             totalRevenueInfoLabel.setText("Total vinst: ");
-            totalRevenueLabel.setText(revenueController.getTotalRevenue());
+            totalRevenueLabel.setText(revenueController.getTotalRevenue() + "kr");
         } catch (RevenueException e) {
             showInfoAlert(e.getMessage());
         } catch (FileException e) {
@@ -76,8 +76,8 @@ public class RevenueView extends View implements TabView {
 
     public void updateTotalRevenuePerItem() {
         try {
-            totalRevenueLabel.setText(revenueController.getRevenuePerItem());
-            totalRevenueInfoLabel.setText("Total vinst för vald vara:");
+            totalRevenueLabel.setText(revenueController.getRevenuePerItem() + "kr");
+            totalRevenueInfoLabel.setText("Total vinst för vald vara: ");
         } catch (RevenueException e) {
             showInfoAlert(e.getMessage());
         } catch (FileException e) {

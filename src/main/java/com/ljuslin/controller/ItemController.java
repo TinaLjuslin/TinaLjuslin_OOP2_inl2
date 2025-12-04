@@ -52,7 +52,7 @@ public class ItemController {
         return itemService.getItems();
     }
 
-    public List<Item> getAllAvailableItems() throws FileException {
+    public List<Item> getAllAvailableItems() throws FileException, ItemException {
         return itemService.getAvailableItems();
     }
 
