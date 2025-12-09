@@ -73,18 +73,18 @@ public class RentalController {
     }
 
     public void newRental() throws FileException, MemberException, ItemException {
-        Member member = newRentalView.showMemberPopUp(stage, scene);
-        Item item = newRentalView.showAvailableItemPopUp(stage, scene);
+        Member member = newRentalView.showMemberPopUp(stage);
+        Item item = newRentalView.showAvailableItemPopUp(stage);
         rentalService.newRental(member, item);
     }
 
     public void newRental(Member member) throws FileException, MemberException, ItemException {
-        Item item = newRentalView.showAvailableItemPopUp(stage, scene);
+        Item item = newRentalView.showAvailableItemPopUp(stage);
         rentalService.newRental(member, item);
     }
 
     public void newRental(Item item) throws FileException, MemberException, ItemException {
-        Member member = newRentalView.showMemberPopUp(stage, scene);
+        Member member = newRentalView.showMemberPopUp(stage);
         rentalService.newRental(member, item);
     }
 

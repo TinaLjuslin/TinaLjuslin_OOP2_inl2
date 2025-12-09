@@ -103,5 +103,4 @@ public abstract class Item {
         this.available = available;
     }
 
-    public String getItemType() { return this.getClass().getSimpleName(); }
-}
+  }
