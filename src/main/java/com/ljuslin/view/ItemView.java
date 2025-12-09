@@ -14,49 +14,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-
+import javafx.util.Callback;
 import java.util.List;
 
 public class ItemView extends View implements TabView {
     private ItemController itemController;
     private RentalController rentalController;
-//TODO
-    /*// Import som kan behövas:
-    import javafx.scene.control.TableCell;
-    import javafx.scene.control.TableColumn;
-    import javafx.util.Callback;
-
-    // ... (Inuti din getTab() metod eller där du definierar kolumnerna)
-
-    // 1. Skapa din Boolean-kolumn (Antag att din Member-klass har en boolean-metod t.ex. 'getIsPremium()')
-    TableColumn<Member, Boolean> booleanColumn = new TableColumn<>("Premium");
-    booleanColumn.setCellValueFactory(new PropertyValueFactory<>("isPremium")); // Antag att property-namnet är "isPremium"
-
-    // 2. Skapa den anpassade Cell Factory
-    booleanColumn.setCellFactory(new Callback<TableColumn<Member, Boolean>, TableCell<Member, Boolean>>() {
-        @Override
-        public TableCell<Member, Boolean> call(TableColumn<Member, Boolean> param) {
-            return new TableCell<Member, Boolean>() {
-                @Override
-                protected void updateItem(Boolean item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                    } else {
-                        // 3. Konvertera Boolean till Ja/Nej (HUVUDLOGIKEN)
-                        if (item) {
-                            setText("Ja");
-                        } else {
-                            setText("Nej");
-                        }
-                    }
-                }
-            };
-        }
-    });
-
-    // 4. Lägg till den nya kolumnen i din tabell
-    table.getColumns().add(booleanColumn);*/
     private Tab tab;
     private BorderPane pane;
     private VBox vbox;
@@ -69,16 +32,17 @@ public class ItemView extends View implements TabView {
     private Button exitButton;
     private Region region;
     private TableView<Item> table;
+    private TableColumn<Item, String> itemTypeColumn;
     private TableColumn<Item, Pattern> patternColumn;
     private TableColumn<Item, Material> materialColumn;
     private TableColumn<Item, String> brandColumn;
     private TableColumn<Item, Double> priceColumn;
     private TableColumn<Item, String> colorColumn;
     private TableColumn<Item, String> sizeColumn;
-    private TableColumn<Item, String> preeTiedColumn;
+    private TableColumn<Item, Boolean> preTiedColumn;
     private TableColumn<Item, Double> widthColumn;
     private TableColumn<Item, Double> lengthColumn;
-    private TableColumn<Item, Double> availableColumn;
+    private TableColumn<Item, Boolean> availableColumn;
 
     public ItemView() {
     }
@@ -112,9 +76,29 @@ public class ItemView extends View implements TabView {
         VBox.setVgrow(region, Priority.ALWAYS);
         table = new TableView<>();
         table.setEditable(false);
+        itemTypeColumn = new TableColumn<>("Typ");
+        itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("itemType"));
+        itemTypeColumn.setCellFactory(new Callback<TableColumn<Item, String>, TableCell<Item, String>>() {
+            @Override
+            public TableCell<Item, String> call(TableColumn<Item, String> param) {
+                return new TableCell<Item, String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else if (item.equals("Tie")) {
+                            setText("Slips");
+                        } else {
+                            setText("Fluga");
+                        }
+                    };
+                };
+            }
+        });
         patternColumn = new TableColumn<>("Mönster");
         patternColumn.setCellValueFactory(new PropertyValueFactory<>("pattern"));
-        colorColumn = new TableColumn<>("färg");
+        colorColumn = new TableColumn<>("Färg");
         colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
         materialColumn = new TableColumn<>("Material");
         materialColumn.setCellValueFactory(new PropertyValueFactory<>("material"));
@@ -122,8 +106,30 @@ public class ItemView extends View implements TabView {
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         priceColumn = new TableColumn<>("Pris per dag");
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("pricePerDay"));
-        preeTiedColumn = new TableColumn<>("Färdigknuten");
-        preeTiedColumn.setCellValueFactory(new PropertyValueFactory<>("preTied"));
+        preTiedColumn = new TableColumn<>("Färdigknuten");
+        preTiedColumn.setCellValueFactory(new PropertyValueFactory<>("preTied"));
+        preTiedColumn.setCellFactory(new Callback<TableColumn<Item, Boolean>, TableCell<Item,
+                Boolean>>() {
+            @Override
+            public TableCell<Item, Boolean> call(TableColumn<Item, Boolean> param) {
+                return new TableCell<Item, Boolean>() {
+                    @Override
+                    protected void updateItem(Boolean item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            if (item) {
+                                setText("Ja");
+                            } else {
+                                setText("Nej");
+                            }
+                        }
+                    }
+                };
+            }
+        });
+
         sizeColumn = new TableColumn<>("Storlek");
         sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
         widthColumn = new TableColumn<>("Bredd");
@@ -133,8 +139,30 @@ public class ItemView extends View implements TabView {
         availableColumn = new TableColumn<>("Tillgänglig");
         availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
 
-        table.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
-                priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn, availableColumn);
+        availableColumn.setCellFactory(new Callback<TableColumn<Item, Boolean>, TableCell<Item, Boolean>>() {
+            @Override
+            public TableCell<Item, Boolean> call(TableColumn<Item, Boolean> param) {
+                return new TableCell<Item, Boolean>() {
+                    @Override
+                    protected void updateItem(Boolean item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            if (item) {
+                                setText("Ja");
+                            } else {
+                                setText("Nej");
+                            }
+                        }
+                    }
+                };
+            }
+        });
+
+        table.getColumns().addAll(itemTypeColumn ,patternColumn, colorColumn, materialColumn,
+                brandColumn,
+                priceColumn, sizeColumn, preTiedColumn, widthColumn, lengthColumn, availableColumn);
         populateTable();
         pane.setLeft(vbox);
         pane.setCenter(table);
@@ -152,7 +180,7 @@ public class ItemView extends View implements TabView {
                 itemController.changeItemView(item);
                 populateTable();
             } else {
-                showInfoAlert("Välj en medlem att ändra!");
+                showInfoAlert("Välj en vara att ändra!");
             }
         });
         deleteButton.setOnAction(ae -> {
@@ -160,6 +188,7 @@ public class ItemView extends View implements TabView {
             if (item != null) {
                 try {
                     itemController.removeItem(item);
+                    showInfoAlert("Varan borttagen.");
                     populateTable();
                 } catch (ItemException e) {
                     showInfoAlert(e.getMessage());

@@ -23,6 +23,9 @@ public class ItemController {
     private Stage stage;
     private Scene scene;
 
+    public ItemController() {
+    }
+
     public ItemController(ItemService itemService, ItemView itemView) {
         this.itemService = itemService;
         this.itemView = itemView;
@@ -68,7 +71,7 @@ public class ItemController {
     }
 
     public void newBowtie(String brand, String color, Material material, Pattern pattern,
-                          String pricePerDay, String size, boolean preTied)
+                          String pricePerDay, String size, String preTied)
             throws FileException, ItemException {
         itemService.newBowtie(pattern, material, brand, color, pricePerDay, size, preTied);
     }

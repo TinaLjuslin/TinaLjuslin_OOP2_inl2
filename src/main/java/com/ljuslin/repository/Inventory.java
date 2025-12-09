@@ -85,7 +85,7 @@ public class Inventory {
         }
         boolean removed = false;
         for (Item i : items) {
-            if (i.getItemID() == item.getItemID()) {
+            if (i.getItemID().equals(item.getItemID())) {
                 items.remove(i);
                 removed = true;
                 break;

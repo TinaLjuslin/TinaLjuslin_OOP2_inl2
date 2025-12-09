@@ -10,7 +10,6 @@ import com.ljuslin.repository.RentalRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -91,7 +90,6 @@ public class MembershipService {
     }
 
     public void removeMember(Member member) throws MemberException, FileException {
-        //TODO implementera koll att membern inte har nåt hyrt senare när items är implementerat
         List<Rental> rentals = rentalRepo.getRentals();
         for (Rental rental : rentals) {
             if (rental.getMember().getMemberID().equals(member.getMemberID()) && rental.getReturnDate() == null) {

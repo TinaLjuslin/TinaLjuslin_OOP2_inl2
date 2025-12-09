@@ -153,6 +153,7 @@ public class MainController {
                 revenueController.populateTable();
         }
     }
+
     private void startTimer() {
         if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
             return;

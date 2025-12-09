@@ -19,6 +19,9 @@ public class MemberController {
     private Stage stage;
     private Scene scene;
 
+    public MemberController() {
+    }
+
     public MemberController(MembershipService membershipService, MemberView memberView) {
         this.membershipService = membershipService;
         this.memberView = memberView;

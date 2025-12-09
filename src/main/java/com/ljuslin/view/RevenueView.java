@@ -32,8 +32,8 @@ public class RevenueView extends View implements TabView {
         pane = new BorderPane();
         vBox = new VBox();
         hBox = new HBox();
-        totalRevenueButton = new Button("Visa vinst");
-        searchItemRevenueButton = new Button("Visa vinst per vara");
+        totalRevenueButton = new Button("Total vinst");
+        searchItemRevenueButton = new Button("Vinst per vara");
         totalRevenueButton.setMaxWidth(Double.MAX_VALUE);
         searchItemRevenueButton.setMaxWidth(Double.MAX_VALUE);
         exitButton = new Button("Avsluta");

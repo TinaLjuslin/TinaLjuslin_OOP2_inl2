@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 /**
  * Main application
  */
-public class MainApplication extends Application {
+public class WigellApplication extends Application {
     private MemberView memberView = new MemberView();
     private ItemView itemView = new ItemView();
     private RentalView rentalView = new RentalView();
@@ -29,10 +29,10 @@ public class MainApplication extends Application {
     private RentalRepository rentalRepo = new RentalRepository();
 
     private MembershipService membershipService = new MembershipService(memberRegistry, rentalRepo);
-    private ItemService itemService = new ItemService(inventory);
+    private ItemService itemService = new ItemService(inventory, rentalRepo);
     private RentalService rentalService = new RentalService(rentalRepo, membershipService,
             itemService);
-    private RevenueService revenueService = new RevenueService(rentalRepo, itemService);
+    private RevenueService revenueService = new RevenueService(rentalRepo);
 
     private MemberController memberController = new MemberController(membershipService, memberView);
     private ItemController itemController = new ItemController(itemService, itemView);
@@ -42,6 +42,9 @@ public class MainApplication extends Application {
             memberController, itemController, rentalController, revenueView);
     private MainController mainController = new MainController(memberController, itemController, rentalController,
             revenueController);
+
+    public WigellApplication() {
+    }
 
     @Override
     public void start(Stage stage) {

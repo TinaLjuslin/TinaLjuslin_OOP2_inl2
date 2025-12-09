@@ -77,7 +77,6 @@ public class MemberView extends View implements TabView{
         });
         searchButton.setOnAction(ae -> {
             memberController.searchMemberView();
-
         });
         changeButton.setOnAction(ae -> {
             Member member = table.getSelectionModel().getSelectedItem();
@@ -109,6 +108,7 @@ public class MemberView extends View implements TabView{
             if (member != null) {
                 try {
                     memberController.removeMember(member);
+                    showInfoAlert("Medlem " + member.getFirstName() + " " + member.getLastName() + " borttagen.");
                     populateTable();
                 } catch (MemberException e) {
                     showInfoAlert(e.getMessage());
@@ -118,7 +118,7 @@ public class MemberView extends View implements TabView{
                     showErrorAlert(e.getMessage());
                 }
             } else {
-                showInfoAlert("Välj en medlem att ta bort!");
+                showInfoAlert("Välj en medlem att visa historia för!");
             }
         });
         historyButton.setOnAction(ae -> {

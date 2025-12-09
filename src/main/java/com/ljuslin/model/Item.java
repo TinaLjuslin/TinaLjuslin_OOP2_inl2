@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * fick inte subklasser korrekt i min json, detta löste problemet, det räckte inte med
+ *
  * @JsonTypeName("Tie") i subklassen
  */
 @JsonTypeInfo(
@@ -17,7 +18,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Tie.class, name = "Tie"),
         @JsonSubTypes.Type(value = Bowtie.class, name = "Bowtie")
-})/**
+})
+/**
  * Item in the store, abstract klass, holds item id, pattern, material, brand, color and price per
  * day
  * @author Tina Ljuslin
@@ -31,7 +33,8 @@ public abstract class Item {
     private double pricePerDay;
     private boolean available;
 
-    public Item() {}
+    public Item() {
+    }
 
     public Item(Pattern pattern, Material material, String brand, String color,
                 double pricePerDay) {
@@ -99,4 +102,6 @@ public abstract class Item {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    public String getItemType() { return this.getClass().getSimpleName(); }
 }

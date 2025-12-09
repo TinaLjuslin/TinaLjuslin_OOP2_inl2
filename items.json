@@ -1,26 +1,4 @@
 [ {
-  "itemType" : "Tie",
-  "itemID" : "1764758195316",
-  "pattern" : "DOTTED",
-  "material" : "COTTON",
-  "brand" : "Märke AB",
-  "color" : "blå",
-  "pricePerDay" : 17.0,
-  "available" : true,
-  "length" : 159.0,
-  "width" : 8.0
-}, {
-  "itemType" : "Tie",
-  "itemID" : "1764846822044",
-  "pattern" : "DOTTED",
-  "material" : "SILK",
-  "brand" : "Sidenattiraljer AB",
-  "color" : "svart",
-  "pricePerDay" : 15.0,
-  "available" : false,
-  "length" : 160.0,
-  "width" : 7.0
-}, {
   "itemType" : "Bowtie",
   "itemID" : "1764846792094",
   "pattern" : "PAISLEY",
@@ -29,18 +7,18 @@
   "color" : "rosa",
   "pricePerDay" : 21.0,
   "available" : false,
-  "size" : "large",
+  "size" : "L",
   "preTied" : true
 }, {
   "itemType" : "Bowtie",
   "itemID" : "1764846743868",
   "pattern" : "NO_PATTERN",
   "material" : "WOOL",
-  "brand" : "Flugor och kravattter AB",
+  "brand" : "Flugor och kravatter AB",
   "color" : "Lila",
   "pricePerDay" : 16.0,
   "available" : false,
-  "size" : "medium",
+  "size" : "M",
   "preTied" : false
 }, {
   "itemType" : "Tie",
@@ -53,4 +31,59 @@
   "available" : true,
   "length" : 159.0,
   "width" : 6.0
+}, {
+  "itemType" : "Bowtie",
+  "itemID" : "1765275010353",
+  "pattern" : "NO_PATTERN",
+  "material" : "COTTON",
+  "brand" : "Marke AB",
+  "color" : "Rosa",
+  "pricePerDay" : 15.0,
+  "available" : false,
+  "size" : "S",
+  "preTied" : true
+}, {
+  "itemType" : "Bowtie",
+  "itemID" : "1764918797053",
+  "pattern" : "PAISLEY",
+  "material" : "POLYESTER",
+  "brand" : "Barnd AB",
+  "color" : "Rosa",
+  "pricePerDay" : 15.0,
+  "available" : false,
+  "size" : "L",
+  "preTied" : true
+}, {
+  "itemType" : "Tie",
+  "itemID" : "1764846822044",
+  "pattern" : "DOTTED",
+  "material" : "SILK",
+  "brand" : "Sidenattiraljer AB",
+  "color" : "svart",
+  "pricePerDay" : 15.0,
+  "available" : true,
+  "length" : 160.0,
+  "width" : 7.0
+}, {
+  "itemType" : "Tie",
+  "itemID" : "1764758195316",
+  "pattern" : "DOTTED",
+  "material" : "COTTON",
+  "brand" : "Märke AB",
+  "color" : "blå",
+  "pricePerDay" : 17.0,
+  "available" : true,
+  "length" : 159.0,
+  "width" : 8.0
+}, {
+  "itemType" : "Tie",
+  "itemID" : "1765184422033",
+  "pattern" : "PAISLEY",
+  "material" : "POLYESTER",
+  "brand" : "Marke AB",
+  "color" : "blå",
+  "pricePerDay" : 15.0,
+  "available" : true,
+  "length" : 159.0,
+  "width" : 5.0
 } ]

@@ -2,6 +2,7 @@ package com.ljuslin.model;
 
 /**
  * Enum, pattern
+ *
  * @author Tina Ljuslin
  */
 

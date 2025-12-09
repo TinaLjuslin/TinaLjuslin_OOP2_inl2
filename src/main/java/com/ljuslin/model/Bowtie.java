@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Represents a bowtie in the shop, holds size and boolean pre-tied
+ *
  * @author Tina Ljuslin
  */
 @JsonTypeName("Bowtie")
@@ -11,7 +12,8 @@ public class Bowtie extends Item {
     private String size;
     private boolean preTied = false;
 
-    public Bowtie() {}
+    public Bowtie() {
+    }
 
     public Bowtie(Pattern pattern, Material material, String brand, String color,
                   double pricePerDay,
