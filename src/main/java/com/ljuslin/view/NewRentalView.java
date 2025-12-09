@@ -5,6 +5,7 @@ import com.ljuslin.controller.MemberController;
 import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.model.*;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -32,6 +33,7 @@ public class NewRentalView extends View {
     private Button cancelButton;
     private TableView<Member> memberTable;
     private TableView<Item> itemTable;
+    private TableColumn<Item, String> itemTypeColumn;
     private TableColumn<Member, String> idColumn;
     private TableColumn<Member, String> firstNameColumn;
     private TableColumn<Member, String> lastNameColumn;
@@ -51,12 +53,11 @@ public class NewRentalView extends View {
 
     public NewRentalView( MemberController memberController,
                          ItemController itemController) {
-        //this.rentalController = rentalController;
         this.memberController = memberController;
         this.itemController = itemController;
     }
 
-    public Member showMemberPopUp(Stage mainStage, Scene mainScene) {
+    public Member showMemberPopUp(Stage mainStage) {
         newRentalStage = new Stage();
         pane = new BorderPane();
         vbox = new VBox();
@@ -104,7 +105,7 @@ public class NewRentalView extends View {
         return member;
     }
 
-    public Item showAvailableItemPopUp(Stage mainStage, Scene mainScene) {
+    public Item showAvailableItemPopUp(Stage mainStage) {
         newRentalStage = new Stage();
         pane = new BorderPane();
         vbox = new VBox();
@@ -117,6 +118,15 @@ public class NewRentalView extends View {
         vbox.getChildren().addAll(chooseButton, cancelButton);
         itemTable = new TableView<>();
         itemTable.setEditable(false);
+        itemTypeColumn = new TableColumn<>("Typ");
+        itemTypeColumn.setCellValueFactory(cellData -> {
+            Item item = cellData.getValue();
+            if ( item instanceof Bowtie) {
+                return new ReadOnlyStringWrapper("Fluga");
+            } else {
+                return new ReadOnlyStringWrapper("Slips");
+            }
+        });
         patternColumn = new TableColumn<>("Mönster");
         patternColumn.setCellValueFactory(new PropertyValueFactory<>("pattern"));
         colorColumn = new TableColumn<>("färg");
@@ -136,7 +146,7 @@ public class NewRentalView extends View {
         lengthColumn = new TableColumn<>("Längd");
         lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
 
-        itemTable.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
+        itemTable.getColumns().addAll(itemTypeColumn, patternColumn, colorColumn, materialColumn, brandColumn,
                 priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn);
         populateAvailableItemTable();
         pane.setLeft(vbox);
@@ -177,7 +187,17 @@ public class NewRentalView extends View {
         vbox.getChildren().clear();
         vbox.getChildren().addAll(chooseButton, cancelButton);
         itemTable = new TableView<>();
+
         itemTable.setEditable(false);
+        itemTypeColumn = new TableColumn<>("Typ");
+        itemTypeColumn.setCellValueFactory(cellData -> {
+            Item item = cellData.getValue();
+            if ( item instanceof Bowtie) {
+                return new ReadOnlyStringWrapper("Fluga");
+            } else {
+                return new ReadOnlyStringWrapper("Slips");
+            }
+        });
         patternColumn = new TableColumn<>("Mönster");
         patternColumn.setCellValueFactory(new PropertyValueFactory<>("pattern"));
         colorColumn = new TableColumn<>("färg");
@@ -197,7 +217,7 @@ public class NewRentalView extends View {
         lengthColumn = new TableColumn<>("Längd");
         lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
 
-        itemTable.getColumns().addAll(patternColumn, colorColumn, materialColumn, brandColumn,
+        itemTable.getColumns().addAll(itemTypeColumn, patternColumn, colorColumn, materialColumn, brandColumn,
                 priceColumn, sizeColumn, preeTiedColumn, widthColumn, lengthColumn);
         populateAllItemTable();
         pane.setLeft(vbox);

@@ -21,12 +21,12 @@ public class ChangeItemView extends View {
     private TextField pricePerDayField;
     private TextField lengthField;
     private TextField widthField;
-    private TextField sizeField;
+    //private TextField sizeField;
 
     private ComboBox<Pattern> patternComboBox;
     private ComboBox<Material> materialComboBox;
     private ComboBox<Boolean> preeTiedComboBox;
-
+    private ComboBox<String> sizeComboBox;
 
     private Label brandLabel;
     private Label colorLabel;
@@ -99,15 +99,18 @@ public class ChangeItemView extends View {
         } else {
             sizeLabel = new Label("Storlek");
             preeTiedLabel = new Label("Färdigknuten");
-            sizeField = new TextField();
-            sizeField.setText(String.valueOf(((Bowtie) item).getSize()));
+
             ObservableList<Boolean> pre = FXCollections.observableArrayList(Boolean.FALSE, Boolean.TRUE);
             preeTiedComboBox = new ComboBox<>(pre);
             preeTiedComboBox.getSelectionModel().select(((Bowtie) item).isPreTied());
+
+            ObservableList<String> size = FXCollections.observableArrayList("S", "M", "L", "XL");
+            sizeComboBox = new ComboBox<>(size);
+            sizeComboBox.getSelectionModel().select(((Bowtie) item).getSize());
             gridPane.add(preeTiedLabel, 0, 5);
             gridPane.add(preeTiedComboBox, 1, 5);
             gridPane.add(sizeLabel, 0, 6);
-            gridPane.add(sizeField, 1, 6);
+            gridPane.add(sizeComboBox, 1, 6);
         }
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
@@ -120,7 +123,8 @@ public class ChangeItemView extends View {
                 } else {
                     itemController.changeItem(item, brandField.getText(), colorField.getText(),
                             materialComboBox.getValue(), patternComboBox.getValue(),
-                            pricePerDayField.getText(), sizeField.getText(), preeTiedComboBox.getValue());
+                            pricePerDayField.getText(), sizeComboBox.getValue(),
+                            preeTiedComboBox.getValue());
 
                 }
                 newItemStage.close();

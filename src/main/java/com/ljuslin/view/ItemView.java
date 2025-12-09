@@ -6,6 +6,7 @@ import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.ItemException;
 import com.ljuslin.exception.MemberException;
 import com.ljuslin.model.*;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -76,24 +77,14 @@ public class ItemView extends View implements TabView {
         VBox.setVgrow(region, Priority.ALWAYS);
         table = new TableView<>();
         table.setEditable(false);
+
         itemTypeColumn = new TableColumn<>("Typ");
-        itemTypeColumn.setCellValueFactory(new PropertyValueFactory<>("itemType"));
-        itemTypeColumn.setCellFactory(new Callback<TableColumn<Item, String>, TableCell<Item, String>>() {
-            @Override
-            public TableCell<Item, String> call(TableColumn<Item, String> param) {
-                return new TableCell<Item, String>() {
-                    @Override
-                    protected void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setText(null);
-                        } else if (item.equals("Tie")) {
-                            setText("Slips");
-                        } else {
-                            setText("Fluga");
-                        }
-                    };
-                };
+        itemTypeColumn.setCellValueFactory(cellData -> {
+            Item item = cellData.getValue();
+            if ( item instanceof Bowtie) {
+                return new ReadOnlyStringWrapper("Fluga");
+            } else {
+                return new ReadOnlyStringWrapper("Slips");
             }
         });
         patternColumn = new TableColumn<>("Mönster");
@@ -160,7 +151,7 @@ public class ItemView extends View implements TabView {
             }
         });
 
-        table.getColumns().addAll(itemTypeColumn ,patternColumn, colorColumn, materialColumn,
+        table.getColumns().addAll(itemTypeColumn, patternColumn, colorColumn, materialColumn,
                 brandColumn,
                 priceColumn, sizeColumn, preTiedColumn, widthColumn, lengthColumn, availableColumn);
         populateTable();
