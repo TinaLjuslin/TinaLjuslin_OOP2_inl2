@@ -20,14 +20,16 @@ public class RevenueController {
     private Stage stage;
     private Scene scene;
 
+    public RevenueController() {
+    }
+
     public RevenueController(RevenueService revenueService,
                              MemberController memberController, ItemController itemController, RentalController rentalController,
                              RevenueView revenueView) {
         this.revenueService = revenueService;
         this.revenueView = revenueView;
         newRentalView = new NewRentalView(memberController, itemController);
-    }//rentalController,
-
+    }
 
     public void setStage(Stage stage) {
         this.stage = stage;

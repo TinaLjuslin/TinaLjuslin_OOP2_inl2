@@ -42,6 +42,9 @@ public class ChangeItemView extends View {
     private GridPane gridPane;
     private Scene scene2;
 
+    public ChangeItemView() {
+    }
+
     public ChangeItemView(ItemController itemController) {
         this.itemController = itemController;
     }
@@ -78,24 +81,21 @@ public class ChangeItemView extends View {
         gridPane.add(patternComboBox, 1, 2);
         gridPane.add(materialComboBox, 1, 3);
         gridPane.add(pricePerDayField, 1, 4);
-        gridPane.add(cancelButton, 2, 7);
-        gridPane.add(saveButton, 1, 7);
+        gridPane.add(saveButton, 0, 7);
+        gridPane.add(cancelButton, 1, 7);
+        scene2 = new Scene(gridPane, 500, 500);
+        newItemStage.setScene(scene2);
 
         if (item instanceof Tie) {
             widthLabel = new Label("Bredd");
             lengthLabel = new Label("Längd");
             widthField = new TextField(String.valueOf(((Tie) item).getWidth()));
             lengthField = new TextField(String.valueOf(((Tie) item).getLength()));
-
             gridPane.add(widthLabel, 0, 5);
             gridPane.add(widthField, 1, 5);
             gridPane.add(lengthLabel, 0, 6);
             gridPane.add(lengthField, 1, 6);
 
-            scene2 = new Scene(gridPane, 500, 500);
-            String css = getClass().getResource("/greenStyles.css").toExternalForm();
-            scene2.getStylesheets().add(css);
-            newItemStage.setScene(scene2);
         } else {
             sizeLabel = new Label("Storlek");
             preeTiedLabel = new Label("Färdigknuten");
@@ -108,14 +108,7 @@ public class ChangeItemView extends View {
             gridPane.add(preeTiedComboBox, 1, 5);
             gridPane.add(sizeLabel, 0, 6);
             gridPane.add(sizeField, 1, 6);
-
-            scene2 = new Scene(gridPane, 500, 500);
-            String css = getClass().getResource("/greenStyles.css").toExternalForm();
-            scene2.getStylesheets().add(css);
-            newItemStage.setScene(scene2);
         }
-        ////////////////////////////////////////////////////////////
-//TODO kan jag ta bort dessa två rader i if-satserna? eller här?
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
         saveButton.setOnAction(ae -> {

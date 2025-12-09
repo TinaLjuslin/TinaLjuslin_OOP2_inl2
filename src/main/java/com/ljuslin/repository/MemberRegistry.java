@@ -11,8 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 /**
  * Holds all members of this rental shop
+ *
  * @author Tina Ljuslin
  */
 public class MemberRegistry {
@@ -30,6 +32,7 @@ public class MemberRegistry {
             }
         }
     }
+
     private void saveMembers(List<Member> members) throws FileException {
         try {
             mapper.writeValue(memberFile, members);
@@ -100,6 +103,7 @@ public class MemberRegistry {
             throw new FileException("Medlemsfilen kunde ej läsas");
         }
     }
+
     public void addMember(Member member) throws FileException {
         try {
             List<Member> members = getMembers();
@@ -109,6 +113,7 @@ public class MemberRegistry {
             throw new FileException("Den nya medlemmen kunde ej sparas");
         }
     }
+
     public void addToHistory(Member member, String history) throws FileException, MemberException {
         List<Member> members;
         try {

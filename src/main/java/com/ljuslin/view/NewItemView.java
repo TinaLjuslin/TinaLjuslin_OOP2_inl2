@@ -25,11 +25,12 @@ public class NewItemView extends View {
     private TextField pricePerDayField;
     private TextField lengthField;
     private TextField widthField;
-    private TextField sizeField;
+    //private TextField sizeField;
 
     private ComboBox<Pattern> patternComboBox;
     private ComboBox<Material> materialComboBox;
-    private ComboBox<Boolean> preeTiedComboBox;
+    private ComboBox<String> preTiedComboBox;
+    private ComboBox<String> sizeComboBox;
 
     private HBox hBox;
     private Label brandLabel;
@@ -40,7 +41,7 @@ public class NewItemView extends View {
     private Label widthLabel;
     private Label lengthLabel;
     private Label sizeLabel;
-    private Label preeTiedLabel;
+    private Label preTiedLabel;
     private Button saveTieButton;
     private Button saveBowtieButton;
     private Button cancelButton;
@@ -70,23 +71,26 @@ public class NewItemView extends View {
         widthLabel = new Label("Bredd");
         lengthLabel = new Label("Längd");
         sizeLabel = new Label("Storlek");
-        preeTiedLabel = new Label("Färdigknuten");
+        preTiedLabel = new Label("Färdigknuten");
 
         brandField = new TextField();
         colorField = new TextField();
         widthField = new TextField();
         lengthField = new TextField();
         pricePerDayField = new TextField();
-        sizeField = new TextField();
+        //sizeField = new TextField();
         ObservableList<Material> materials = FXCollections.observableArrayList(Material.values());
         materialComboBox = new ComboBox<>(materials);
         materialComboBox.getSelectionModel().select(0);
         ObservableList<Pattern> patterns = FXCollections.observableArrayList(Pattern.values());
         patternComboBox = new ComboBox<>(patterns);
         patternComboBox.getSelectionModel().select(0);
-        ObservableList<Boolean> pre = FXCollections.observableArrayList(Boolean.FALSE, Boolean.TRUE);
-        preeTiedComboBox = new ComboBox<>(pre);
-        preeTiedComboBox.getSelectionModel().select(0);
+        ObservableList<String> pre = FXCollections.observableArrayList("Ja", "Nej");
+        preTiedComboBox = new ComboBox<>(pre);
+        preTiedComboBox.getSelectionModel().select(0);
+        ObservableList<String> size = FXCollections.observableArrayList("S", "M", "L", "XL");
+        sizeComboBox = new ComboBox<>(size);
+        sizeComboBox.getSelectionModel().select(0);
 
         gridPane = new GridPane();
         gridPane.add(brandLabel, 0, 0);
@@ -99,7 +103,7 @@ public class NewItemView extends View {
         gridPane.add(patternComboBox, 1, 2);
         gridPane.add(materialComboBox, 1, 3);
         gridPane.add(pricePerDayField, 1, 4);
-        gridPane.add(cancelButton, 2, 7);
+        gridPane.add(cancelButton, 1, 7);
         scene2 = new Scene(hBox, 500, 500);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
         scene2.getStylesheets().add(css);
@@ -127,7 +131,7 @@ public class NewItemView extends View {
             try {
                 itemController.newBowtie(brandField.getText(), colorField.getText(),
                         materialComboBox.getValue(), patternComboBox.getValue(),
-                        pricePerDayField.getText(), sizeField.getText(), preeTiedComboBox.getValue());
+                        pricePerDayField.getText(), sizeComboBox.getValue(), preTiedComboBox.getValue());
                 newItemStage.close();
             } catch (ItemException e) {
                 showInfoAlert(e.getMessage());
@@ -152,7 +156,7 @@ public class NewItemView extends View {
         gridPane.add(widthField, 1, 5);
         gridPane.add(lengthLabel, 0, 6);
         gridPane.add(lengthField, 1, 6);
-        gridPane.add(saveTieButton, 1, 7);
+        gridPane.add(saveTieButton, 0, 7);
 
         scene2 = new Scene(gridPane, 500, 500);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();
@@ -160,11 +164,11 @@ public class NewItemView extends View {
         newItemStage.setScene(scene2);
     }
     private void newBowtie() {
-        gridPane.add(preeTiedLabel, 0, 5);
-        gridPane.add(preeTiedComboBox, 1, 5);
+        gridPane.add(preTiedLabel, 0, 5);
+        gridPane.add(preTiedComboBox, 1, 5);
         gridPane.add(sizeLabel, 0, 6);
-        gridPane.add(sizeField, 1, 6);
-        gridPane.add(saveBowtieButton, 1, 7);
+        gridPane.add(sizeComboBox, 1, 6);
+        gridPane.add(saveBowtieButton, 0, 7);
 
         scene2 = new Scene(gridPane, 500, 500);
         String css = getClass().getResource("/greenStyles.css").toExternalForm();

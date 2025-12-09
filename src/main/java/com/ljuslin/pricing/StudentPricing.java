@@ -8,6 +8,9 @@ package com.ljuslin.pricing;
 public class StudentPricing implements PricePolicy {
     private final int DISCOUNT_PERCENTAGE = 10;
 
+    public StudentPricing() {
+    }
+
     public double getPricePerDay(double price) {
         return price * (100 - DISCOUNT_PERCENTAGE) / 100;
     }

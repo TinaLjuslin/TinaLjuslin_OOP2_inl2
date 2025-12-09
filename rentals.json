@@ -1,155 +1,35 @@
 [ {
-  "rentalID" : "1764847438024",
+  "rentalID" : "1764920958763",
   "member" : {
-    "memberID" : "1764847284793",
-    "firstName" : "Christer",
-    "lastName" : "Andersson",
-    "memberLevel" : "STANDARD",
-    "history" : [ " Member added: Christer Andersson, ID: 1764847284793, Level: standard" ]
+    "memberID" : "1764847309624",
+    "firstName" : "Kevin",
+    "lastName" : "Larsson",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Kevin Larsson, ID: 1764847309624, Level: premium" ]
   },
   "item" : {
     "itemType" : "Tie",
-    "itemID" : "1764846822044",
-    "pattern" : "DOTTED",
-    "material" : "SILK",
-    "brand" : "Sidenattiraljer AB",
-    "color" : "svart",
+    "itemID" : "1764917341821",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Slipsleverantören AB",
+    "color" : "Grå",
     "pricePerDay" : 15.0,
     "available" : true,
-    "length" : 160.0,
-    "width" : 7.0
-  },
-  "totalRevenue" : 15.0,
-  "rentalDate" : [ 2025, 12, 3 ],
-  "returnDate" : [ 2025, 12, 4 ]
-}, {
-  "rentalID" : "1764847496490",
-  "member" : {
-    "memberID" : "1764847396340",
-    "firstName" : "Jörgen",
-    "lastName" : "Nyqvist",
-    "memberLevel" : "PREMIUM",
-    "history" : [ " Member added: Jörgen Nyqvist, ID: 1764847396340, Level: premium" ]
-  },
-  "item" : {
-    "itemType" : "Tie",
-    "itemID" : "1764846707510",
-    "pattern" : "STRIPED",
-    "material" : "COTTON",
-    "brand" : "Slipskompaniet AB",
-    "color" : "Lila",
-    "pricePerDay" : 14.0,
-    "available" : true,
-    "length" : 159.0,
+    "length" : 164.0,
     "width" : 6.0
   },
-  "totalRevenue" : 11.2,
-  "rentalDate" : [ 2025, 12, 3 ],
-  "returnDate" : [ 2025, 12, 4 ]
-}, {
-  "rentalID" : "1764847504093",
-  "member" : {
-    "memberID" : "1764847284793",
-    "firstName" : "Christer",
-    "lastName" : "Andersson",
-    "memberLevel" : "STANDARD",
-    "history" : [ " Member added: Christer Andersson, ID: 1764847284793, Level: standard", "2025-12-04 12:23:58 : Rental STARTED: Member: ChristerAndersson, Rented item:\nPrickig svart slips i silke från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04" ]
-  },
-  "item" : {
-    "itemType" : "Tie",
-    "itemID" : "1764758195316",
-    "pattern" : "DOTTED",
-    "material" : "COTTON",
-    "brand" : "Märke AB",
-    "color" : "blå",
-    "pricePerDay" : 17.0,
-    "available" : true,
-    "length" : 159.0,
-    "width" : 8.0
-  },
-  "totalRevenue" : 17.0,
-  "rentalDate" : [ 2025, 12, 3 ],
-  "returnDate" : [ 2025, 12, 4 ]
-}, {
-  "rentalID" : "1764847580264",
-  "member" : {
-    "memberID" : "1764847299945",
-    "firstName" : "Jack",
-    "lastName" : "Johansson",
-    "memberLevel" : "STUDENT",
-    "history" : [ " Member added: Jack Johansson, ID: 1764847299945, Level: student" ]
-  },
-  "item" : {
-    "itemType" : "Bowtie",
-    "itemID" : "1764846792094",
-    "pattern" : "PAISLEY",
-    "material" : "SILK",
-    "brand" : "Sidenattiraljer AB",
-    "color" : "rosa",
-    "pricePerDay" : 21.0,
-    "available" : true,
-    "size" : "large",
-    "preTied" : true
-  },
-  "totalRevenue" : 0.0,
-  "rentalDate" : [ 2025, 12, 4 ],
-  "returnDate" : [ 2025, 12, 4 ]
-}, {
-  "rentalID" : "1764847608626",
-  "member" : {
-    "memberID" : "1764847418717",
-    "firstName" : "Jonatan",
-    "lastName" : "Knape",
-    "memberLevel" : "STUDENT",
-    "history" : [ " Member added: Jonatan Knape, ID: 1764847418717, Level: student" ]
-  },
-  "item" : {
-    "itemType" : "Tie",
-    "itemID" : "1764758195316",
-    "pattern" : "DOTTED",
-    "material" : "COTTON",
-    "brand" : "Märke AB",
-    "color" : "blå",
-    "pricePerDay" : 17.0,
-    "available" : true,
-    "length" : 159.0,
-    "width" : 8.0
-  },
-  "totalRevenue" : 45.9,
+  "totalRevenue" : 48.0,
   "rentalDate" : [ 2025, 12, 1 ],
-  "returnDate" : [ 2025, 12, 4 ]
+  "returnDate" : [ 2025, 12, 5 ]
 }, {
-  "rentalID" : "1764848393778",
+  "rentalID" : "1764923430910",
   "member" : {
-    "memberID" : "1764847396340",
-    "firstName" : "Jörgen",
-    "lastName" : "Nyqvist",
+    "memberID" : "1764847309624",
+    "firstName" : "Kevin",
+    "lastName" : "Larsson",
     "memberLevel" : "PREMIUM",
-    "history" : [ " Member added: Jörgen Nyqvist, ID: 1764847396340, Level: premium", "2025-12-04 12:24:56 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 12:25:51 : Rental ended: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-03\nReturn date: 2025-12-04\nTotal revenue: 11,20" ]
-  },
-  "item" : {
-    "itemType" : "Bowtie",
-    "itemID" : "1764846792094",
-    "pattern" : "PAISLEY",
-    "material" : "SILK",
-    "brand" : "Sidenattiraljer AB",
-    "color" : "rosa",
-    "pricePerDay" : 21.0,
-    "available" : true,
-    "size" : "large",
-    "preTied" : true
-  },
-  "totalRevenue" : 33.6,
-  "rentalDate" : [ 2025, 12, 2 ],
-  "returnDate" : [ 2025, 12, 4 ]
-}, {
-  "rentalID" : "1764849653670",
-  "member" : {
-    "memberID" : "1764847396340",
-    "firstName" : "Jörgen",
-    "lastName" : "Nyqvist",
-    "memberLevel" : "PREMIUM",
-    "history" : [ " Member added: Jörgen Nyqvist, ID: 1764847396340, Level: premium", "2025-12-04 12:24:56 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 12:25:51 : Rental ended: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-03\nReturn date: 2025-12-04\nTotal revenue: 11,20", "2025-12-04 12:39:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:44:52 : Rental ended: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-02\nReturn date: 2025-12-04\nTotal revenue: 33,60" ]
+    "history" : [ " Member added: Kevin Larsson, ID: 1764847309624, Level: premium", "2025-12-05 08:49:18 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05", "2025-12-05 09:11:36 : Rental ended: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-01\nReturn date: 2025-12-05\nTotal revenue: 48,00" ]
   },
   "item" : {
     "itemType" : "Tie",
@@ -163,103 +43,319 @@
     "length" : 160.0,
     "width" : 7.0
   },
-  "totalRevenue" : 0.0,
-  "rentalDate" : [ 2025, 12, 1 ],
-  "returnDate" : null
+  "totalRevenue" : 36.0,
+  "rentalDate" : [ 2025, 12, 5 ],
+  "returnDate" : [ 2025, 12, 8 ]
 }, {
-  "rentalID" : "1764849674163",
-  "member" : {
-    "memberID" : "1764847384826",
-    "firstName" : "Anders",
-    "lastName" : "Ljuslin",
-    "memberLevel" : "PREMIUM",
-    "history" : [ " Member added: Anders Ljuslin, ID: 1764847384826, Level: premium" ]
-  },
-  "item" : {
-    "itemType" : "Bowtie",
-    "itemID" : "1764846792094",
-    "pattern" : "PAISLEY",
-    "material" : "SILK",
-    "brand" : "Sidenattiraljer AB",
-    "color" : "rosa",
-    "pricePerDay" : 21.0,
-    "available" : true,
-    "size" : "large",
-    "preTied" : true
-  },
-  "totalRevenue" : 67.2,
-  "rentalDate" : [ 2025, 11, 30 ],
-  "returnDate" : [ 2025, 12, 4 ]
-}, {
-  "rentalID" : "1764852256133",
-  "member" : {
-    "memberID" : "1764847299945",
-    "firstName" : "Jack",
-    "lastName" : "Johansson",
-    "memberLevel" : "STUDENT",
-    "history" : [ " Member added: Jack Johansson, ID: 1764847299945, Level: student", "2025-12-04 12:26:20 : Rental STARTED: Member: JackJohansson, Rented item:\nPaisley rosa silke bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:26:38 : Rental ended: Member: JackJohansson, Rented item:\nPaisley rosa silke bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00" ]
-  },
-  "item" : {
-    "itemType" : "Bowtie",
-    "itemID" : "1764846792094",
-    "pattern" : "PAISLEY",
-    "material" : "SILK",
-    "brand" : "Sidenattiraljer AB",
-    "color" : "rosa",
-    "pricePerDay" : 21.0,
-    "available" : true,
-    "size" : "large",
-    "preTied" : true
-  },
-  "totalRevenue" : 0.0,
-  "rentalDate" : [ 2025, 12, 4 ],
-  "returnDate" : null
-}, {
-  "rentalID" : "1764852274258",
-  "member" : {
-    "memberID" : "1764847299945",
-    "firstName" : "Jack",
-    "lastName" : "Johansson",
-    "memberLevel" : "STUDENT",
-    "history" : [ " Member added: Jack Johansson, ID: 1764847299945, Level: student", "2025-12-04 12:26:20 : Rental STARTED: Member: JackJohansson, Rented item:\nPaisley rosa silke bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:26:38 : Rental ended: Member: JackJohansson, Rented item:\nPaisley rosa silke bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-04 13:44:16 : Rental STARTED: Member: JackJohansson, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04" ]
-  },
-  "item" : {
-    "itemType" : "Bowtie",
-    "itemID" : "1764846743868",
-    "pattern" : "NO_PATTERN",
-    "material" : "WOOL",
-    "brand" : "Flugor och kravattter AB",
-    "color" : "Lila",
-    "pricePerDay" : 16.0,
-    "available" : true,
-    "size" : "medium",
-    "preTied" : false
-  },
-  "totalRevenue" : 0.0,
-  "rentalDate" : [ 2025, 12, 4 ],
-  "returnDate" : null
-}, {
-  "rentalID" : "1764852284970",
+  "rentalID" : "1764920964239",
   "member" : {
     "memberID" : "1764847404619",
     "firstName" : "Tim",
     "lastName" : "Ljuslin",
     "memberLevel" : "STUDENT",
-    "history" : [ " Member added: Tim Karlsson, ID: 1764847404619, Level: standard", "2025-12-04 12:58:26 : Rental STARTED: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 12:59:17 : Rental ended: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-04 13:25:53 : Member changed: Tim Ljuslin, ID: 1764847404619, Level: student" ]
+    "history" : [ " Member added: Tim Karlsson, ID: 1764847404619, Level: standard", "2025-12-04 12:58:26 : Rental STARTED: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 12:59:17 : Rental ended: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-04 13:25:53 : Member changed: Tim Ljuslin, ID: 1764847404619, Level: student", "2025-12-04 13:44:44 : Rental STARTED: Member: TimLjuslin, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 13:45:03 : Rental ended: Member: TimLjuslin, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00" ]
   },
   "item" : {
     "itemType" : "Tie",
-    "itemID" : "1764846707510",
-    "pattern" : "STRIPED",
-    "material" : "COTTON",
-    "brand" : "Slipskompaniet AB",
-    "color" : "Lila",
-    "pricePerDay" : 14.0,
+    "itemID" : "1764868290054",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Slipsar och Flugor AB",
+    "color" : "turkos",
+    "pricePerDay" : 15.0,
     "available" : true,
-    "length" : 159.0,
+    "length" : 165.0,
+    "width" : 5.0
+  },
+  "totalRevenue" : 81.0,
+  "rentalDate" : [ 2025, 12, 2 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1764923485644",
+  "member" : {
+    "memberID" : "1764847309624",
+    "firstName" : "Kevin",
+    "lastName" : "Larsson",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Kevin Larsson, ID: 1764847309624, Level: premium", "2025-12-05 08:49:18 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05", "2025-12-05 09:11:36 : Rental ended: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-01\nReturn date: 2025-12-05\nTotal revenue: 48,00", "2025-12-05 09:30:31 : Rental STARTED: Member: KevinLarsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-05" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1764917341821",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Slipsleverantören AB",
+    "color" : "Grå",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "length" : 164.0,
     "width" : 6.0
   },
+  "totalRevenue" : 36.0,
+  "rentalDate" : [ 2025, 12, 5 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1764921649417",
+  "member" : {
+    "memberID" : "1764847396340",
+    "firstName" : "Jörgen",
+    "lastName" : "Nyqvist",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Jörgen Nyqvist, ID: 1764847396340, Level: premium", "2025-12-04 12:24:56 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 12:25:51 : Rental ended: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-03\nReturn date: 2025-12-04\nTotal revenue: 11,20", "2025-12-04 12:39:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:44:52 : Rental ended: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-02\nReturn date: 2025-12-04\nTotal revenue: 33,60", "2025-12-04 13:00:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 17:50:43 : Rental ended: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-01\nReturn date: 2025-12-04\nTotal revenue: 36,00" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : "1764918797053",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Barnd AB",
+    "color" : "Lila",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "large",
+    "preTied" : true
+  },
+  "totalRevenue" : 84.0,
+  "rentalDate" : [ 2025, 12, 1 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1764920969798",
+  "member" : {
+    "memberID" : "1764917511207",
+    "firstName" : "Leif",
+    "lastName" : "Persson",
+    "memberLevel" : "STANDARD",
+    "history" : [ " Member added: Leif Persson, ID: 1764917511207, Level: standard", "2025-12-05 08:45:18 : Rental STARTED: Member: LeifPersson, Rented item:\nPaisley Rosa fluga i polyester från Slipsleverantören AB, oknuten, i storlek s, pris per dag 15.0 kr, ID: 1764917482578\nRented date: 2025-12-05" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : "1764918217259",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Slipsar AB",
+    "color" : "Blå",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "small",
+    "preTied" : true
+  },
+  "totalRevenue" : 75.0,
+  "rentalDate" : [ 2025, 12, 3 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1765184519557",
+  "member" : {
+    "memberID" : "1764847309624",
+    "firstName" : "Kevin",
+    "lastName" : "Larsson",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Kevin Larsson, ID: 1764847309624, Level: premium", "2025-12-05 08:49:18 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05", "2025-12-05 09:11:36 : Rental ended: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-01\nReturn date: 2025-12-05\nTotal revenue: 48,00", "2025-12-05 09:30:31 : Rental STARTED: Member: KevinLarsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-05", "2025-12-05 09:31:25 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1765184422033",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Marke AB",
+    "color" : "blå",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "length" : 159.0,
+    "width" : 5.0
+  },
+  "totalRevenue" : 84.0,
+  "rentalDate" : [ 2025, 12, 1 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1765188793976",
+  "member" : {
+    "memberID" : "1764847309624",
+    "firstName" : "Kevin",
+    "lastName" : "Larsson",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Kevin Larsson, ID: 1764847309624, Level: premium", "2025-12-05 08:49:18 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05", "2025-12-05 09:11:36 : Rental ended: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-01\nReturn date: 2025-12-05\nTotal revenue: 48,00", "2025-12-05 09:30:31 : Rental STARTED: Member: KevinLarsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-05", "2025-12-05 09:31:25 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05", "2025-12-08 10:01:59 : Rental STARTED: Member: KevinLarsson, Rented item:\nPaisley blå slips i polyester från Marke AB, längd: 159.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1765184422033\nRented date: 2025-12-08", "2025-12-08 10:02:10 : Rental ended: Member: KevinLarsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-05\nReturn date: 2025-12-08\nTotal revenue: 36,00", "2025-12-08 10:18:23 : Rental ended: Member: KevinLarsson, Rented item:\nPaisley Grå slips i polyester från Slipsleverantören AB, längd: 164.0cm, bredd: 6.0cm, pris per dag 15.0 kr, ID: 1764917341821\nRented date: 2025-12-05\nReturn date: 2025-12-08\nTotal revenue: 36,00", "2025-12-08 11:12:11 : Rental ended: Member: KevinLarsson, Rented item:\nPaisley blå slips i polyester från Marke AB, längd: 159.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1765184422033\nRented date: 2025-12-01\nReturn date: 2025-12-08\nTotal revenue: 84,00" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1764758195316",
+    "pattern" : "DOTTED",
+    "material" : "COTTON",
+    "brand" : "Märke AB",
+    "color" : "blå",
+    "pricePerDay" : 17.0,
+    "available" : true,
+    "length" : 159.0,
+    "width" : 8.0
+  },
+  "totalRevenue" : 68.0,
+  "rentalDate" : [ 2025, 12, 3 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1765188812821",
+  "member" : {
+    "memberID" : "1765185549565",
+    "firstName" : "Erik",
+    "lastName" : "Larsson",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Erik Larsson, ID: 1765185549565, Level: premium", "2025-12-08 10:34:57 : Rental STARTED: Member: ErikLarsson, Rented item:\nPaisley turkos slips i polyester från Slipsar och Flugor AB, längd: 165.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1764868290054\nRented date: 2025-12-08" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1765184422033",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Marke AB",
+    "color" : "blå",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "length" : 159.0,
+    "width" : 5.0
+  },
+  "totalRevenue" : 84.0,
+  "rentalDate" : [ 2025, 12, 1 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1765188799833",
+  "member" : {
+    "memberID" : "1764847396340",
+    "firstName" : "Jörgen",
+    "lastName" : "Nyqvist",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Jörgen Nyqvist, ID: 1764847396340, Level: premium", "2025-12-04 12:24:56 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 12:25:51 : Rental ended: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-03\nReturn date: 2025-12-04\nTotal revenue: 11,20", "2025-12-04 12:39:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:44:52 : Rental ended: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-02\nReturn date: 2025-12-04\nTotal revenue: 33,60", "2025-12-04 13:00:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 17:50:43 : Rental ended: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-01\nReturn date: 2025-12-04\nTotal revenue: 36,00", "2025-12-05 09:00:49 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPaisley Lila fluga i polyester från Barnd AB, förknuten, i storlek large, pris per dag 15.0 kr, ID: 1764918797053\nRented date: 2025-12-05", "2025-12-08 11:08:22 : Rental ended: Member: JörgenNyqvist, Rented item:\nPaisley Lila fluga i polyester från Barnd AB, förknuten, i storlek large, pris per dag 15.0 kr, ID: 1764918797053\nRented date: 2025-12-01\nReturn date: 2025-12-08\nTotal revenue: 84,00" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1764846822044",
+    "pattern" : "DOTTED",
+    "material" : "SILK",
+    "brand" : "Sidenattiraljer AB",
+    "color" : "svart",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "length" : 160.0,
+    "width" : 7.0
+  },
+  "totalRevenue" : 72.0,
+  "rentalDate" : [ 2025, 12, 2 ],
+  "returnDate" : [ 2025, 12, 8 ]
+}, {
+  "rentalID" : "1765275025802",
+  "member" : {
+    "memberID" : "1764847404619",
+    "firstName" : "Tim",
+    "lastName" : "Ljuslin",
+    "memberLevel" : "STUDENT",
+    "history" : [ " Member added: Tim Karlsson, ID: 1764847404619, Level: standard", "2025-12-04 12:58:26 : Rental STARTED: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 12:59:17 : Rental ended: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-04 13:25:53 : Member changed: Tim Ljuslin, ID: 1764847404619, Level: student", "2025-12-04 13:44:44 : Rental STARTED: Member: TimLjuslin, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 13:45:03 : Rental ended: Member: TimLjuslin, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-05 08:49:24 : Rental STARTED: Member: TimLjuslin, Rented item:\nPaisley turkos slips i polyester från Slipsar och Flugor AB, längd: 165.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1764868290054\nRented date: 2025-12-05", "2025-12-08 10:06:50 : Rental ended: Member: TimLjuslin, Rented item:\nPaisley turkos slips i polyester från Slipsar och Flugor AB, längd: 165.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1764868290054\nRented date: 2025-12-02\nReturn date: 2025-12-08\nTotal revenue: 81,00", "2025-12-08 10:18:09 : Rental STARTED: Member: TimLjuslin, Rented item:\nPrickig blå slips i bomull från Märke AB, längd: 159.0cm, bredd: 8.0cm, pris per dag 17.0 kr, ID: 1764758195316\nRented date: 2025-12-08", "2025-12-08 11:02:15 : Rental ended: Member: TimLjuslin, Rented item:\nPrickig blå slips i bomull från Märke AB, längd: 159.0cm, bredd: 8.0cm, pris per dag 17.0 kr, ID: 1764758195316\nRented date: 2025-12-08\nReturn date: 2025-12-08\nTotal revenue: 0,00" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : "1765275010353",
+    "pattern" : "NO_PATTERN",
+    "material" : "COTTON",
+    "brand" : "Marke AB",
+    "color" : "Rosa",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "S",
+    "preTied" : true
+  },
   "totalRevenue" : 0.0,
+  "rentalDate" : [ 2025, 12, 6 ],
+  "returnDate" : null
+}, {
+  "rentalID" : "1765275121009",
+  "member" : {
+    "memberID" : "1765185549565",
+    "firstName" : "Erik",
+    "lastName" : "Larsson",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Erik Larsson, ID: 1765185549565, Level: premium", "2025-12-08 10:34:57 : Rental STARTED: Member: ErikLarsson, Rented item:\nPaisley turkos slips i polyester från Slipsar och Flugor AB, längd: 165.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1764868290054\nRented date: 2025-12-08", "2025-12-08 11:13:32 : Rental STARTED: Member: ErikLarsson, Rented item:\nPaisley blå slips i polyester från Marke AB, längd: 159.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1765184422033\nRented date: 2025-12-08", "2025-12-08 11:14:06 : Rental ended: Member: ErikLarsson, Rented item:\nPaisley blå slips i polyester från Marke AB, längd: 159.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1765184422033\nRented date: 2025-12-01\nReturn date: 2025-12-08\nTotal revenue: 84,00" ]
+  },
+  "item" : {
+    "itemType" : "Bowtie",
+    "itemID" : "1764918797053",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Barnd AB",
+    "color" : "Lila",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "size" : "large",
+    "preTied" : true
+  },
+  "totalRevenue" : 0.0,
+  "rentalDate" : [ 2025, 12, 5 ],
+  "returnDate" : null
+}, {
+  "rentalID" : "1765274912225",
+  "member" : {
+    "memberID" : "1764847396340",
+    "firstName" : "Jörgen",
+    "lastName" : "Nyqvist",
+    "memberLevel" : "PREMIUM",
+    "history" : [ " Member added: Jörgen Nyqvist, ID: 1764847396340, Level: premium", "2025-12-04 12:24:56 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 12:25:51 : Rental ended: Member: JörgenNyqvist, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-03\nReturn date: 2025-12-04\nTotal revenue: 11,20", "2025-12-04 12:39:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:44:52 : Rental ended: Member: JörgenNyqvist, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-02\nReturn date: 2025-12-04\nTotal revenue: 33,60", "2025-12-04 13:00:53 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 17:50:43 : Rental ended: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-01\nReturn date: 2025-12-04\nTotal revenue: 36,00", "2025-12-05 09:00:49 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPaisley Lila fluga i polyester från Barnd AB, förknuten, i storlek large, pris per dag 15.0 kr, ID: 1764918797053\nRented date: 2025-12-05", "2025-12-08 11:08:22 : Rental ended: Member: JörgenNyqvist, Rented item:\nPaisley Lila fluga i polyester från Barnd AB, förknuten, i storlek large, pris per dag 15.0 kr, ID: 1764918797053\nRented date: 2025-12-01\nReturn date: 2025-12-08\nTotal revenue: 84,00", "2025-12-08 11:13:19 : Rental STARTED: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-08", "2025-12-08 11:14:10 : Rental ended: Member: JörgenNyqvist, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 kr, ID: 1764846822044\nRented date: 2025-12-02\nReturn date: 2025-12-08\nTotal revenue: 72,00" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1764846822044",
+    "pattern" : "DOTTED",
+    "material" : "SILK",
+    "brand" : "Sidenattiraljer AB",
+    "color" : "svart",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "length" : 160.0,
+    "width" : 7.0
+  },
+  "totalRevenue" : 84.0,
+  "rentalDate" : [ 2025, 12, 2 ],
+  "returnDate" : [ 2025, 12, 9 ]
+}, {
+  "rentalID" : "1765274847082",
+  "member" : {
+    "memberID" : "1764847299945",
+    "firstName" : "Jack",
+    "lastName" : "Ljuslin",
+    "memberLevel" : "STUDENT",
+    "history" : [ " Member added: Jack Johansson, ID: 1764847299945, Level: student", "2025-12-04 12:26:20 : Rental STARTED: Member: JackJohansson, Rented item:\nPaisley rosa silke bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 12:26:38 : Rental ended: Member: JackJohansson, Rented item:\nPaisley rosa silke bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-04 13:44:16 : Rental STARTED: Member: JackJohansson, Rented item:\nPaisley rosa siden bowtie from Sidenattiraljer AB, pre-tied, in size large, rental price per day is 21.0 SEK, ID: 1764846792094\nRented date: 2025-12-04", "2025-12-04 13:44:34 : Rental STARTED: Member: JackJohansson, Rented item:\nOmönstrad Lila ull bowtie from Flugor och kravattter AB, not pre-tied, in size medium, rental price per day is 16.0 SEK, ID: 1764846743868\nRented date: 2025-12-04", "2025-12-08 10:34:36 : Member changed: Jack Ljuslin, ID: 1764847299945, Level: student" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1764758195316",
+    "pattern" : "DOTTED",
+    "material" : "COTTON",
+    "brand" : "Märke AB",
+    "color" : "blå",
+    "pricePerDay" : 17.0,
+    "available" : true,
+    "length" : 159.0,
+    "width" : 8.0
+  },
+  "totalRevenue" : 76.5,
   "rentalDate" : [ 2025, 12, 4 ],
-  "returnDate" : [ 2025, 12, 4 ]
+  "returnDate" : [ 2025, 12, 9 ]
+}, {
+  "rentalID" : "1765275036227",
+  "member" : {
+    "memberID" : "1764847404619",
+    "firstName" : "Tim",
+    "lastName" : "Ljuslin",
+    "memberLevel" : "STUDENT",
+    "history" : [ " Member added: Tim Karlsson, ID: 1764847404619, Level: standard", "2025-12-04 12:58:26 : Rental STARTED: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04", "2025-12-04 12:59:17 : Rental ended: Member: TimKarlsson, Rented item:\nPrickig svart slips i siden från Sidenattiraljer AB, längd: 160.0cm, bredd: 7.0cm, pris per dag 15.0 SEK, ID: 1764846822044\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-04 13:25:53 : Member changed: Tim Ljuslin, ID: 1764847404619, Level: student", "2025-12-04 13:44:44 : Rental STARTED: Member: TimLjuslin, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04", "2025-12-04 13:45:03 : Rental ended: Member: TimLjuslin, Rented item:\nRandig Lila slips i bomull från Slipskompaniet AB, längd: 159.0cm, bredd: 6.0cm, pris per dag 14.0 SEK, ID: 1764846707510\nRented date: 2025-12-04\nReturn date: 2025-12-04\nTotal revenue: 0,00", "2025-12-05 08:49:24 : Rental STARTED: Member: TimLjuslin, Rented item:\nPaisley turkos slips i polyester från Slipsar och Flugor AB, längd: 165.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1764868290054\nRented date: 2025-12-05", "2025-12-08 10:06:50 : Rental ended: Member: TimLjuslin, Rented item:\nPaisley turkos slips i polyester från Slipsar och Flugor AB, längd: 165.0cm, bredd: 5.0cm, pris per dag 15.0 kr, ID: 1764868290054\nRented date: 2025-12-02\nReturn date: 2025-12-08\nTotal revenue: 81,00", "2025-12-08 10:18:09 : Rental STARTED: Member: TimLjuslin, Rented item:\nPrickig blå slips i bomull från Märke AB, längd: 159.0cm, bredd: 8.0cm, pris per dag 17.0 kr, ID: 1764758195316\nRented date: 2025-12-08", "2025-12-08 11:02:15 : Rental ended: Member: TimLjuslin, Rented item:\nPrickig blå slips i bomull från Märke AB, längd: 159.0cm, bredd: 8.0cm, pris per dag 17.0 kr, ID: 1764758195316\nRented date: 2025-12-08\nReturn date: 2025-12-08\nTotal revenue: 0,00" ]
+  },
+  "item" : {
+    "itemType" : "Tie",
+    "itemID" : "1765184422033",
+    "pattern" : "PAISLEY",
+    "material" : "POLYESTER",
+    "brand" : "Marke AB",
+    "color" : "blå",
+    "pricePerDay" : 15.0,
+    "available" : true,
+    "length" : 159.0,
+    "width" : 5.0
+  },
+  "totalRevenue" : 67.5,
+  "rentalDate" : [ 2025, 12, 4 ],
+  "returnDate" : [ 2025, 12, 9 ]
 } ]

@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Holds all rentals, ongoing and ended
+ *
  * @author Tina Ljuslin
  */
 public class RentalRepository {
@@ -35,6 +36,7 @@ public class RentalRepository {
             }
         }
     }
+
     private void saveRentals(List<Rental> rentals) throws FileException {
         try {
             mapper.writeValue(rentalFile, rentals);
@@ -42,6 +44,7 @@ public class RentalRepository {
             throw new FileException("Kunde ej spara hyra till fil");
         }
     }
+
     public void addRental(Rental rental) throws FileException {
         try {
             List<Rental> rentals = getRentals();
@@ -73,19 +76,20 @@ public class RentalRepository {
             throw new RentalException("Uthyrning kunde ej uppdateras");
         }
     }
-    public List<Rental> getRentals() throws FileException {
-    try {
-        return new ArrayList<>(Arrays.asList(mapper.readValue(rentalFile,
-                Rental[].class)));
 
-    } catch (Exception e) {
-        throw new FileException("Hyrfilen kunde ej läsas");
+    public List<Rental> getRentals() throws FileException {
+        try {
+            return new ArrayList<>(Arrays.asList(mapper.readValue(rentalFile,
+                    Rental[].class)));
+
+        } catch (Exception e) {
+            throw new FileException("Hyrfilen kunde ej läsas");
+        }
+
     }
 
-}
-
     public void endRental(Rental rental, LocalDate date, double totalRevenue)
-        throws FileException, RentalException {
+            throws FileException, RentalException {
         boolean exists = false;
         try {
             List<Rental> rentals = getRentals();

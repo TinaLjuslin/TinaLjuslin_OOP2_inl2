@@ -26,6 +26,9 @@ public class RentalController {
     private Stage stage;
     private Scene scene;
 
+    public RentalController() {
+    }
+
     public RentalController(RentalService rentalService,
                             MemberController memberController,
                             ItemController itemController, RentalView rentalView) {
@@ -64,6 +67,7 @@ public class RentalController {
             MemberException {
         rentalService.endRental(rental);
     }
+
     public double getRevenuePerRental(Rental rental) throws FileException, RentalException {
         return rentalService.getRevenuePerRental(rental);
     }

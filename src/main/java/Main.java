@@ -1,9 +1,9 @@
-import com.ljuslin.app.MainApplication;
+import com.ljuslin.app.WigellApplication;
 import javafx.application.Application;
 
 public class Main {
     public static void main(String[] args) {
-        Application.launch(MainApplication.class, args);
+        Application.launch(WigellApplication.class, args);
     }
 }
 /*
