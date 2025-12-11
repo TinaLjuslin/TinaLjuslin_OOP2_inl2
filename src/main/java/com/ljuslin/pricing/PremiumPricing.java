@@ -2,6 +2,8 @@ package com.ljuslin.pricing;
 
 /**
  * Pricing methods for level premium
+ *
+ * @author Tina Ljuslin
  */
 
 public class PremiumPricing implements PricePolicy {

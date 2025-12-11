@@ -1,6 +1,8 @@
 package com.ljuslin.pricing;
 /**
  * Interface for prices
+ *
+ * @author Tina Ljuslin
  */
 public interface PricePolicy {
     public double getPricePerDay(double price);

@@ -17,6 +17,11 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+/**
+ * Creates member tab
+ *
+ * @author Tina Ljuslin
+ */
 public class MemberView extends View implements TabView{
     private MemberController memberController;
     private RentalController rentalController;

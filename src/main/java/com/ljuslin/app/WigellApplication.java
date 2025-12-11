@@ -8,15 +8,13 @@ import com.ljuslin.service.ItemService;
 import com.ljuslin.service.MembershipService;
 import com.ljuslin.service.RentalService;
 import com.ljuslin.service.RevenueService;
-import com.ljuslin.view.ItemView;
-import com.ljuslin.view.MemberView;
-import com.ljuslin.view.RentalView;
-import com.ljuslin.view.RevenueView;
+import com.ljuslin.view.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * Main application
+ * Main application, creates all instances that are needed for the program to work and then
+ * starts application.
  */
 public class WigellApplication extends Application {
     private MemberView memberView = new MemberView();
@@ -39,8 +37,8 @@ public class WigellApplication extends Application {
     private RentalController rentalController = new RentalController(rentalService,
             memberController, itemController, rentalView);
     private RevenueController revenueController = new RevenueController(revenueService,
-            memberController, itemController, rentalController, revenueView);
-    private MainController mainController = new MainController(memberController, itemController, rentalController,
+            memberController, itemController, revenueView);
+    private MainView mainController = new MainView(memberController, itemController, rentalController,
             revenueController);
 
     public WigellApplication() {

@@ -11,6 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Creates view for searching a rental
+ *
+ * @author Tina Ljuslin
+ */
 public class SearchRentalView extends View {
     private RentalController rentalController;
 

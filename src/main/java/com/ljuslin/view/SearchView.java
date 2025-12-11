@@ -1,6 +1,5 @@
 package com.ljuslin.view;
 
-import com.ljuslin.controller.MainController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +11,7 @@ import javafx.stage.Stage;
  * Ej implementerad,ev för att ersätta alla andra serach views
  */
 public class SearchView extends View {
-    private MainController mainController;
+    private MainView mainController;
 
     private Scene scene2;
     private Stage searchStage;
@@ -25,7 +24,7 @@ public class SearchView extends View {
     public SearchView() {
     }
 
-    public SearchView(MainController mainController) {
+    public SearchView(MainView mainController) {
         this.mainController = mainController;
     }
 

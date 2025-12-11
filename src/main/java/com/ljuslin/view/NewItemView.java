@@ -14,7 +14,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
+/**
+ * Cretes a view for a new item
+ *
+ * @author Tina Ljuslin
+ */
 public class NewItemView extends View {
     private ItemController itemController;
 
@@ -25,7 +29,6 @@ public class NewItemView extends View {
     private TextField pricePerDayField;
     private TextField lengthField;
     private TextField widthField;
-    //private TextField sizeField;
 
     private ComboBox<Pattern> patternComboBox;
     private ComboBox<Material> materialComboBox;
@@ -78,7 +81,6 @@ public class NewItemView extends View {
         widthField = new TextField();
         lengthField = new TextField();
         pricePerDayField = new TextField();
-        //sizeField = new TextField();
         ObservableList<Material> materials = FXCollections.observableArrayList(Material.values());
         materialComboBox = new ComboBox<>(materials);
         materialComboBox.getSelectionModel().select(0);

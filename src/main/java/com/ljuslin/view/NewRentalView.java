@@ -2,7 +2,6 @@ package com.ljuslin.view;
 
 import com.ljuslin.controller.ItemController;
 import com.ljuslin.controller.MemberController;
-import com.ljuslin.controller.RentalController;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.model.*;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -20,8 +19,11 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * Creates view for a new rental
+ * @author Tina Ljuslin
+ */
 public class NewRentalView extends View {
-    //private RentalController rentalController;
     private MemberController memberController;
     private ItemController itemController;
 
