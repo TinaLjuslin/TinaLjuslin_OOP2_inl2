@@ -10,9 +10,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Shows a popup where the user can enter values for a new member
+ * Shows a popup to search for a member
  *
- * @author tina.ljuslin@studerande.yh.se
+ * @author Tina Ljuslin
  */
 public class SearchMemberView extends View {
     private MemberController memberController;

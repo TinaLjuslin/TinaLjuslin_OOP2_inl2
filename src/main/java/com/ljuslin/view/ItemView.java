@@ -18,6 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import java.util.List;
 
+/**
+ * Creates the item tab
+ *
+ * @author Tina Ljuslin
+ */
 public class ItemView extends View implements TabView {
     private ItemController itemController;
     private RentalController rentalController;

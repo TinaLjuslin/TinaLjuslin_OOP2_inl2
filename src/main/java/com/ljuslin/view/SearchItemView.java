@@ -11,6 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Creates view for searching an item
+ *
+ * @author Tina Ljuslin
+ */
 public class SearchItemView extends View {
     private ItemController itemController;
 

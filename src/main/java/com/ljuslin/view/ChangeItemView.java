@@ -12,6 +12,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Shows view for changing an item
+ *
+ * @author Tina Ljuslin
+ */
 public class ChangeItemView extends View {
     private ItemController itemController;
 
@@ -21,7 +26,6 @@ public class ChangeItemView extends View {
     private TextField pricePerDayField;
     private TextField lengthField;
     private TextField widthField;
-    //private TextField sizeField;
 
     private ComboBox<Pattern> patternComboBox;
     private ComboBox<Material> materialComboBox;

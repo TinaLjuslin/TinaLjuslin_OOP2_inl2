@@ -11,11 +11,18 @@ import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 
 import java.util.List;
-
+/**
+ * Controlls all Views for Members and calls the right service to perform operations
+ *
+ * @author Tina Ljuslin
+ */
 public class MemberController {
     private MembershipService membershipService;
     private MemberView memberView;
-
+    private NewMemberView newMemberView;
+    private SearchMemberView searchMemberView;
+    private ChangeMemberView changeMemberView;
+    private HistoryView historyView;
     private Stage stage;
     private Scene scene;
 
@@ -52,12 +59,12 @@ public class MemberController {
     }
 
     public void newMemberView() {
-        NewMemberView newMemberView = new NewMemberView(this);
+        newMemberView = new NewMemberView(this);
         newMemberView.showPopUp(stage, scene);
     }
 
     public void searchMemberView() {
-        SearchMemberView searchMemberView = new SearchMemberView(this);
+        searchMemberView = new SearchMemberView(this);
         searchMemberView.showPopUp(stage, scene);
     }
 
@@ -73,7 +80,7 @@ public class MemberController {
     }
 
     public void changeMemberView(Member member) {
-        ChangeMemberView changeMemberView = new ChangeMemberView(this);
+        changeMemberView = new ChangeMemberView(this);
         changeMemberView.showPopUp(stage, member);
     }
 
@@ -86,7 +93,7 @@ public class MemberController {
     }
 
     public void getHistoryView(Member member) {
-        HistoryView historyView = new HistoryView();
+        historyView = new HistoryView();
         historyView.showPopUp(stage, member);
     }
 }

@@ -21,39 +21,6 @@
   "size" : "M",
   "preTied" : false
 }, {
-  "itemType" : "Bowtie",
-  "itemID" : "1765275010353",
-  "pattern" : "NO_PATTERN",
-  "material" : "COTTON",
-  "brand" : "Marke AB",
-  "color" : "Rosa",
-  "pricePerDay" : 15.0,
-  "available" : false,
-  "size" : "S",
-  "preTied" : true
-}, {
-  "itemType" : "Tie",
-  "itemID" : "1764758195316",
-  "pattern" : "DOTTED",
-  "material" : "COTTON",
-  "brand" : "Märke AB",
-  "color" : "blå",
-  "pricePerDay" : 17.0,
-  "available" : false,
-  "length" : 159.0,
-  "width" : 8.0
-}, {
-  "itemType" : "Tie",
-  "itemID" : "1764846707510",
-  "pattern" : "STRIPED",
-  "material" : "COTTON",
-  "brand" : "Slipskompaniet AB",
-  "color" : "Lila",
-  "pricePerDay" : 14.0,
-  "available" : false,
-  "length" : 159.0,
-  "width" : 6.0
-}, {
   "itemType" : "Tie",
   "itemID" : "1765293578808",
   "pattern" : "DOTTED",
@@ -76,17 +43,6 @@
   "size" : "L",
   "preTied" : true
 }, {
-  "itemType" : "Tie",
-  "itemID" : "1765295981028",
-  "pattern" : "DOTTED",
-  "material" : "COTTON",
-  "brand" : "Slipsar AB",
-  "color" : "Grön",
-  "pricePerDay" : 14.0,
-  "available" : true,
-  "length" : 160.0,
-  "width" : 7.0
-}, {
   "itemType" : "Bowtie",
   "itemID" : "1765296027868",
   "pattern" : "NO_PATTERN",
@@ -99,13 +55,57 @@
   "preTied" : true
 }, {
   "itemType" : "Tie",
+  "itemID" : "1765295981028",
+  "pattern" : "DOTTED",
+  "material" : "COTTON",
+  "brand" : "Slipsar AB",
+  "color" : "Grön",
+  "pricePerDay" : 14.0,
+  "available" : false,
+  "length" : 160.0,
+  "width" : 7.0
+}, {
+  "itemType" : "Tie",
   "itemID" : "1764846822044",
   "pattern" : "DOTTED",
   "material" : "SILK",
   "brand" : "Sidenattiraljer AB",
   "color" : "svart",
   "pricePerDay" : 15.0,
-  "available" : true,
+  "available" : false,
   "length" : 160.0,
   "width" : 7.0
+}, {
+  "itemType" : "Bowtie",
+  "itemID" : "1765275010353",
+  "pattern" : "NO_PATTERN",
+  "material" : "COTTON",
+  "brand" : "Marke AB",
+  "color" : "Rosa",
+  "pricePerDay" : 15.0,
+  "available" : true,
+  "size" : "S",
+  "preTied" : true
+}, {
+  "itemType" : "Tie",
+  "itemID" : "1764846707510",
+  "pattern" : "STRIPED",
+  "material" : "COTTON",
+  "brand" : "Slipskompaniet AB",
+  "color" : "Lila",
+  "pricePerDay" : 14.0,
+  "available" : true,
+  "length" : 159.0,
+  "width" : 6.0
+}, {
+  "itemType" : "Tie",
+  "itemID" : "1764758195316",
+  "pattern" : "DOTTED",
+  "material" : "COTTON",
+  "brand" : "Märke AB",
+  "color" : "Mörkblå",
+  "pricePerDay" : 17.0,
+  "available" : false,
+  "length" : 159.0,
+  "width" : 8.0
 } ]

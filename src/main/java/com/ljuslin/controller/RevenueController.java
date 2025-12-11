@@ -9,9 +9,12 @@ import com.ljuslin.view.RevenueView;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
-
+/**
+ * Controlls all Views for Revenue and calls the right service to perform operations
+ *
+ * @author Tina Ljuslin
+ */
 public class RevenueController {
-    private RentalController rentalController;
     private MemberController memberController;
     private ItemController itemController;
     private RevenueService revenueService;
@@ -23,9 +26,8 @@ public class RevenueController {
     public RevenueController() {
     }
 
-    public RevenueController(RevenueService revenueService,
-                             MemberController memberController, ItemController itemController, RentalController rentalController,
-                             RevenueView revenueView) {
+    public RevenueController(RevenueService revenueService, MemberController memberController,
+                             ItemController itemController, RevenueView revenueView) {
         this.revenueService = revenueService;
         this.revenueView = revenueView;
         newRentalView = new NewRentalView(memberController, itemController);
@@ -51,8 +53,11 @@ public class RevenueController {
         return revenueService.getTotalRevenue();
     }
 
-    public String getRevenuePerItem() throws FileException, RevenueException {
-        Item item = newRentalView.showAllItemPopUp(stage, scene);
+    public String getRevenuePerItem(Item item) throws FileException, RevenueException {
         return revenueService.getRevenuePerItem(item);
+    }
+    public Item getItemForRevenue() {
+        return newRentalView.showAllItemPopUp(stage, scene);
+
     }
 }

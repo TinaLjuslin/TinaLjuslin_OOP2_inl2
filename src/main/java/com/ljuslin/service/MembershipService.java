@@ -41,7 +41,8 @@ public class MembershipService {
 
         Member member = new Member(firstName, lastName, level);
         memberRegistry.addMember(member);
-        memberRegistry.addToHistory(member, (" Member added: " + member.toString()));
+        memberRegistry.addToHistory(member,
+                (getTimeString() + " Member added: " + member.toString()));
     }
 
     public String getTimeString() {

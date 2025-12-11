@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.ljuslin.exception.FileException;
 import com.ljuslin.exception.RentalException;
-import com.ljuslin.model.Member;
 import com.ljuslin.model.Rental;
 
 import java.io.File;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Holds all rentals, ongoing and ended
+ * Saves and gets rentals to/from file
  *
  * @author Tina Ljuslin
  */

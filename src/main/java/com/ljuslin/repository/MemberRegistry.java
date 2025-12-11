@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Holds all members of this rental shop
+ * Saves and gets members to/from file, makes changes, removes or adds
  *
  * @author Tina Ljuslin
  */

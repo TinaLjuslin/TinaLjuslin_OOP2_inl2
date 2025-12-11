@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 
 /**
  * Shows a popup where the user can enter values for a new member
- * @author tina.ljuslin@studerande.yh.se
+ *
+ * @author Tina Ljuslin
  */
 public class NewMemberView extends View{
     private MemberController memberController;

@@ -6,20 +6,24 @@ import com.ljuslin.model.Item;
 import com.ljuslin.model.Material;
 import com.ljuslin.model.Pattern;
 import com.ljuslin.service.ItemService;
-import com.ljuslin.view.ChangeItemView;
-import com.ljuslin.view.ItemView;
-import com.ljuslin.view.NewItemView;
-import com.ljuslin.view.SearchItemView;
+import com.ljuslin.view.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * Controlls all Views for Items and calls the right service to perform operations
+ *
+ * @author Tina Ljuslin
+ */
 public class ItemController {
-    private MainController mainController;
     private ItemService itemService;
     private ItemView itemView;
+    private NewItemView newTieView;
+    private ChangeItemView changeItemView;
+    private SearchItemView searchItemView;
     private Stage stage;
     private Scene scene;
 
@@ -60,7 +64,7 @@ public class ItemController {
     }
 
     public void newItemView() {
-        NewItemView newTieView = new NewItemView(this);
+        newTieView = new NewItemView(this);
         newTieView.showPopUp(stage, scene);
     }
 
@@ -81,7 +85,7 @@ public class ItemController {
     }
 
     public void changeItemView(Item item) {
-        ChangeItemView changeItemView = new ChangeItemView(this);
+        changeItemView = new ChangeItemView(this);
         changeItemView.showPopUp(stage, scene, item);
     }
 
@@ -100,7 +104,7 @@ public class ItemController {
     }
 
     public void searchItemView() {
-        SearchItemView searchItemView = new SearchItemView(this);
+        searchItemView = new SearchItemView(this);
         searchItemView.showPopUp(stage, scene);
     }
 

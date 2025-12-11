@@ -1,5 +1,9 @@
-package com.ljuslin.controller;
+package com.ljuslin.view;
 
+import com.ljuslin.controller.ItemController;
+import com.ljuslin.controller.MemberController;
+import com.ljuslin.controller.RentalController;
+import com.ljuslin.controller.RevenueController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,11 +22,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+
 /**
+ * Holds the main scene and calls other views to get tabs.
  *
  * @author Tina Ljuslin
  */
-public class MainController {
+public class MainView extends View{
     private final String TOP_HEADER = "Wigells uthyrning av accessoarer för gentlemän";
     private MemberController memberController;
     private ItemController itemController;
@@ -51,11 +57,11 @@ public class MainController {
     private Timeline timeline;
     private long totalSeconds = 0;
 
-    public MainController() {
+    public MainView() {
     }
 
-    public MainController(MemberController memberController, ItemController itemController,
-                          RentalController rentalController, RevenueController revenueController) {
+    public MainView(MemberController memberController, ItemController itemController,
+                    RentalController rentalController, RevenueController revenueController) {
 
         this.memberController = memberController;
         this.itemController = itemController;

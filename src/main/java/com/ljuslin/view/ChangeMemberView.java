@@ -13,6 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Shows view for changing a member
+ *
+ * @author Tina Ljuslin
+ */
 public class ChangeMemberView extends View {
     private MemberController memberController;
 

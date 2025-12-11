@@ -9,6 +9,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Shows view with history of a member
+ *
+ * @author Tina Ljuslin
+ */
 public class HistoryView {
 
     private Stage historyStage;

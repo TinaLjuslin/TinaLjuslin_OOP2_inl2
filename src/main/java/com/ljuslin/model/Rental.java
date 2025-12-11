@@ -1,7 +1,6 @@
 package com.ljuslin.model;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * Connects a member and an item to make a rental in the shop, has rental date and return date

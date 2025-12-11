@@ -24,6 +24,11 @@ import javafx.scene.layout.VBox;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Creates rental tab
+ *
+ * @author Tina Ljuslin
+ */
 public class RentalView extends View implements TabView {
     private RentalController rentalController;
     private Tab tab;

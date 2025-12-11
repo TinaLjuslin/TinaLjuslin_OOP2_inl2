@@ -16,13 +16,18 @@ import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 
 import java.util.List;
-
+/**
+ * Controlls all Views for Rentals and calls the right service to perform operations
+ *
+ * @author Tina Ljuslin
+ */
 public class RentalController {
     private ItemController itemController;
     private MemberController memberController;
     private RentalService rentalService;
     private RentalView rentalView;
     private NewRentalView newRentalView;
+    private SearchRentalView searchRentalView;
     private Stage stage;
     private Scene scene;
 
@@ -37,7 +42,7 @@ public class RentalController {
         this.memberController = memberController;
         this.itemController = itemController;
         newRentalView = new NewRentalView(memberController, itemController);
-    }//this,
+    }
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -89,7 +94,7 @@ public class RentalController {
     }
 
     public void searchRentalView() {
-        SearchRentalView searchRentalView = new SearchRentalView(this);
+        searchRentalView = new SearchRentalView(this);
         searchRentalView.showPopUp(stage, scene);
     }
 
